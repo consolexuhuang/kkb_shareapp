@@ -20,7 +20,8 @@ Page({
       shareBgImg: '',
       codeImg: ''
     },
-    isShare: getApp().globalData.share
+    isShare: getApp().globalData.share,
+    isReceiveState: false
     // navbarData: {
     //   title: 'Justin&Julie',
     //   showCapsule: 0,
@@ -52,7 +53,7 @@ Page({
       api.post('v2/coupon/shareCouponInfo').then(res => {
         wx.hideLoading()
         console.log(res)
-        res.msg.banner = res.msg.banner + '?imageView/1/w/375/h/335'
+        // res.msg.banner = res.msg.banner + '?imageView/1/w/375/h/335'
         const shareCoupon = res.msg
         this.setData({
           shareCoupon
@@ -131,6 +132,7 @@ Page({
     this.setData({
       shareMemberId
     })
+    getApp().globalData.shareMemberId = options.shareMemberId
   },
   onShow() {
     console.log('shareState', getApp().globalData.share)
@@ -200,8 +202,22 @@ Page({
       isShadeShow : false
     })
   },
+  //登陆
+  bindgetuserinfo(e) {
+    wx.getUserInfo({
+      success: res => {
+        console.log('用户授权信息', res.userInfo)
+        Store.setItem('wx_userInfo', res.userInfo)
+        this.setData({ wx_userInfo: res.userInfo || '' })
+        getApp().wx_modifyUserInfo().then(() => {
+          this.setData({ isReceiveState : true})
+        });
+      }
+    })
+  },
   //分享
-  onShareAppMessage: function () {
+  onShareAppMessage: function (e) {
+    console.log('分享人id',e, this.data.invitedInfo.share_member_id)
     const title = this.data.shareCoupon.linkTitle
     const shareMemberId = this.data.invitedInfo.share_member_id
     return {

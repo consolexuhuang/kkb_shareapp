@@ -6,6 +6,7 @@ App({
   onLaunch: function (options) {
     this.api = api
     this.store = Store;
+    this.globalData.scene = options.scene
     //登录
     // this.checkSessionFun();
     //版本更新
@@ -56,6 +57,7 @@ App({
   },
   onShow(options){
     console.log('scene', options.scene)
+    this.globalData.scene = options.scene
     if (options.scene == 1007 || options.scene == 1008) {
       this.globalData.share = false
     } else {
@@ -72,51 +74,57 @@ App({
     location: '',
     isIpX: false, //是否是ipHonex
     redirectToState: true,
+    scene:'',
   },
 
-  // //检查登录态是否过期
-  // checkSessionFun() {
-  //   wx.checkSession({
-  //     success: () => {
-  //       //session_key 未过期，并且在本生命周期一直有效
-  //       Store.getItem('userData') ? console.log('无需重新登陆') : this.wx_loginIn()
-  //     },
-  //     fail: () => {
-  //       // session_key 已经失效，需要重新执行登录流程
-  //       this.wx_loginIn();
-  //     }
-  //   })
-  // },
   wx_loginIn: function () {
     let _this = this
     return new Promise((resolve, reject) => {
       wx.login({
         success: res_code => {
-          console.log('code', res_code.code)
           _this.globalData.code = res_code.code
           Store.setItem('code', res_code.code)
           let data = {
-            code: res_code.code
+            code: res_code.code,
+            sourceData: _this.globalData.scene,
+            shareChannel: _this.globalData.shareMemberId || '',
+            nickName: Store.getItem('wx_userInfo').nickName || '',
+            headImg: Store.getItem('wx_userInfo').avatarUrl || '',
+            city: Store.getItem('wx_userInfo').city || '',
+            gender: Store.getItem('wx_userInfo').gender || ''
           }
           api.get('authorizationShare', data).then(res => {
-            if (res.msg) {
-              if (res.code === -1) { //如果出现登陆未知错误
-                // setTimeout(() => {
-                //   wx.navigateTo({ url: `/pages/noFind/noFind?type=1` })
-                // }, 0)
-              } else {
-                // 已关联公众号
-                Store.setItem('userData', res.msg)
-              }
-            } else {
-              // 未关联
-              // setTimeout(() => {
-              //   wx.redirectTo({
-              //     url: '/pages/inviteShare/inviteShare',
-              //   })
-              // }, 0)
-            }
+            console.log('登陆', res.msg)
+            Store.setItem('userData', res.msg)
+            // if (res.msg.isNewMember === 1) {
+            //   // 新用户
+            // } else {
+            //   Store.setItem('userData', res.msg)
+            // }
             resolve()
+          })
+        }
+      })
+    })
+  },
+  //修改用户信息接口
+  wx_modifyUserInfo() {
+    return new Promise(resolve => {
+      let data = {
+        nickName: Store.getItem('wx_userInfo').nickName || '',
+        headImg: Store.getItem('wx_userInfo').avatarUrl || '',
+        city: Store.getItem('wx_userInfo').city || '',
+        gender: Store.getItem('wx_userInfo').gender || ''
+      }
+      api.post('modifyUserInfo', data).then(res => {
+        console.log('修改用户信息接口', res)
+        if (res.msg) {
+           Store.setItem('userData', res.msg)
+           resolve()
+        } else {
+          wx.showToast({
+            title: '授权失败!',
+            icon:'none'
           })
         }
       })

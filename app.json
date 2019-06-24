@@ -1,7 +1,6 @@
 {
   "pages": [
     "pages/inviteShare/inviteShare",
-    "pages/index/index",
     "pages/logs/logs"
   ],
   "window": {

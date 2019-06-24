@@ -282,22 +282,84 @@
   line-height: 48rpx;
   font-weight: 500;
   font-size: 34rpx;
+  color:rgba(70,70,70,1);
+}
+.inviteName{
   color: #896CFF;
 }
-
-.center-qrcode{
-  /* margin-top: 32rpx; */
+.center-text{
+  font-size:26rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(60,60,60,1);
+  line-height:120rpx;
+  letter-spacing:1rpx;
+}
+.center-text2{
+  font-size:30rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:#3C3C3C;
+  line-height:42rpx;
+  letter-spacing:1rpx;
+  margin-top: 40rpx
+}
+.center-text3{
+  font-size:24rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(160,160,160,1);
+  line-height:40rpx;
+  letter-spacing:1rpx;
+  margin-bottom: 40rpx
+}
+.couponBtn{
+  display: flex;
+  flex-direction: column;
+}
+.couponBtn_top{
+  width:593rpx;
+  background:rgba(139,112,255,1);
+  border-radius:4rpx;
+  font-size:30rpx;
+  font-family:SourceHanSansCN-Normal;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+  line-height:90rpx;
+  align-self: center;
+}
+.couponBtn_bottom{
+  width:593rpx;
+  border-radius:4rpx;
+  border:1px solid rgba(139,112,255,1);
+  font-size:30rpx;
+  font-family:SourceHanSansCN-Normal;
+  font-weight:400;
+  color:rgba(139,112,255,1);
+  line-height:90rpx;
+  align-self: center;
+  margin-top: 20rpx;
+  position: relative;
+}
+.couponBtn_bottomBtn{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+/* .center-qrcode{
   width: 240rpx;
   height: 240rpx;
-}
+} */
 
-.center-tips{
-  /* margin-top: 12rpx; */
+/* .center-tips{
   line-height: 40rpx;
   font-size: 28rpx;
   color: #949494;
-}
-.newMmeber{
+} */
+/* .newMmeber{
   font-size:46rpx;
   font-family:PingFangSC-Medium;
   font-weight:500;
@@ -305,6 +367,93 @@
   line-height:100rpx;
   letter-spacing:2rpx;
   text-align: center;
+} */
+.coupon{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  width: 623rpx;
+  margin: 0 auto;
+}
+.couponBg{
+  width: 100%;
+  height: 205rpx;
+}
+.couponLeft{
+  width: 208rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: 28rpx 8rpx;
+  box-sizing: border-box;
+}
+.couponLeft_tag{
+  font-size:24rpx;
+  font-family:SourceHanSansCN-Normal;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+  line-height:36rpx;
+}
+.couponLeft_price{
+  font-size:50rpx;
+  font-family:SourceHanSansCN-Medium;
+  font-weight:500;
+  color:rgba(255,255,255,1);
+  line-height:75rpx;
+}
+.couponLeft_text{
+  font-size:24rpx;
+  font-family:SourceHanSansCN-Regular;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+  line-height:36rpx;
+}
+.couponRight{
+  width: 415rpx;
+  position: absolute;
+  right: 0;
+  top: 0;
+  display: flex;
+  /* flex-direction: column; */
+  align-items: center;
+  height: 100%;
+}
+.couponRightBox{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1
+}
+.couponRight_text{
+  font-size:30rpx;
+  font-family:SourceHanSansCN-Regular;
+  font-weight:400;
+  color:rgba(74,74,74,1);
+  line-height:45rpx;
+}
+.couponRightBtn{
+  width:291rpx;
+  border-radius:3rpx;
+  border:1px solid rgba(137,110,255,1);
+  font-size:30rpx;
+  font-family:SourceHanSansCN-Normal;
+  font-weight:400;
+  color:rgba(137,110,255,1);
+  line-height:64rpx;
+  margin-top: 20rpx;
+  position: relative
+}
+.couponRightButton{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0;
 }
 
 .center-tips text{

@@ -1,11 +1,11 @@
 <!--pages/inviteShare/inviteShare.wxml-->
 <!-- <tabBar_top navbarData="{{navbarData}}"></tabBar_top> -->
-<!-- wx:if="{{shareCoupon && invitedInfo}}" -->
+<!-- wx:if="{{shareCoupon}}" -->
 <wxs src="../../utils/util.wxs" module="util" />
-<block wx:if="{{shareCoupon}}">
+<block wx:if="{{!userData.isNewMember}}">
   <view wx:if="{{shareCoupon && invitedInfo}}">
     <view class="banner">
-      <image src="{{shareCoupon.banner}}" class='fadeIn animated' bindtap='distinguishImg'/>
+      <image src="{{inviteMember.config.banner1}}" class='fadeIn animated' bindtap='distinguishImg'/>
       <view class="qrcode" wx:if="{{qrcode}}">
         <image src="{{qrcode}}" class='fadeIn animated' />
         <text>点击保存并分享</text>
@@ -13,7 +13,6 @@
     </view>
 
     <view class="content">
-
       <view class="return-course" bindtap="handleReturnCourseTap">
         <text>返回约课</text>
         <image src="{{imgUrl}}invite/icon_arrow_right.png" />
@@ -72,15 +71,39 @@
 <block wx:else>
   <view style="position:relative;margin-top:{{marginTopBar}}px;">
     <view class="header-background">
-      <image src="{{imgUrl}}invite/header_background.png" />
+      <image src="{{inviteMember.config.banner2}}" />
     </view>
     <view class="center-background"></view>
     <view class="center-content">
       <image class="center-avatar" src="{{imgUrl}}invite/avatar.png" />
-      <view class="center-name">Justin&Julie</view>
-      <image class="center-qrcode" src="{{inviteQrcode}}" data-src="{{inviteQrcode}}" bindtap="previewImage" />
-      <view class="center-tips">点击长按保存图片并关注<text>公众号</text></view>
-      <view class='newMmeber'>新会员首单39元</view>
+      <view class="center-name"><text class='inviteName'>@{{inviteMember.name}}</text> 带你1小时变美
+      </view>
+      <!-- 未领取 -->
+      <view class='center-text' wx:if='{{userData.isNewMember && !isReceiveState}}'>送你50元新手礼券，一起来健身吧！</view>
+      <!-- 已领取 -->
+      <view class='center-text2' wx:if='{{isReceiveState}}'>成功领取新人券，快去使用吧！</view>
+      <view class='center-text3' wx:if='{{isReceiveState}}'>已放入你的&#91Justin&Julie]账户</view>
+
+      <!-- 未领取 -->
+      <view class='coupon' wx:if='{{userData.isNewMember && !isReceiveState}}'>
+        <image src='{{imgUrl}}invite/coupon.png' class='couponBg'></image>
+        <view class='couponLeft'>
+           <view class='couponLeft_tag'>全场通用</view>
+           <view class='couponLeft_price'>{{userData.couponInfo.amount || 0}}元</view>
+           <view class='couponLeft_text'>- 代金券 -</view>
+        </view>
+        <view class='couponRight'>
+           <view class='couponRightBox'>
+              <view class='couponRight_text'>Justin&Julie新人礼券</view>
+              <view class='couponRightBtn'>立即领取 <button class='couponRightButton' open-type='getUserInfo' bindgetuserinfo = 'bindgetuserinfo'></button></view>
+           </view>
+        </view>
+      </view>
+       <!-- 已领取 -->
+       <view class='couponBtn' wx:if='{{isReceiveState}}'>
+          <view class='couponBtn_top' bindtap='handleReturnCourseTap'>立即使用</view>
+          <view class='couponBtn_bottom'>邀请好友赢代金券 <button open-type='share' class='couponBtn_bottomBtn' bindtap='onShareAppMessage'></button></view>
+       </view>
     </view>
   </view>
 </block>
