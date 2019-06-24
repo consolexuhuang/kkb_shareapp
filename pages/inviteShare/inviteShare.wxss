@@ -1,0 +1,450 @@
+/* pages/invite/invite.wxss */
+
+.banner{
+  position: relative;
+  width: 100%;
+  height: 670rpx;
+}
+
+.banner image{
+  width: 100%;
+  height: 670rpx;
+}
+
+.qrcode{
+  position: absolute;
+  left: 33rpx;
+  bottom: 41rpx;
+  display: inline-flex;
+  align-items: center;
+  z-index: 2;
+}
+
+.qrcode image{
+  width: 106rpx;
+  height: 106rpx;
+}
+
+.qrcode text{
+  margin-left: 16rpx;
+  font-size: 24rpx;
+  color: #FFFFFF;
+  text-shadow: 0 1rpx 6rpx rgba(59,37,147,1);
+}
+
+.content{
+  background-color: #FFFFFF;
+}
+
+.return-course{
+  margin-top: 47rpx;
+  margin-left: 553rpx;
+  display: inline-flex;
+  align-items: center;
+}
+
+.return-course text{
+  line-height: 40rpx;
+  font-size: 28rpx;
+  color: #505050;
+}
+
+.return-course image{
+  margin-left: 10rpx;
+  width: 12rpx;
+  height: 20rpx;
+}
+
+.invite-wrapper{
+  margin-top: 35rpx;
+  display: flex;
+  align-items: center;
+}
+
+.invite-avatar{
+  margin-left: 59rpx;
+  width: 90rpx;
+  height: 90rpx;
+  border-radius: 50%;
+}
+
+.invite-title-wrapper{
+  margin-left: 26rpx;
+}
+
+.invite-title{
+  line-height: 42rpx;
+  font-weight: 500;
+  font-size: 30rpx;
+  color: #5A5A5A;
+}
+
+.invite-title text{
+  color: #896CFF;
+}
+
+.invite-subtitle{
+  margin-top: 12rpx;
+  line-height: 33rpx;
+  font-size: 24rpx;
+  color: #5A5A5A;
+}
+
+.invite-btn{
+  margin: 40rpx auto 0;
+  display: block;
+  width: 640rpx;
+  height: 80rpx;
+  background-color: #896CFF;
+  line-height: 80rpx;
+  text-align: center;
+  font-size: 34rpx;
+  color: #FFFFFF;
+  border-radius: 40rpx;
+}
+.face-invite-btn{
+  margin: 30rpx auto 0;
+  display: block;
+  width: 640rpx;
+  height: 80rpx;
+  border-radius: 40rpx;
+  background-color: #FFFFFF;
+  border: 1px solid #896CFF;
+  line-height: 80rpx;
+  text-align: center;
+  font-size: 34rpx;
+  color: #896CFF;
+}
+.total-wrapper{
+  margin: 30rpx auto 0;
+  width: 641rpx;
+  height: 173rpx;
+  border: 1px solid #DFDFDF;
+  background-color: #FAFAFA;
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+.total-amount{
+  width: 315rpx;
+}
+
+.total-number{
+  line-height: 82rpx;
+  font-size: 70rpx;
+  color: #505050;
+}
+.dollor{
+  font-size: 26rpx;
+  padding-left: 8rpx
+}
+
+.total-tips{
+  margin-top: 6rpx;
+  line-height: 33rpx;
+  font-size: 24rpx;
+  color: #B1B1B1;
+}
+
+.totle-line{
+  width: 2rpx;
+  height: 115rpx;
+  background-color: #DFDFDF;
+}
+
+.total-count{
+  flex: 1;
+}
+
+.invite-member-wrapper{
+  margin-top: 53rpx;
+  padding-bottom: 35rpx;
+}
+
+.invite-member-title{
+  display: flex;
+  align-items: center;
+}
+
+.invite-member-title hr{
+  flex: 1;
+  height: 1px;
+  background-color: #DFDFDF;
+}
+
+.invite-member-count{
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+  line-height: 37rpx;
+  font-size: 26rpx;
+  color: #141414;
+}
+
+.invite-member-count text{
+  color: #896CFF;
+}
+
+.invite-member-list{
+  margin-top: 23rpx;
+  width: 100%;
+}
+
+.invite-member-item{
+  margin: 0 auto;
+  width: 685rpx;
+  height: 104rpx;
+  border-bottom: 1px solid #DFDFDF;
+  display: flex;
+  align-items: center;
+}
+
+.invite-member-avatar{
+  margin-left: 10rpx;
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 50%;
+}
+
+.invite-member-name{
+  flex: 1;
+  margin-left: 18rpx;
+  font-size: 24rpx;
+  color: #4A4A4A;
+}
+
+.invite-member-time{
+  margin-right: 11rpx;
+  font-size: 24rpx;
+  color: #4A4A4A;
+}
+
+.tips{
+  margin-top: 40rpx;
+  padding-bottom: 52rpx;
+}
+
+.tips-title{
+  margin-left: 16rpx;
+  line-height: 30rpx;
+  font-size: 30rpx;
+  color: #323232;
+}
+
+.tips rich-text{
+  margin-top: 41rpx;
+  margin-left: 35rpx;
+  display: block;
+  line-height: 42rpx;
+  font-size: 26rpx;
+  color: #A0A0A0;
+}
+
+.header-background {
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.header-background image {
+  width: 100%;
+  height: 750rpx;
+}
+
+.center-background{
+  position: absolute;
+  top: 598rpx;
+  left: 32.5rpx;
+  width: 685rpx;
+  height: 562rpx;
+  border-radius: 8rpx;
+  background-color: #FFFFFF;
+  box-shadow: 0 0 29rpx 0 rgba(214,214,214,0.5);
+  z-index: 1;
+}
+
+.center-content{
+  position: absolute;
+  top: 501rpx;
+  width: 100%;
+  text-align: center;
+  z-index: 2;
+}
+
+.center-avatar{
+  width: 186rpx;
+  height: 186rpx;
+  border-radius: 50%;
+}
+
+.center-name{
+  margin-top: 12rpx;
+  line-height: 48rpx;
+  font-weight: 500;
+  font-size: 34rpx;
+  color: #896CFF;
+}
+
+.center-qrcode{
+  /* margin-top: 32rpx; */
+  width: 240rpx;
+  height: 240rpx;
+}
+
+.center-tips{
+  /* margin-top: 12rpx; */
+  line-height: 40rpx;
+  font-size: 28rpx;
+  color: #949494;
+}
+.newMmeber{
+  font-size:46rpx;
+  font-family:PingFangSC-Medium;
+  font-weight:500;
+  color:rgba(127,103,247,1);
+  line-height:100rpx;
+  letter-spacing:2rpx;
+  text-align: center;
+}
+
+.center-tips text{
+  color: #896CFF;
+}
+.PostImgBox{
+  position: relative;
+  width: 750rpx;
+  height: 670rpx;
+}
+.sharePostBtn{
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -280rpx;
+  margin: auto;
+  width:463rpx;
+  background:rgba(137,108,255,1);
+  border-radius:40rpx;
+  font-size:34rpx;
+  font-family:PingFang-SC-Bold;
+  font-weight:bold;
+  color:#fff;
+  line-height:80rpx;
+  text-align:center;
+  letter-spacing:2rpx;
+}
+.officialAccount{
+  position: fixed;
+  bottom: 0;
+  z-index: 10;
+  width: 100%
+}
+.qrcode-shade{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.8);
+  z-index: 10;
+}
+
+.qrcode-content{
+  margin: 315rpx auto 0;
+  width: 550rpx;
+  height: 600rpx;
+  background-color: #FFFFFF;
+  text-align: center;
+}
+
+.qrcodeBox{
+  background: #fff;
+  padding: 60rpx 0;
+  box-sizing: border-box;
+  border-top-right-radius: 16rpx;
+  border-top-left-radius: 16rpx;
+}
+.qrcodeImg{
+  margin: 0 auto;
+  width: 278rpx;
+  height: 278rpx;
+  display: block
+}
+.qrcode-tipsBox{
+  position: relative;
+}
+.qrcode-tipsImg{
+  width: 474rpx;
+  height: 284rpx;
+  display: block;
+}
+.textBox{
+   position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  display: flex;
+  align-items: center;
+}
+.text{
+  font-size:30rpx;
+  font-family:PingFangSC-Medium;
+  font-weight:500;
+  color:rgba(255,255,255,1);
+  line-height:42rpx;
+  letter-spacing:1rpx;
+  text-align: center;
+  flex: 1;
+  margin-top: -30rpx
+}
+.textNew{
+  font-size: 50rpx;
+  line-height: 70rpx;
+}
+.inviteYou{
+  display: flex;
+  justify-content: space-around;
+  position: absolute;
+  width: 100%;
+  top: -50rpx
+}
+.lineBox{
+  display: flex;
+  align-items: center;
+}
+.line1{
+  width:139rpx;
+  height:2rpx;
+  background:linear-gradient(90deg,rgba(35,32,48,1) 0%,rgba(216,216,216,1) 100%);
+  flex: 1
+}
+.line2{
+  width:139rpx;
+  height:2rpx;
+  background:linear-gradient(90deg,rgba(216,216,216,1) 0%,rgba(35,32,48,1)100%);
+  flex: 1
+}
+.ball{
+  width:10rpx;
+  height:10rpx;
+  background:rgba(255,255,255,1);
+  border-radius: 50%;
+}
+.inviteYouText{
+  font-size:26rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+  line-height:50rpx;
+  letter-spacing:1rpx;
+}
+.closeBtn{
+  width: 60rpx;
+  height: 60rpx;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -160rpx;
+  margin: auto;
+}

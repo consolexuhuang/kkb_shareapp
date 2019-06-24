@@ -1,0 +1,142 @@
+var include = function (Array, item) {
+  return Array.indexOf(item) >= 0
+}
+
+var timeFormat = function (time, format) {
+  if (time.indexOf('-') >= 0 && time.indexOf(':') >= 0) {
+    var string1 = time.split(' ')[0]
+    var arr1 = string1.split('-')
+    if (format.indexOf('YYYY') >= 0) {
+      format = format.replace('YYYY', arr1[0])
+    }
+    if (format.indexOf('MM') >= 0) {
+      format = format.replace('MM', arr1[1])
+    }
+    if (format.indexOf('DD') >= 0) {
+      format = format.replace('DD', arr1[2])
+    }
+    var string2 = time.split(' ')[1]
+    var arr2 = string2.split(':')
+    if (format.indexOf('hh') >= 0) {
+      format = format.replace('hh', arr2[0])
+    }
+    if (format.indexOf('mm') >= 0) {
+      format = format.replace('mm', arr2[1])
+    }
+    if (format.indexOf('ss') >= 0) {
+      format = format.replace('ss', arr2[2])
+    }
+  } else if (time.indexOf('-') >= 0) {
+    var arr1 = time.split('-')
+    if (format.indexOf('YYYY') >= 0) {
+      format = format.replace('YYYY', arr1[0])
+    }
+    if (format.indexOf('MM') >= 0) {
+      format = format.replace('MM', arr1[1])
+    }
+    if (format.indexOf('DD') >= 0) {
+      format = format.replace('DD', arr1[2])
+    }
+  } else if (time.indexOf(':') >= 0) {
+    var arr2 = time.split(':')
+    if (format.indexOf('hh') >= 0) {
+      format = format.replace('hh', arr2[0])
+    }
+    if (format.indexOf('mm') >= 0) {
+      format = format.replace('mm', arr2[1])
+    }
+    if (format.indexOf('ss') >= 0) {
+      format = format.replace('ss', arr2[2])
+    }
+  }
+  return format
+}
+
+var timeStampFormat = function (timeStamp, format) {
+  var regYear = getRegExp("(Y+)", "i")
+  if (!format) {
+    format = "yyyy-MM-dd hh:mm:ss"
+  }
+  timeStamp = parseInt(timeStamp)
+  // 通过getDate()方法获取date类型的时间
+  var realDate = getDate(timeStamp)
+
+  function timeFormat(num) {
+    return num < 10 ? '0' + num : num
+  }
+  var date = [
+    ["M+", timeFormat(realDate.getMonth() + 1)],
+    ["D+", timeFormat(realDate.getDate())],
+    ["h+", timeFormat(realDate.getHours())],
+    ["m+", timeFormat(realDate.getMinutes())],
+    ["s+", timeFormat(realDate.getSeconds())]
+  ]
+  var reg1 = regYear.exec(format)
+  if (reg1) {
+    format = format.replace(reg1[1], (realDate.getFullYear() + '').substring(4 - reg1[1].length))
+  }
+  for (var i = 0; i < date.length; i++) {
+    var k = date[i][0];
+    var v = date[i][1];
+    // getRegExp初始化一个正则表达式对象
+    var reg2 = getRegExp("(" + k + ")").exec(format)
+    if (reg2) {
+      format = format.replace(reg2[1], reg2[1].length == 1 ?
+        v : ("00" + v).substring(("" + v).length))
+    }
+  }
+  return format
+}
+var numberFormat = function (number, count) {
+  return number.toFixed(count)
+}
+var replace = function (string, oldValue, newValue) {
+  return string.replace(oldValue, newValue)
+}
+var cardNumber = function (string) {
+  var reg = getRegExp("(\d{4})(?=[^\s])", "g")
+  return string.replace(reg, '$1 ')
+}
+var endCourseLength = function (courseList) {
+  var n = 0
+  courseList.forEach(function (item) {
+    if (item.status === 3) {
+      n = n + 1
+    }
+  })
+  return n
+}
+var getUrlParams = function (url) {
+  var string = url.split("?")[1]
+  var params = {}
+  if (string.length > 1) {
+    var array = string.split("&")
+    array.forEach(function (item) {
+      var key = item.split("=")[0]
+      var value = item.split("=")[1]
+      params[key] = value
+    })
+  }
+  return params
+}
+
+//图片去除多余‘？’
+var imageParam = function (url, param) {
+  if (!param) {
+    return url;
+  } else {
+    return url.split('?')[0] + param
+  }
+}
+
+module.exports = {
+  include: include,
+  timeFormat: timeFormat,
+  timeStampFormat: timeStampFormat,
+  numberFormat: numberFormat,
+  replace: replace,
+  cardNumber: cardNumber,
+  endCourseLength: endCourseLength,
+  getUrlParams: getUrlParams,
+  imageParam: imageParam
+}
