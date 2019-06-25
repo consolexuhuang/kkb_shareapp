@@ -13,9 +13,10 @@
     </view>
 
     <view class="content">
-      <view class="return-course" bindtap="handleReturnCourseTap">
+      <view class="return-course">
         <text>返回约课</text>
         <image src="{{imgUrl}}invite/icon_arrow_right.png" />
+        <button open-type='getUserInfo' class='couponRightButton' bindgetuserinfo = 'handleReturnCourseTap' ></button>
       </view>
 
       <view class="invite-wrapper fadeIn animated" wx:if="{{inviteMember.name && !isShare}}">
@@ -75,7 +76,7 @@
     </view>
     <view class="center-background"></view>
     <view class="center-content">
-      <image class="center-avatar" src="{{imgUrl}}invite/avatar.png" />
+      <image class="center-avatar" src="{{inviteMember.head_img}}" />
       <view class="center-name"><text class='inviteName'>@{{inviteMember.name}}</text> 带你1小时变美
       </view>
       <!-- 未领取 -->

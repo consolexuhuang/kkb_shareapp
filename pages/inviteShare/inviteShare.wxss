@@ -41,6 +41,7 @@
   margin-left: 553rpx;
   display: inline-flex;
   align-items: center;
+  position: relative
 }
 
 .return-course text{

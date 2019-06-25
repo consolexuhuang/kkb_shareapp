@@ -124,6 +124,9 @@ Page({
     this.getInviteQrcode()
   },
 // -----------------------------------------------逻辑渲染层
+  onReady(){
+    // Store.clear('userData')
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -133,9 +136,7 @@ Page({
       shareMemberId
     })
     getApp().globalData.shareMemberId = options.shareMemberId
-  },
-  onShow() {
-    console.log('shareState', getApp().globalData.share)
+    Store.clear('userData')
     if (!Store.getItem('userData')) {
       getApp().wx_loginIn().then(() => {
         this.LoadPageFunc()
@@ -144,21 +145,63 @@ Page({
       this.LoadPageFunc()
     }
   },
+  onShow() {
+    const accountInfo = wx.getAccountInfoSync();
+    console.log(accountInfo.miniProgram.appId) // 小程序 appId
+    getApp().globalData.appId = accountInfo.miniProgram.appId
+    console.log('shareState', getApp().globalData.share)
+    // if (!Store.getItem('userData')) {
+    //   getApp().wx_loginIn().then(() => {
+    //     this.LoadPageFunc()
+    //   })
+    // } else {
+    //   this.LoadPageFunc()
+    // }
+  },
 // -----------------------------------------------视图层事件
   //跳转小程序
   handleReturnCourseTap: function(event) {
-    wx.navigateToMiniProgram({
-      appId: 'wx6b00bfc932f22210',
-      path: 'pages/index/index',
-      extraData: {
-        foo: '我是拉新数据'
-      },
-      envVersion: 'trial',
-      success(res) {
-        // 打开成功
-        console.log(res)
-      }
-    })
+    if (!Store.getItem('userData').nick_name){
+      wx.getUserInfo({
+        success:res => {
+          console.log('用户授权信息', res.userInfo)
+          Store.setItem('wx_userInfo', res.userInfo)
+          this.setData({ wx_userInfo: res.userInfo || '' })
+          getApp().wx_modifyUserInfo().then((data) => {
+            Store.setItem('userData', data)
+            this.setData({ isReceiveState: true })
+          });
+        },
+        complete:res => {
+          wx.navigateToMiniProgram({
+            appId: 'wx6b00bfc932f22210',
+            path: 'pages/index/index',
+            extraData: {
+              foo: '我是拉新数据'
+            },
+            envVersion: 'trial',
+            success(res) {
+              // 打开成功
+              console.log(res)
+            }
+          })
+        }
+      })
+    } else {
+      wx.navigateToMiniProgram({
+        appId: 'wx6b00bfc932f22210',
+        path: 'pages/index/index',
+        extraData: {
+          foo: '我是拉新数据'
+        },
+        envVersion: 'trial',
+        success(res) {
+          // 打开成功
+          console.log(res)
+        }
+      })
+    }
+
   },
   
   //预览二维码
@@ -204,6 +247,7 @@ Page({
   },
   //登陆
   bindgetuserinfo(e) {
+    console.log(e)
     wx.getUserInfo({
       success: res => {
         console.log('用户授权信息', res.userInfo)

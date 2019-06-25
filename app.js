@@ -109,6 +109,7 @@ App({
   },
   //修改用户信息接口
   wx_modifyUserInfo() {
+    wx.showLoading({ title: '加载中...',})
     return new Promise(resolve => {
       let data = {
         nickName: Store.getItem('wx_userInfo').nickName || '',
@@ -117,10 +118,11 @@ App({
         gender: Store.getItem('wx_userInfo').gender || ''
       }
       api.post('modifyUserInfo', data).then(res => {
+        wx.hideLoading()
         console.log('修改用户信息接口', res)
         if (res.msg) {
-           Store.setItem('userData', res.msg)
-           resolve()
+          //  Store.setItem('userData', res.msg) //暂时不同步更新用户数据
+           resolve(res.msg)
         } else {
           wx.showToast({
             title: '授权失败!',
