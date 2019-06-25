@@ -75,6 +75,17 @@ App({
     isIpX: false, //是否是ipHonex
     redirectToState: true,
     scene:'',
+
+    JumpAppId: {                    //测试
+      appid: 'wx6b00bfc932f22210',
+      envVersion: 'trial' //体验版
+      // envVersion: 'release' //正式版
+    },
+    // JumpAppId: {                   //正式
+    //   appid: 'wx29946485f206d315',
+    //   envVersion: 'trial' //体验版
+    //   // envVersion: 'release' //正式版
+    // }, 
   },
 
   wx_loginIn: function () {

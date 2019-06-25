@@ -146,10 +146,10 @@ Page({
     }
   },
   onShow() {
-    const accountInfo = wx.getAccountInfoSync();
-    console.log(accountInfo.miniProgram.appId) // 小程序 appId
-    getApp().globalData.appId = accountInfo.miniProgram.appId
     console.log('shareState', getApp().globalData.share)
+    // const accountInfo = wx.getAccountInfoSync();
+    // console.log(accountInfo.miniProgram.appId) // 小程序 appId
+    // getApp().globalData.appId = accountInfo.miniProgram.appId
     // if (!Store.getItem('userData')) {
     //   getApp().wx_loginIn().then(() => {
     //     this.LoadPageFunc()
@@ -174,12 +174,12 @@ Page({
         },
         complete:res => {
           wx.navigateToMiniProgram({
-            appId: 'wx6b00bfc932f22210',
+            appId: getApp().globalData.JumpAppId.appid,
             path: 'pages/index/index',
             extraData: {
               foo: '我是拉新数据'
             },
-            envVersion: 'trial',
+            envVersion: getApp().globalData.JumpAppId.envVersion,
             success(res) {
               // 打开成功
               console.log(res)
@@ -189,12 +189,12 @@ Page({
       })
     } else {
       wx.navigateToMiniProgram({
-        appId: 'wx6b00bfc932f22210',
+        appId: getApp().globalData.JumpAppId.appid,
         path: 'pages/index/index',
         extraData: {
           foo: '我是拉新数据'
         },
-        envVersion: 'trial',
+        envVersion: getApp().globalData.JumpAppId.envVersion,
         success(res) {
           // 打开成功
           console.log(res)
