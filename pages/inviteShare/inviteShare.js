@@ -147,6 +147,7 @@ Page({
   },
   onShow() {
     console.log('shareState', getApp().globalData.share)
+    this.setData({ isShare : getApp().globalData.share })
     // const accountInfo = wx.getAccountInfoSync();
     // console.log(accountInfo.miniProgram.appId) // 小程序 appId
     // getApp().globalData.appId = accountInfo.miniProgram.appId
