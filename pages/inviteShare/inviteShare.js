@@ -21,7 +21,8 @@ Page({
       codeImg: ''
     },
     isShare: getApp().globalData.share,
-    isReceiveState: false
+    // isReceiveState: false
+
     // navbarData: {
     //   title: 'Justin&Julie',
     //   showCapsule: 0,
@@ -66,7 +67,9 @@ Page({
   },
   // 获取邀请信息
   getInvitedInfo: function () {
+    wx.showLoading({ title: '加载中...',})
     api.post('v2/member/getInvitedInfo').then(res => {
+      wx.hideLoading()
       console.log('getInvitedInfo',res)
       const invitedInfo = res.msg
       this.setData({
@@ -87,6 +90,7 @@ Page({
   // 获取分享人的信息
   getInviteMemberInfo: function () {
     const shareMemberId = this.data.shareMemberId
+    // const shareMemberId = Store.getItem('userData').id
     const data = {
       id: shareMemberId
     }
@@ -163,7 +167,7 @@ Page({
   //跳转小程序
   handleReturnCourseTap: function (event) {
     console.log('navigateToMiniProgramPath',event.currentTarget.dataset.path)
-    let pathUrl = event.currentTarget.dataset.path
+    let pathUrl = event.currentTarget.dataset.path || 'pages/index/index'
     if (!Store.getItem('userData').nick_name){
       wx.getUserInfo({
         success:res => {
@@ -172,7 +176,7 @@ Page({
           this.setData({ wx_userInfo: res.userInfo || '' })
           getApp().wx_modifyUserInfo().then((data) => {
             Store.setItem('userData', data)
-            this.setData({ isReceiveState: true })
+            // this.setData({ isReceiveState: true })
           });
         },
         complete:res => {
@@ -257,7 +261,7 @@ Page({
         Store.setItem('wx_userInfo', res.userInfo)
         this.setData({ wx_userInfo: res.userInfo || '' })
         getApp().wx_modifyUserInfo().then(() => {
-          this.setData({ isReceiveState : true})
+          // this.setData({ isReceiveState : true})
         });
       }
     })
@@ -270,7 +274,7 @@ Page({
     return {
       title: title,
       path: '/pages/inviteShare/inviteShare?shareMemberId=' + shareMemberId,
-      imageUrl: 'https://img.cdn.powerpower.net/5d08ca81e4b090e5af4fcd77.png?imageView/1/w/500/h/400',
+      imageUrl: 'https://img.cdn.powerpower.net/5d131c62e4b0cc425063cf39.png?imageView/1/w/500/h/400',
       success: function (res) {
         console.log(res)
       },

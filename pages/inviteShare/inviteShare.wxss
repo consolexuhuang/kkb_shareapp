@@ -1,5 +1,10 @@
 /* pages/invite/invite.wxss */
-
+/* .couponHeader{
+  width: 93rpx;
+  height: 121rpx;
+  position: fixed;
+  right: 0;
+} */
 .banner{
   position: relative;
   width: 100%;
@@ -213,6 +218,35 @@
   font-size: 24rpx;
   color: #4A4A4A;
 }
+.remind{
+  width:144rpx;
+  line-height:51rpx;
+  border-radius:26px;
+  border:1px solid rgba(137,108,255,1);
+  font-size:24rpx;
+  font-family:SourceHanSansCN-Normal;
+  font-weight:400;
+  color:rgba(137,108,255,1);
+  text-align: center;
+  position: relative;
+}
+.remindBtn{
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+.receiveCoupon{
+  font-size:24rpx;
+  font-family:SourceHanSansCN-Normal;
+  font-weight:400;
+  color:rgba(146,146,146,1);
+  /* line-height:36rpx; */
+}
+.receiveCouponPrice{
+  color: #896CFF
+}
 
 .invite-member-time{
   margin-right: 11rpx;
@@ -295,6 +329,58 @@
   color:rgba(60,60,60,1);
   line-height:120rpx;
   letter-spacing:1rpx;
+}
+.centerText{
+  /* width: 446rpx; */
+  margin: 50rpx auto 70rpx;
+  position: relative;
+}
+.centerText2{
+  font-size:34rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(70,70,70,1);
+  line-height:48rpx;
+  margin-bottom: 20rpx;
+}
+.point{
+  color: #E3E3E3;
+  font-size: 30rpx;
+  position: absolute;
+  left: 118rpx;
+  top: 0
+}
+.point2{
+  color: #E3E3E3;
+  font-size: 30rpx;
+  position: absolute;
+  right: 95rpx;
+  bottom: 0
+}
+.centerText3{
+  color: #9F60FF
+}
+.dollor2{
+  font-size:45rpx;
+  font-family:PingFangSC-Medium;
+  color:rgba(137,108,255,1);
+  line-height:48rpx;
+  font-weight: bold;
+  /* font-style:italic;
+  padding:0 6rpx 0 0; */
+}
+
+.courseBtn{
+  width:623rpx;
+  background:rgba(139,112,255,1);
+  border-radius:42rpx;
+  margin: 0 auto;
+  position: relative;
+  font-size:30rpx;
+  font-family:SourceHanSansCN-Normal;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+  line-height:83rpx;
 }
 .center-text2{
   font-size:30rpx;
