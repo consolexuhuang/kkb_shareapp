@@ -1,6 +1,6 @@
 <!--pages/inviteShare/inviteShare.wxml-->
 <!-- <tabBar_top navbarData="{{navbarData}}"></tabBar_top> -->
-<!-- wx:if="{{shareCoupon}}" -->
+<!-- wx:if="{{!userData.isNewMember}}" -->
 <wxs src="../../utils/util.wxs" module="util" />
 <block wx:if="{{!userData.isNewMember}}">
   <view wx:if="{{shareCoupon && invitedInfo}}">
@@ -16,7 +16,7 @@
       <view class="return-course">
         <text>返回约课</text>
         <image src="{{imgUrl}}invite/icon_arrow_right.png" />
-        <button open-type='getUserInfo' class='couponRightButton' bindgetuserinfo = 'handleReturnCourseTap' ></button>
+        <button open-type='getUserInfo' class='couponRightButton' bindgetuserinfo = 'handleReturnCourseTap' data-path='pages/index/index'></button>
       </view>
 
       <view class="invite-wrapper fadeIn animated" wx:if="{{inviteMember.name && !isShare}}">
@@ -77,13 +77,13 @@
     <view class="center-background"></view>
     <view class="center-content">
       <image class="center-avatar" src="{{inviteMember.head_img}}" />
-      <view class="center-name"><text class='inviteName'>@{{inviteMember.name}}</text> 带你1小时变美
+      <view class="center-name"><text class='inviteName'>@{{inviteMember.name}}</text> 带你1小时变瘦变美
       </view>
       <!-- 未领取 -->
       <view class='center-text' wx:if='{{userData.isNewMember && !isReceiveState}}'>送你50元新手礼券，一起来健身吧！</view>
       <!-- 已领取 -->
       <view class='center-text2' wx:if='{{isReceiveState}}'>成功领取新人券，快去使用吧！</view>
-      <view class='center-text3' wx:if='{{isReceiveState}}'>已放入你的&#91Justin&Julie]账户</view>
+      <view class='center-text3' wx:if='{{isReceiveState}}'>已放入你的[Justin&Julie]账户</view>
 
       <!-- 未领取 -->
       <view class='coupon' wx:if='{{userData.isNewMember && !isReceiveState}}'>
@@ -95,14 +95,14 @@
         </view>
         <view class='couponRight'>
            <view class='couponRightBox'>
-              <view class='couponRight_text'>Justin&Julie新人礼券</view>
+              <view class='couponRight_text'>【好友赠礼】J&J新人礼券</view>
               <view class='couponRightBtn'>立即领取 <button class='couponRightButton' open-type='getUserInfo' bindgetuserinfo = 'bindgetuserinfo'></button></view>
            </view>
         </view>
       </view>
        <!-- 已领取 -->
        <view class='couponBtn' wx:if='{{isReceiveState}}'>
-          <view class='couponBtn_top' bindtap='handleReturnCourseTap'>立即使用</view>
+          <view class='couponBtn_top' bindtap='handleReturnCourseTap' data-path='pages/member/coupon/memberCoupon'>立即使用</view>
           <view class='couponBtn_bottom'>邀请好友赢代金券 <button open-type='share' class='couponBtn_bottomBtn' bindtap='onShareAppMessage'></button></view>
        </view>
     </view>
@@ -135,7 +135,7 @@
        <view class='line1'></view>
        <view class='ball'></view>
      </view>
-     <text class='inviteYouText'>邀请您</text>
+     <text class='inviteYouText'>邀请有礼</text>
      <view class='lineBox'>
        <view class='ball'></view>
        <view class='line2'></view>

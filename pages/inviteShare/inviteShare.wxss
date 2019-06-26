@@ -195,7 +195,7 @@
   margin: 0 auto;
   width: 685rpx;
   height: 104rpx;
-  border-bottom: 1px solid #DFDFDF;
+  border-bottom: 1rpx solid #DFDFDF;
   display: flex;
   align-items: center;
 }

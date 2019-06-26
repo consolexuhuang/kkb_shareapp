@@ -160,7 +160,9 @@ Page({
   },
 // -----------------------------------------------视图层事件
   //跳转小程序
-  handleReturnCourseTap: function(event) {
+  handleReturnCourseTap: function (event) {
+    console.log('navigateToMiniProgramPath',event.currentTarget.dataset.path)
+    let pathUrl = event.currentTarget.dataset.path
     if (!Store.getItem('userData').nick_name){
       wx.getUserInfo({
         success:res => {
@@ -175,7 +177,7 @@ Page({
         complete:res => {
           wx.navigateToMiniProgram({
             appId: getApp().globalData.JumpAppId.appid,
-            path: 'pages/index/index',
+            path: pathUrl,
             extraData: {
               foo: '我是拉新数据'
             },
@@ -190,7 +192,7 @@ Page({
     } else {
       wx.navigateToMiniProgram({
         appId: getApp().globalData.JumpAppId.appid,
-        path: 'pages/index/index',
+        path: pathUrl,
         extraData: {
           foo: '我是拉新数据'
         },
@@ -267,7 +269,7 @@ Page({
     return {
       title: title,
       path: '/pages/inviteShare/inviteShare?shareMemberId=' + shareMemberId,
-      imageUrl: '',
+      imageUrl: 'https://img.cdn.powerpower.net/5d08ca81e4b090e5af4fcd77.png?imageView/1/w/500/h/400',
       success: function (res) {
         console.log(res)
       },
