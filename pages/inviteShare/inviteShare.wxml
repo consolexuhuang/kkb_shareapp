@@ -4,7 +4,7 @@
 <wxs src="../../utils/util.wxs" module="util" />
 <!-- <image src='{{imgUrl}}invite/couponHeader.png' class='couponHeader'></image> -->
 <block wx:if="{{!userData.isNewMember}}">
-  <view wx:if="{{shareCoupon && invitedInfo}}">
+  <view>
     <view class="banner">
       <image src="{{inviteMember.config.banner1}}" class='fadeIn animated' bindtap='distinguishImg'/>
       <view class="qrcode" wx:if="{{qrcode}}">
