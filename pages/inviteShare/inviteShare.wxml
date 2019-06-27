@@ -29,7 +29,7 @@
         </view>
       </view>
 
-      <button class="invite-btn" open-type='share'>立即邀请</button>
+      <button class="invite-btn fadeIn animated" open-type='share' wx:if='{{invitedInfo.share_member_id}}'>立即邀请</button>
       <view wx:if='{{isShare}}' class="face-invite-btn" bindtap="handleFaceInviteBtnTap">面对面邀请</view>
 
       <view class="total-wrapper">

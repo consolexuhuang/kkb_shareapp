@@ -61,7 +61,7 @@ Page({
         })
         console.log('接口渲染')
         Store.setItem('shareCoupon', res.msg)
-        !this.data.postConfig.codeImg ? this.getShareBgImg(res.msg.banner) : ''
+        !this.data.postConfig.shareBgImg ? this.getShareBgImg(res.msg.banner) : ''
       })
     })
   },
@@ -84,7 +84,7 @@ Page({
       this.setData({
         qrcode
       })
-      !this.data.postConfig.shareBgImg ? this.getCodeImg(res.msg) : ''
+      !this.data.postConfig.codeImg ? this.getCodeImg(res.msg) : ''
     })
   },
   // 获取分享人的信息
@@ -136,12 +136,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log('上级id', options.shareMemberId)
     const shareMemberId = options.shareMemberId || ''
     this.setData({
       shareMemberId
     })
     getApp().globalData.shareMemberId = options.shareMemberId
-    Store.clear('userData')
+    // Store.clear('userData')
     if (!Store.getItem('userData')) {
       getApp().wx_loginIn().then(() => {
         this.LoadPageFunc()
@@ -303,7 +304,7 @@ Page({
     wx.downloadFile({
       url: banner,
       success: res => {
-        // console.log(res)
+        console.log('banner',res)
         if (res.statusCode === 200) {
           let shareBgImg = res.tempFilePath;
           // that.getCodeImg(shareBgImg)
