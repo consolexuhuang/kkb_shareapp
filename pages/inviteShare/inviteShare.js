@@ -96,6 +96,7 @@ Page({
     }
     api.post('v2/member/inviteMemberInfo', data).then(res => {
       const inviteMember = res.msg
+      res.msg.config.banner1 = res.msg.config.banner1 + '?imageView/1/w/375/h/335'
       console.log("inviteMember",res.msg)
       this.setData({
         inviteMember
