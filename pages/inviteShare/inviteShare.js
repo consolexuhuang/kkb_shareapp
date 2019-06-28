@@ -33,6 +33,13 @@ Page({
     // marginTopBar: getApp().globalData.tab_height * 2 + 20
   },
 // ----------------------------------------公共方法层
+  // 获取当前用户关注状态
+  getMemberFollowState() {
+    api.post('v2/member/memberInfo').then(res => {
+      console.log('getMemberFollowState', res)
+      Store.setItem('userData', res.msg)
+    })
+  },
   //缓存数据先渲染
   getStoreDataView(){
     return new Promise((resolve) => {
@@ -96,7 +103,7 @@ Page({
     }
     api.post('v2/member/inviteMemberInfo', data).then(res => {
       const inviteMember = res.msg
-      res.msg.config.banner1 = res.msg.config.banner1 + '?imageView/1/w/375/h/335'
+      res.msg.config.banner1 = res.msg.config.banner1 + '?imageView/1/w/750/h/670'
       console.log("inviteMember",res.msg)
       this.setData({
         inviteMember
@@ -122,6 +129,7 @@ Page({
     this.setData({
       userData
     })
+    this.getMemberFollowState()
     this.getShareCouponInfo()
     this.getQrcode()
     this.getInvitedInfo()
@@ -211,15 +219,6 @@ Page({
       })
     }
 
-  },
-  
-  //预览二维码
-  previewImage: function (event) {
-    const current = event.target.dataset.src
-    wx.previewImage({
-      current: current,
-      urls: [current]
-    })
   },
   // 长摁识别
   distinguishImg() {
