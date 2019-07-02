@@ -6,11 +6,11 @@
 <block wx:if="{{!userData.isNewMember}}">
   <view>
     <view class="banner">
-      <image src="{{inviteMember.config.banner1}}" class='fadeIn animated' bindtap='distinguishImg'/>
-      <view class="qrcode" wx:if="{{qrcode}}">
+      <image src="{{inviteMember.config.banner1}}" class='fadeIn animated'/>
+      <!-- <view class="qrcode" wx:if="{{qrcode}}">
         <image src="{{qrcode}}" class='fadeIn animated' />
         <text>点击保存并分享</text>
-      </view>
+      </view> -->
     </view>
 
     <view class="content">
@@ -29,17 +29,19 @@
         </view>
       </view>
 
-      <button class="invite-btn fadeIn animated" open-type='share' wx:if='{{invitedInfo.share_member_id}}'>立即邀请</button>
+      <button class="invite-btn fadeIn animated" open-type='share' wx:if='{{userData.id}}'>立即邀请</button>
       <view wx:if='{{isShare}}' class="face-invite-btn" bindtap="handleFaceInviteBtnTap">面对面邀请</view>
 
       <view class="total-wrapper">
         <view class="total-amount">
-          <view class="total-number">{{invitedInfo.invited_coupon_amount || 0}}<text class='dollor'>元</text></view>
+          <loading invitedInfo = '{{!invitedInfo}}'></loading>
+          <view class="total-number" wx:if='{{invitedInfo}}'>{{invitedInfo.invited_coupon_amount || 0}}<text class='dollor'>元</text></view>
           <view class="total-tips">代金券累计金额</view>
         </view>
         <view class="totle-line"></view>
         <view class="total-count">
-          <view class="total-number">{{invitedInfo.invited_member_count || 0}}<text class='dollor'>人</text></view>
+          <loading invitedInfo = '{{!invitedInfo}}'></loading>
+          <view class="total-number" wx:if='{{invitedInfo}}'>{{invitedInfo.invited_member_count || 0}}<text class='dollor'>人</text></view>
           <view class="total-tips">累计邀请人</view>
         </view>
       </view>

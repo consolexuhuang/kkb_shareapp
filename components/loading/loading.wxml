@@ -1,0 +1,11 @@
+<!--components/loading/loading.wxml-->
+<view class="floatingBarsG" wx:if='{{invitedInfo}}'>
+	<view class="blockG rotateG_01" id="rotateG_01"></view>
+	<view class="blockG rotateG_02" id="rotateG_02"></view>
+	<view class="blockG rotateG_03" id="rotateG_03"></view>
+	<view class="blockG rotateG_04" id="rotateG_04"></view>
+	<view class="blockG rotateG_05" id="rotateG_05"></view>
+	<view class="blockG rotateG_06" id="rotateG_06"></view>
+	<view class="blockG rotateG_07" id="rotateG_07"></view>
+	<view class="blockG rotateG_08" id="rotateG_08"></view>
+</view>

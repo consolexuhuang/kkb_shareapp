@@ -83,8 +83,8 @@ App({
     },
     // JumpAppId: {                   //正式
     //   appid: 'wx29946485f206d315',
-    //   envVersion: 'trial' //体验版
-    //   // envVersion: 'release' //正式版
+    //   // envVersion: 'trial' //体验版
+    //   envVersion: 'release' //正式版
     // }, 
   },
 

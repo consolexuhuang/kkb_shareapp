@@ -1,0 +1,88 @@
+/* components/loading/loading.wxss */
+.floatingBarsG{
+	position:relative;
+	width:50rpx;
+	height:60rpx;
+	margin:0 auto 20rpx;
+}
+
+.blockG{
+	position:absolute;
+	background-color:rgb(255,255,255);
+	width:2rpx;
+	height:14rpx;
+	border-radius:8rpx 8rpx 0 0;
+	transform:scale(0.4);
+	animation-name:fadeG;
+	animation-duration:1.2s;
+	animation-iteration-count:infinite;
+	animation-direction:normal;
+}
+
+.rotateG_01{
+	left:0;
+	top:27rpx;
+	animation-delay:0.45s;
+	transform:rotate(-90deg);
+}
+
+.rotateG_02{
+	left:8rpx;
+	top:10rpx;
+	animation-delay:0.6s;
+	transform:rotate(-45deg);
+}
+
+.rotateG_03{
+	left:25rpx;
+	top:3rpx;
+	animation-delay:0.75s;
+	transform:rotate(0deg);
+}
+
+.rotateG_04{
+	right:8rpx;
+	top:10rpx;
+	animation-delay:0.9s;
+	transform:rotate(45deg);
+}
+
+.rotateG_05{
+	right:0;
+	top:27rpx;
+	animation-delay:1.05s;
+	transform:rotate(90deg);
+}
+
+.rotateG_06{
+	right:8rpx;
+	bottom:7rpx;
+	animation-delay:1.2s;
+	transform:rotate(135deg);
+}
+
+.rotateG_07{
+	bottom:0;
+	left:25rpx;
+	animation-delay:1.35s;
+	transform:rotate(180deg);
+}
+
+.rotateG_08{
+	left:8rpx;
+	bottom:7rpx;
+	animation-delay:1.5s;
+	transform:rotate(-135deg);
+}
+
+
+
+@keyframes fadeG{
+	0%{
+		background-color:#646464;
+	}
+
+	100%{
+		background-color:rgb(255,255,255);
+	}
+}

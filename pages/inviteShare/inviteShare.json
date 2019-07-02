@@ -3,6 +3,7 @@
   "enablePullDownRefresh": true,
   "backgroundTextStyle": "dark",
   "usingComponents": {
-    "van-popup": "/libs/vant-weapp/dist/popup/index"
+    "van-popup": "/libs/vant-weapp/dist/popup/index",
+    "loading":"/components/loading/loading"
   }
 }

@@ -180,6 +180,7 @@ Page({
     let pathUrl = event.currentTarget.dataset.path || 'pages/index/index'
     if (!Store.getItem('userData').nick_name){
       wx.getUserInfo({
+        lang:'zh_CN',
         success:res => {
           console.log('用户授权信息', res.userInfo)
           Store.setItem('wx_userInfo', res.userInfo)
@@ -221,13 +222,13 @@ Page({
 
   },
   // 长摁识别
-  distinguishImg() {
-    this.setData({
-      showShareState: true
-    }, () => {
-      this.showCanvas(this.data.postConfig.shareBgImg, this.data.postConfig.codeImg)
-    })
-  },
+  // distinguishImg() {
+  //   this.setData({
+  //     showShareState: true
+  //   }, () => {
+  //     this.showCanvas(this.data.postConfig.shareBgImg, this.data.postConfig.codeImg)
+  //   })
+  // },
   // 关闭分享
   onCloseShareImg() {
     this.setData({
@@ -269,13 +270,13 @@ Page({
   },
   //分享
   onShareAppMessage: function (e) {
-    console.log('分享人id',e, this.data.invitedInfo.share_member_id)
+    console.log('分享人id', e, this.data.userData.id)
     const title = this.data.shareCoupon.linkTitle
-    const shareMemberId = this.data.invitedInfo.share_member_id
+    const currentShareMemberId = this.data.userData.id
     return {
       title: title,
-      path: '/pages/inviteShare/inviteShare?shareMemberId=' + shareMemberId,
-      imageUrl: 'https://img.cdn.powerpower.net/5d131c62e4b0cc425063cf39.png?imageView/1/w/500/h/400',
+      path: '/pages/inviteShare/inviteShare?shareMemberId=' + currentShareMemberId,
+      imageUrl: 'https://img.cdn.powerpower.net/5d1974b1e4b07bc63b17acc7.png?imageView/1/w/500/h/400',
       success: function (res) {
         console.log(res)
       },
