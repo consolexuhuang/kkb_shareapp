@@ -1,7 +1,9 @@
 {
   "pages": [
     "pages/inviteShare/inviteShare",
-    "pages/logs/logs"
+    "pages/noFind/noFind",
+    "pages/logs/logs",
+    "pages/shareRanking/shareRanking"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -10,7 +12,7 @@
     "navigationBarTextStyle": "black"
   },
   "sitemapLocation": "sitemap.json",
-  "navigateToMiniProgramAppIdList":[
+  "navigateToMiniProgramAppIdList": [
     "wx6b00bfc932f22210"
   ]
 }

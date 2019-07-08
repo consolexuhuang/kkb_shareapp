@@ -4,6 +4,7 @@
   "backgroundTextStyle": "dark",
   "usingComponents": {
     "van-popup": "/libs/vant-weapp/dist/popup/index",
-    "loading":"/components/loading/loading"
+    "loading":"/components/loading/loading",
+    "jurisdictionPopup": "/components/jurisdictionPopup/jurisdictionPopup"
   }
 }

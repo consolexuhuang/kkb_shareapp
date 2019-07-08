@@ -1,5 +1,5 @@
 <!--components/loading/loading.wxml-->
-<view class="floatingBarsG" wx:if='{{invitedInfo}}'>
+<view class="floatingBarsG" wx:if='{{invitedCouponList}}'>
 	<view class="blockG rotateG_01" id="rotateG_01"></view>
 	<view class="blockG rotateG_02" id="rotateG_02"></view>
 	<view class="blockG rotateG_03" id="rotateG_03"></view>

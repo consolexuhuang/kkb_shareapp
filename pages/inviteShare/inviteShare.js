@@ -11,6 +11,7 @@ Page({
     shareMemberId: '', //上级分享用户id
     shareCoupon: '',   //享的配置参数
     invitedInfo: '',   //获取邀请信息
+    invitedCouponList:'', //拉新用户优惠券列表
     qrcode: '',        //获取带本人信息的二维码
     inviteMember: '',  //分享人的信息
     inviteQrcode: '',  //分享者信息的二维码
@@ -21,6 +22,8 @@ Page({
       codeImg: ''
     },
     isShare: getApp().globalData.share,
+    jurisdictionState: false, //授权显示
+    IsshowNetStatus:true,
     // isReceiveState: false
 
     // navbarData: {
@@ -59,7 +62,9 @@ Page({
     this.getStoreDataView().then(() => {
       wx.showLoading({ title: '加载中...' })
       api.post('v2/coupon/shareCouponInfo').then(res => {
-        wx.hideLoading()
+        setTimeout(() => {
+          wx.hideLoading();
+        }, 100);
         console.log(res)
         // res.msg.banner = res.msg.banner + '?imageView/1/w/375/h/335'
         const shareCoupon = res.msg
@@ -68,7 +73,7 @@ Page({
         })
         console.log('接口渲染')
         Store.setItem('shareCoupon', res.msg)
-        !this.data.postConfig.shareBgImg ? this.getShareBgImg(res.msg.banner) : ''
+        // !this.data.postConfig.shareBgImg ? this.getShareBgImg(res.msg.banner) : ''
       })
     })
   },
@@ -76,12 +81,15 @@ Page({
   getInvitedInfo: function () {
     wx.showLoading({ title: '加载中...',})
     api.post('v2/member/getInvitedInfo').then(res => {
-      wx.hideLoading()
-      console.log('getInvitedInfo',res)
-      const invitedInfo = res.msg
+      setTimeout(() => {
+        wx.hideLoading();
+      }, 100);
+      console.log('invitedCouponList',res)
       this.setData({
-        invitedInfo
+        invitedCouponList: res.msg.invited_member_List,
+        invitedInfo: res.msg
       })
+      Store.setItem('invitedCouponList', res.msg.invited_member_List)
     })
   },
   // 获取海报的二维码
@@ -91,7 +99,7 @@ Page({
       this.setData({
         qrcode
       })
-      !this.data.postConfig.codeImg ? this.getCodeImg(res.msg) : ''
+      // !this.data.postConfig.codeImg ? this.getCodeImg(res.msg) : ''
     })
   },
   // 获取分享人的信息
@@ -123,6 +131,18 @@ Page({
       })
     })
   },
+  getFirstStepFriendList(){
+    const data = {
+      id: this.data.shareMemberId
+    }
+    api.post('v2/member/getInvitedSummaryInfo', data).then(res => {
+      console.log('getInvitedSummaryInfo',res)
+      this.setData({
+        invitedInfo: res.msg,
+        invitedCouponList: Store.getItem('invitedCouponList')
+      })
+    })
+  },
   //加载用户信息总配置
   LoadPageFunc(){
     let userData = Store.getItem('userData') || ''
@@ -130,6 +150,7 @@ Page({
       userData
     })
     this.getMemberFollowState()
+    this.getFirstStepFriendList()
     this.getShareCouponInfo()
     this.getQrcode()
     this.getInvitedInfo()
@@ -138,7 +159,6 @@ Page({
   },
 // -----------------------------------------------逻辑渲染层
   onReady(){
-    // Store.clear('userData')
   },
   /**
    * 生命周期函数--监听页面加载
@@ -154,72 +174,68 @@ Page({
     if (!Store.getItem('userData')) {
       getApp().wx_loginIn().then(() => {
         this.LoadPageFunc()
+      }, () => {
+        wx.setNavigationBarColor({
+          frontColor: "#ffffff",
+          backgroundColor: '#8969FF'
+        });
+        wx.setNavigationBarTitle({
+          title:''
+        })
+        this.setData({ jurisdictionState: true })
       })
     } else {
       this.LoadPageFunc()
     }
   },
   onShow() {
+    //断网 
+    wx.onNetworkStatusChange(res => {
+      this.setData({
+        IsshowNetStatus: res.isConnected
+      })
+      wx.hideLoading()
+      // res.isConnected ? this.LoadPageFunc() : ''
+    })
     console.log('shareState', getApp().globalData.share)
     this.setData({ isShare : getApp().globalData.share })
-    // const accountInfo = wx.getAccountInfoSync();
-    // console.log(accountInfo.miniProgram.appId) // 小程序 appId
-    // getApp().globalData.appId = accountInfo.miniProgram.appId
-    // if (!Store.getItem('userData')) {
-    //   getApp().wx_loginIn().then(() => {
-    //     this.LoadPageFunc()
-    //   })
-    // } else {
-    //   this.LoadPageFunc()
-    // }
   },
 // -----------------------------------------------视图层事件
+  bindgetuserinfo(){
+    getApp().wx_loginIn().then(() => {
+      wx.setNavigationBarColor({
+        frontColor: "#000000",
+        backgroundColor: '#ffffff'
+      });
+      wx.setNavigationBarTitle({
+        title: '邀请好友'
+      })
+      this.setData({ jurisdictionState : false})
+      this.LoadPageFunc()
+    },()=>{
+      wx.setNavigationBarColor({
+        frontColor: "#ffffff",
+        backgroundColor: '#8969FF'
+      });
+      this.setData({ jurisdictionState: true })
+    })
+  },
   //跳转小程序
   handleReturnCourseTap: function (event) {
     console.log('navigateToMiniProgramPath',event.currentTarget.dataset.path)
     let pathUrl = event.currentTarget.dataset.path || 'pages/index/index'
-    if (!Store.getItem('userData').nick_name){
-      wx.getUserInfo({
-        lang:'zh_CN',
-        success:res => {
-          console.log('用户授权信息', res.userInfo)
-          Store.setItem('wx_userInfo', res.userInfo)
-          this.setData({ wx_userInfo: res.userInfo || '' })
-          getApp().wx_modifyUserInfo().then((data) => {
-            Store.setItem('userData', data)
-            // this.setData({ isReceiveState: true })
-          });
-        },
-        complete:res => {
-          wx.navigateToMiniProgram({
-            appId: getApp().globalData.JumpAppId.appid,
-            path: pathUrl,
-            extraData: {
-              foo: '我是拉新数据'
-            },
-            envVersion: getApp().globalData.JumpAppId.envVersion,
-            success(res) {
-              // 打开成功
-              console.log(res)
-            }
-          })
-        }
-      })
-    } else {
-      wx.navigateToMiniProgram({
-        appId: getApp().globalData.JumpAppId.appid,
-        path: pathUrl,
-        extraData: {
-          foo: '我是拉新数据'
-        },
-        envVersion: getApp().globalData.JumpAppId.envVersion,
-        success(res) {
-          // 打开成功
-          console.log(res)
-        }
-      })
-    }
-
+    wx.navigateToMiniProgram({
+      appId: getApp().globalData.JumpAppId.appid,
+      path: pathUrl,
+      extraData: {
+        foo: '我是拉新数据'
+      },
+      envVersion: getApp().globalData.JumpAppId.envVersion,
+      success(res) {
+        // 打开成功
+        console.log(res)
+      }
+    })
   },
   // 长摁识别
   // distinguishImg() {
@@ -254,20 +270,6 @@ Page({
       isShadeShow : false
     })
   },
-  //登陆
-  bindgetuserinfo(e) {
-    console.log(e)
-    wx.getUserInfo({
-      success: res => {
-        console.log('用户授权信息', res.userInfo)
-        Store.setItem('wx_userInfo', res.userInfo)
-        this.setData({ wx_userInfo: res.userInfo || '' })
-        getApp().wx_modifyUserInfo().then(() => {
-          // this.setData({ isReceiveState : true})
-        });
-      }
-    })
-  },
   //分享
   onShareAppMessage: function (e) {
     console.log('分享人id', e, this.data.userData.id)
@@ -286,13 +288,16 @@ Page({
     }
   },
   onPullDownRefresh(){
-    if (!Store.getItem('userData')) {
-      getApp().wx_loginIn().then(() => {
+    if (this.data.IsshowNetStatus){
+      if (!Store.getItem('userData')) {
+        getApp().wx_loginIn().then(() => {
+          this.LoadPageFunc()
+        })
+      } else {
         this.LoadPageFunc()
-      })
-    } else {
-      this.LoadPageFunc()
+      }
     }
+    
     wx.stopPullDownRefresh()
   },
   /**

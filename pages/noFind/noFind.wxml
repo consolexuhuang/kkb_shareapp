@@ -1,0 +1,7 @@
+<!--pages/noFind/noFind.wxml-->
+<view class='serverBox'>
+   <text class='serverImg iconfont iconicon-test49'></text>
+   <view class='serverCont'>{{serverCont}}</view>
+</view>
+
+<view class='backHome' bindtap='backHome'>返回首页</view>

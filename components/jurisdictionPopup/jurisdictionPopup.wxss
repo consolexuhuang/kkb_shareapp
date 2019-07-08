@@ -1,0 +1,147 @@
+/* components/jurisdictionPopup/jurisdictionPopup.wxss */
+/* pages/index/index.wxss */
+
+page {
+  width: 100%;
+  height: 100%;
+}
+.Jurisdictionstyle{
+  width: 100%;
+  height: 100%;
+}
+.startUp {
+  width: 100%;
+  height: 100%;
+  background: #8969FF;
+  overflow: hidden;
+}
+
+.startUp_logo {
+  width: 275rpx;
+  height: 324rpx;
+  margin: 299rpx auto 0;
+  display: block;
+}
+
+.startUp_bottom {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.startUpCont {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 300rpx;
+  margin: auto;
+  text-align: center;
+}
+.startUpCont2 {
+  left: 0;
+  right: 0;
+  bottom: 100rpx;
+  margin: auto;
+  text-align: center;
+  width:613rpx;
+  line-height:84rpx;
+  border-radius:41rpx;
+  border:1px solid rgba(255,255,255,1);
+  font-size:32rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+  position: absolute;
+}
+.startUpCont2_noneLogin{
+  left: 0;
+  right: 0;
+  bottom: 200rpx;
+  margin: auto;
+  position: absolute;
+  font-size:28rpx;
+  line-height:60rpx;
+  color: #C2B4FF;
+  text-align: center;
+}
+.getUserInfoBtn{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+
+.startUpCont_Img {
+  width: 316rpx;
+  height: 29rpx;
+}
+
+.startUpCont_title {
+  font-size: 39rpx;
+  font-family: PingFangSC-Light;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 1);
+  line-height: 54rpx;
+}
+
+.loading {
+  font-size: 32rpx;
+  font-family: PingFangSC-Light;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 1);
+  line-height: 33rpx;
+  margin-top: 0rpx;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.loadingBox {
+  display: flex;
+  align-items: center;
+  flex-direction: column
+}
+
+.demo1 {
+  width: 2rpx;
+  height: 2rpx;
+  border-radius: 50%;
+  background: #fff;
+  float: left;
+  margin: 0 3px;
+  animation: demo1 linear 1s infinite;
+  -webkit-animation: demo1 linear 1s infinite;
+}
+
+.demo1:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.demo1:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.demo1:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+@keyframes demo1 {
+  0%, 60%, 100% {
+    transform: scale(1);
+  }
+
+  30% {
+    transform: scale(2.5);
+  }
+}
+
+@-webkit-keyframes demo1 {
+  0%, 60%, 100% {
+    transform: scale(1);
+  }
+
+  30% {
+    transform: scale(2.5);
+  }
+}

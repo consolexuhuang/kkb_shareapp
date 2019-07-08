@@ -13,7 +13,7 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.7.2",
-	"appid": "wxec1fe04fad9d4e02",
+	"appid": "wx322a8a72b755aa57",
 	"projectname": "%E9%82%80%E8%AF%B7%E5%B0%8F%E7%A8%8B%E5%BA%8F",
 	"debugOptions": {
 		"hidedInDevtools": []
@@ -45,7 +45,7 @@
 					"id": 0,
 					"name": "分享入口",
 					"pathName": "pages/inviteShare/inviteShare",
-					"query": "shareMemberId=1133677406796779520",
+					"query": "shareMemberId=",
 					"scene": 1007
 				}
 			]

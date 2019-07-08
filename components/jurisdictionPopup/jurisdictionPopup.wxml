@@ -1,0 +1,12 @@
+<!--components/jurisdictionPopup/jurisdictionPopup.wxml-->
+<!--pages/index/index.wxml-->
+<van-popup show="{{ state }}" custom-class='Jurisdictionstyle' z-index = '1001'>
+  <view class='startUp'>
+    <image src='{{imgUrl}}invite/startUp_logo.png' class='startUp_logo'></image>
+    <view class='startUpCont2_noneLogin'>需登录后方可使用</view>
+    <view class='startUpCont2 fadeIn animated' wx:if='{{!userData && !userData.nick_name}}'>
+      <button open-type='getUserInfo' bindgetuserinfo = 'bindgetuserinfo' class='getUserInfoBtn'></button>
+      微信授权登录
+    </view>
+  </view>
+</van-popup>

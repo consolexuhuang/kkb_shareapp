@@ -5,6 +5,33 @@
   position: fixed;
   right: 0;
 } */
+.netWork {
+  width: 100%;
+  background: #ffecec;
+  padding-left: 70rpx;
+  position: fixed;
+  top: 0;
+  z-index: 100;
+  /* text-align: center; *//* display: flex;
+  align-items: center; */
+}
+
+.netWorkImg {
+  font-size: 28rpx;
+  height: 28rpx;
+  width: 28rpx;
+  color: #ea6a72;
+  margin-right: 20rpx;
+}
+
+.netWorkCont {
+  font-size: 26rpx;
+  font-family: SourceHanSansCN-Regular;
+  font-weight: 400;
+  color: rgba(120, 120, 120, 1);
+  line-height: 88rpx;
+}
+
 .banner{
   position: relative;
   width: 100%;

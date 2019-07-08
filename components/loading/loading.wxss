@@ -1,16 +1,16 @@
 /* components/loading/loading.wxss */
 .floatingBarsG{
 	position:relative;
-	width:50rpx;
-	height:60rpx;
-	margin:0 auto 20rpx;
+	width:47rpx;
+	height:56rpx;
+	margin-right: 20rpx
 }
 
 .blockG{
 	position:absolute;
 	background-color:rgb(255,255,255);
 	width:2rpx;
-	height:14rpx;
+	height:10rpx;
 	border-radius:8rpx 8rpx 0 0;
 	transform:scale(0.4);
 	animation-name:fadeG;

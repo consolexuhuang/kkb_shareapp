@@ -3,6 +3,10 @@
 <!-- wx:if="{{!userData.isNewMember}}" -->
 <wxs src="../../utils/util.wxs" module="util" />
 <!-- <image src='{{imgUrl}}invite/couponHeader.png' class='couponHeader'></image> -->
+<view class='netWork fadeIn animated' wx:if='{{!IsshowNetStatus}}'>
+  <text class='iconicon-test5 iconfont netWorkImg'></text>
+  <text class='netWorkCont'>当前网络不可用，请检查你的网络设置</text>
+</view>
 <block wx:if="{{!userData.isNewMember}}">
   <view>
     <view class="banner">
@@ -34,13 +38,13 @@
 
       <view class="total-wrapper">
         <view class="total-amount">
-          <loading invitedInfo = '{{!invitedInfo}}'></loading>
+          <!-- <loading invitedInfo = '{{!invitedInfo}}'></loading> -->
           <view class="total-number" wx:if='{{invitedInfo}}'>{{invitedInfo.invited_coupon_amount || 0}}<text class='dollor'>元</text></view>
           <view class="total-tips">代金券累计金额</view>
         </view>
         <view class="totle-line"></view>
         <view class="total-count">
-          <loading invitedInfo = '{{!invitedInfo}}'></loading>
+          <!-- <loading invitedInfo = '{{!invitedInfo}}'></loading> -->
           <view class="total-number" wx:if='{{invitedInfo}}'>{{invitedInfo.invited_member_count || 0}}<text class='dollor'>人</text></view>
           <view class="total-tips">累计邀请人</view>
         </view>
@@ -53,13 +57,14 @@
           <hr/>
         </view>
         <view class="invite-member-list">
-          <view class="invite-member-item" wx:for="{{invitedInfo.invited_member_List}}" wx:key="index">
+          <view class="invite-member-item" wx:for="{{invitedCouponList ||invitedInfo.invited_member_List}}" wx:key="index" wx:for-index='idx'>
             <image class="invite-member-avatar" wx:if='{{item.head_img}}' src="{{item.head_img}}" />
             <image class="invite-member-avatar"wx:elif='{{!item.head_img}}' src="{{imgUrl}}invite/MysteriousMan.png" />
             <view class="invite-member-name">{{item.nick_name || '神秘好友'}}</view>
-            <!-- <view class="invite-member-time">{{item.create_time}}</view> -->
-            <view wx:if='{{item.sub_flag === 0}}' class='remind'>提醒关注 <button class='remindBtn' open-type='share'></button> </view>
-            <view wx:elif='{{item.sub_flag === 1}}' class='receiveCoupon'>已领取<text class='receiveCouponPrice'>{{item.coupon_amount || 0}}元</text>券</view>
+
+            <loading invitedCouponList = '{{!invitedCouponList}}'></loading>
+            <view wx:if='{{invitedCouponList[idx].sub_flag === 0 && invitedCouponList}}' class='remind'>提醒关注 <button class='remindBtn' open-type='share'></button> </view>
+            <view wx:elif='{{invitedCouponList[idx].sub_flag === 1 && invitedCouponList}}' class='receiveCoupon'>已领取<text class='receiveCouponPrice'>{{invitedCouponList[idx].coupon_amount || 0}}元</text>券</view>
           </view>
         </view>
       </view>
@@ -82,7 +87,7 @@
     <view class="center-background"></view>
     <view class="center-content">
       <image class="center-avatar" src="{{inviteMember.head_img}}" />
-      <view class="center-name"><text class='inviteName'>@{{inviteMember.name}}</text> 带你1小时变瘦变美
+      <view class="center-name"><text class='inviteName'>{{inviteMember.name || "J&J"}}@ </text>带你1小时变瘦变美
       </view>
       <!-- 未领取 -->
       <!-- <view class='center-text' wx:if='{{userData.isNewMember && !isReceiveState}}'>送你50元新手礼券，一起来健身吧！</view> -->
@@ -96,30 +101,6 @@
       <view class='courseBtn'>立即约课
          <button class='couponRightButton' open-type='getUserInfo' bindgetuserinfo = 'handleReturnCourseTap'></button>
       </view>
-      <!-- 已领取 -->
-      <!-- <view class='center-text2' wx:if='{{isReceiveState}}'>成功领取新人券，快去使用吧！</view>
-      <view class='center-text3' wx:if='{{isReceiveState}}'>已放入你的[Justin&Julie]账户</view> -->
-
-      <!-- 未领取 userData.isNewMember && !isReceiveState-->
-      <!-- <view class='coupon' wx:if='{{userData.isNewMember}}'>
-        <image src='{{imgUrl}}invite/coupon.png' class='couponBg'></image>
-        <view class='couponLeft'>
-           <view class='couponLeft_tag'>全场通用</view>
-           <view class='couponLeft_price'>{{userData.couponInfo.amount || 0}}元</view>
-           <view class='couponLeft_text'>- 代金券 -</view>
-        </view>
-        <view class='couponRight'>
-           <view class='couponRightBox'>
-              <view class='couponRight_text'>【好友赠礼】J&J新人礼券</view>
-              <view class='couponRightBtn' bindtap='handleReturnCourseTap' data-path='pages/index/index'>立即领取 <button class='couponRightButton' open-type='getUserInfo' bindgetuserinfo = 'bindgetuserinfo'></button></view>
-           </view>
-        </view>
-      </view> -->
-       <!-- 已领取 -->
-       <!-- <view class='couponBtn' wx:if='{{isReceiveState}}'>
-          <view class='couponBtn_top' bindtap='handleReturnCourseTap' data-path='pages/member/coupon/memberCoupon'>立即使用</view>
-          <view class='couponBtn_bottom'>邀请好友赢代金券 <button open-type='share' class='couponBtn_bottomBtn' bindtap='onShareAppMessage'></button></view>
-       </view> -->
     </view>
   </view>
 </block>
@@ -164,6 +145,9 @@
   </view>
   <image src='{{imgUrl}}invite/closeBtn.png' class='closeBtn' bindtap='onClose'></image>
 </van-popup>
+
+<jurisdictionPopup state = '{{jurisdictionState}}'
+                   bindmyevent='bindgetuserinfo'></jurisdictionPopup>
 
 
 

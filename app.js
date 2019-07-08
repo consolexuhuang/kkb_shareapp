@@ -87,7 +87,6 @@ App({
     //   envVersion: 'release' //正式版
     // }, 
   },
-
   wx_loginIn: function () {
     let _this = this
     return new Promise((resolve, reject) => {
@@ -95,52 +94,78 @@ App({
         success: res_code => {
           _this.globalData.code = res_code.code
           Store.setItem('code', res_code.code)
-          let data = {
-            code: res_code.code,
-            sourceData: _this.globalData.scene,
-            shareChannel: _this.globalData.shareMemberId || '',
-            nickName: Store.getItem('wx_userInfo').nickName || '',
-            headImg: Store.getItem('wx_userInfo').avatarUrl || '',
-            city: Store.getItem('wx_userInfo').city || '',
-            gender: Store.getItem('wx_userInfo').gender || ''
-          }
-          api.get('authorizationShare', data).then(res => {
-            console.log('登陆', res.msg)
-            Store.setItem('userData', res.msg)
-            // if (res.msg.isNewMember === 1) {
-            //   // 新用户
-            // } else {
-            //   Store.setItem('userData', res.msg)
-            // }
-            resolve()
+          wx.getUserInfo({
+            lang: 'zh_CN',
+            success(res_userInfo) {
+              Store.setItem('wx_userInfo', res_userInfo.userInfo)
+              console.log('用户信息', res_userInfo)
+              let data = {
+                code: res_code.code,
+                sourceData: _this.globalData.scene,
+                shareChannel: _this.globalData.shareMemberId || '',
+                nickName: res_userInfo.userInfo.nickName || '',
+                headImg: res_userInfo.userInfo.avatarUrl || '',
+                city: res_userInfo.userInfo.city || '',
+                gender: res_userInfo.userInfo.gender || '',
+                encryptedData: res_userInfo.encryptedData || '',
+                iv: res_userInfo.iv || '',
+                rawData: res_userInfo.rawData || '',
+                signature: res_userInfo.signature || ''
+              }
+              wx.showLoading({ title: '登录中...', })
+              api.get('authorizationShare', data).then(res => {
+                wx.hideLoading()
+                if (res.msg) {
+                  if (res.code === -1) { //如果出现登录未知错误
+                    setTimeout(() => {
+                      wx.navigateTo({ url: `/pages/noFind/noFind?type=1` })
+                    }, 0)
+                  } else {
+                    Store.setItem('userData', res.msg)
+                    resolve()
+                  }
+                } else {
+                  setTimeout(() => {
+                    wx.navigateTo({ url: `/pages/noFind/noFind?type=1` })
+                  }, 0)
+                }
+              })
+            },
+            fail() {
+              reject('拒绝授权')
+            }
           })
+
+        },
+        fail: () => {
+          console.error('登录失败！')
         }
       })
     })
   },
   //修改用户信息接口
-  wx_modifyUserInfo() {
-    wx.showLoading({ title: '加载中...',})
-    return new Promise(resolve => {
-      let data = {
-        nickName: Store.getItem('wx_userInfo').nickName || '',
-        headImg: Store.getItem('wx_userInfo').avatarUrl || '',
-        city: Store.getItem('wx_userInfo').city || '',
-        gender: Store.getItem('wx_userInfo').gender || ''
-      }
-      api.post('modifyUserInfo', data).then(res => {
-        wx.hideLoading()
-        console.log('修改用户信息接口', res)
-        if (res.msg) {
-          //  Store.setItem('userData', res.msg) //暂时不同步更新用户数据
-           resolve(res.msg)
-        } else {
-          wx.showToast({
-            title: '授权失败!',
-            icon:'none'
-          })
-        }
-      })
-    })
-  },
+  // wx_modifyUserInfo() {
+  //   wx.showLoading({ title: '加载中...',})
+  //   return new Promise(resolve => {
+  //     let data = {
+  //       nickName: Store.getItem('wx_userInfo').nickName || '',
+  //       headImg: Store.getItem('wx_userInfo').avatarUrl || '',
+  //       city: Store.getItem('wx_userInfo').city || '',
+  //       gender: Store.getItem('wx_userInfo').gender || ''
+  //     }
+  //     api.post('modifyUserInfo', data).then(res => {
+  //       wx.hideLoading()
+  //       console.log('修改用户信息接口', res)
+  //       if (res.msg) {
+  //         //  Store.setItem('userData', res.msg) //暂时不同步更新用户数据
+  //          resolve(res.msg)
+  //       } else {
+  //         wx.showToast({
+  //           title: '授权失败!',
+  //           icon:'none'
+  //         })
+  //       }
+  //     })
+  //   })
+  // },
 })
