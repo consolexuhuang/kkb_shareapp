@@ -1,0 +1,51 @@
+<!--pages/groupRanking/groupRanking.wxml-->
+<view class='groupRanking_top'>
+   <view class='groupRanking_ownBox' wx:if='{{true}}'>
+      <image src='{{imgUrl}}ranking/ownRank.png' class='ownRankImg'></image>
+      <view class='currentRanking'>444</view>
+   </view>
+   <view class='groupRanking_ownBox' wx:if='{{false}}'>
+      <image src='{{imgUrl}}ranking/ownRank0.png' class='ownRankImg'></image>
+   </view>
+   <view class='groupRankingInfo'>
+      <image class='ownImgTop' src='{{imgUrl}}invite/avatar.png'></image>
+      <view class='groupData'>
+         <view class='groupOwnName'>-V乐署V-</view>
+         <view class='groupNameBox'>
+            <view class='groupName'>军旅小纵军旅小纵队队
+               <!-- <open-data type="groupName" open-gid="{{openGid}}"></open-data> -->
+            </view>
+            <view class='courseBtn' data-path='pages/index/index' bindtap='handleReturnCourseTap'>去约课</view>
+         </view>
+         <view class='groupOwnTime'>2019-06 /本月还未上课</view>
+      </view>
+   </view>
+</view>
+
+<view class='groupRankingList'>
+   <view class='groupRanking_item fadeInLeft animated' wx:for='{{groupRankingList}}' wx:key='{{index}}'>
+     <image wx:if='{{index == 0}}' src='{{imgUrl}}ranking/ownRank1.png' class='groupMemberImg'></image>
+     <image wx:elif='{{index == 1}}' src='{{imgUrl}}ranking/ownRank2.png' class='groupMemberImg'></image>
+     <image wx:elif='{{index == 2}}' src='{{imgUrl}}ranking/ownRank3.png' class='groupMemberImg'></image>
+     <view wx:else class='groupNumber'>{{index+1}}</view>
+     <image class='ownImg' src='{{imgUrl}}invite/avatar.png'></image>
+     <view class='groupMemberName'>{{item.name}}</view>
+     <view class='groupMemberTime'><text class='groupMemberTimeNum'>{{item.time}}</text> 分钟</view>
+   </view>
+</view>
+
+<view class='groupRankingNone' wx:if='{{false}}'>
+   <view class='groupRankingNoneBox'>
+      <view class='groupRankingNone_bg'>
+         <text class='iconyaling iconfont iconImg'></text>
+      </view>
+      <view class='groupRankingNone_text'>本月还未上课哦 !</view>
+   </view>
+</view>
+
+<view class='lookOtherGroup'>查看其它群
+  <button class='lookOtherGroupBtn' open-type='share'></button>
+</view>
+
+<jurisdictionPopup state = '{{jurisdictionState}}'
+                   bindmyevent='bindgetuserinfo'></jurisdictionPopup>

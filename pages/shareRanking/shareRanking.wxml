@@ -1,1 +1,78 @@
 <!--pages/shareRanking/shareRanking.wxml-->
+<view class='tab_nav'>
+   <view class='mounth tab_navItem' bindtap='chooseItem' data-id='0' style='color:{{index == 0 ? "#fff" : "#BFB0FF"}}'>本月</view>
+   <view class='year tab_navItem' bindtap='chooseItem' data-id='1' style='color:{{index == 1 ? "#fff" : "#BFB0FF"}}'>今年</view>
+   <view class='allToatl tab_navItem' bindtap='chooseItem' data-id='2' style='color:{{index == 2 ? "#fff" : "#BFB0FF"}}'>总计</view>
+</view>
+
+<view class='content'>
+  <view class='ownRanking fadeIn animated'>
+    <view class='ownRanking_pre'>
+       <view class='headerImgBox3'>
+         <image src='{{imgUrl}}invite/avatar.png' class='headerImg'></image>
+         <image class='JJRanking_tag JJRanking_tag2' src='{{imgUrl}}ranking/secondTag.png' wx:if='{{false}}'></image>
+       </view>
+       <view class='RankingText'>前一名</view>
+       <view class='RankingNum'>2300</view>
+       <view class='RankingTime'>分钟</view>
+    </view>
+    <view class='ownRanking_mid'>
+       <view class='headerImgBox'>
+          <view class='headerImgBoxShadow'></view>
+          <view class='headerImgBox2'>
+            <view class='headerImgBox4'>
+              <image src='{{imgUrl}}invite/avatar.png' class='headerImg_mid'></image>
+              <image class='JJRanking_tag JJRanking_tag2' src='{{imgUrl}}ranking/firstTag.png' wx:if='{{false}}'></image>
+            </view>
+          </view>
+       </view>
+       <view class='RankingText' wx:if='{{true}}'>排名：<text class='RankingTextCount'>100000+</text></view>
+       <view class='RankingText RankingFirstText' wx:if='{{false}}'>第一名</view>
+       <view class='RankingNum'>{{stepNumber}}</view>
+       <view class='RankingTime'>分钟</view>
+    </view>
+    <view class='ownRanking_next'>
+       <view class='headerImgBox3'>
+         <image src='{{imgUrl}}invite/avatar.png' class='headerImg'></image>
+         <image class='JJRanking_tag JJRanking_tag2' src='{{imgUrl}}ranking/thirdTag.png' wx:if='{{false}}'></image>
+       </view>
+       <view class='RankingText'>前一名</view>
+       <view class='RankingNum'>2300</view>
+       <view class='RankingTime'>分钟</view>
+    </view>
+  </view>
+  
+  <view class='JJRanking fadeIn animated'>
+     <view class='JJRanking_title'>J&J排名</view>
+     <view class='JJRankingBox'>
+       <view class='JJRanking_item'>
+          <image class='JJRanking_img' src='{{imgUrl}}invite/avatar.png'></image>
+          <image class='JJRanking_tag' src='{{imgUrl}}ranking/secondTag.png'></image>
+       </view>
+       <view class='JJRanking_item'>
+          <image class='JJRanking_img' src='{{imgUrl}}invite/avatar.png'></image>
+          <image class='JJRanking_tag' src='{{imgUrl}}ranking/firstTag.png'></image>
+       </view>
+       <view class='JJRanking_item'>
+          <image class='JJRanking_img' src='{{imgUrl}}invite/avatar.png'></image>
+          <image class='JJRanking_tag' src='{{imgUrl}}ranking/thirdTag.png'></image>
+       </view>
+     </view>
+  </view>
+
+  <view class='lookPULS fadeIn animated'>
+    <view class='lookPULSText'>开通PLUS卡，享更多特权
+      <button open-type='getUserInfo' 
+             class='lookPULSTextBtn' 
+             bindgetuserinfo = 'handleReturnCourseTap'
+             data-path='pages/card/card'></button>
+    </view>
+  </view>
+
+  <view class='shareRankingTime fadeIn animated'>数据更新时间：2019.07.03-11:54:21</view>
+  <view class='shareRankingBtn fadeIn animated'>转发到群 查看本月排名
+     <button class='shareRankingBtn2' open-type='share'></button>
+  </view>
+</view>
+
+

@@ -56,12 +56,29 @@ App({
     })
   },
   onShow(options){
+    let _this = this
     console.log('scene', options.scene)
     this.globalData.scene = options.scene
     if (options.scene == 1007 || options.scene == 1008) {
       this.globalData.share = false
     } else {
       this.globalData.share = true
+    }
+    // 获取加密群信息
+    if (options.scene == 1044) {
+      console.log('options.shareTicket', options.shareTicket)
+      wx.getShareInfo({
+        shareTicket: options.shareTicket,
+        success(shareTicket_res){
+          wx.login({
+            success(res_TicketCode){
+              console.log('res_TicketCode', res_TicketCode.code)
+              _this.globalData.shareTicket_res = shareTicket_res
+              console.log('shareTicket_res', shareTicket_res)
+            }
+          })
+        }
+      })
     }
   },
   globalData: {
@@ -75,6 +92,7 @@ App({
     isIpX: false, //是否是ipHonex
     redirectToState: true,
     scene:'',
+    shareTicket_res:'',
 
     JumpAppId: {                    //测试
       appid: 'wx6b00bfc932f22210',

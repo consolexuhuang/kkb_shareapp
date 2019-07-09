@@ -1,1 +1,255 @@
 /* pages/shareRanking/shareRanking.wxss */
+page{
+  background: #896EFF;
+}
+.tab_nav{
+  width: 390rpx;
+  margin: 15rpx auto 0;
+  display: flex;
+  padding: 10rpx 0;
+  box-sizing: border-box;
+  border-radius: 8rpx;
+  border: 1rpx solid rgba(193,179,255,1)
+}
+.tab_navItem{
+  flex: 1;
+  font-size:28rpx;
+  font-family:PingFangSC-Medium;
+  font-weight:500;
+  color:rgba(191,176,255,1);
+  line-height:40rpx;
+  letter-spacing:1rpx;
+  text-align: center;
+}
+.year{
+  border-left: 1rpx solid #AC99FF;
+  border-right: 1rpx solid #AC99FF
+}
+
+.content{
+  padding: 0 32rpx;
+  margin-top: 76rpx;
+}
+.ownRanking{
+  width: 100%;
+  height: 390rpx;
+  background: #fff;
+  display: flex;
+  justify-content: space-between
+}
+.ownRanking_pre{
+  width: 212rpx;
+  text-align: center;
+}
+.ownRanking_mid{
+  width: 260rpx;
+  text-align: center;
+}
+.ownRanking_next{
+  width: 212rpx;
+  text-align: center;
+}
+.headerImg{
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+}
+.headerImgBox3{
+  /* width: 120rpx; */
+  height: 120rpx;
+  border-radius: 50%;
+  margin: 44rpx 0 47rpx;
+  position: relative;
+}
+.headerImgBox4{
+  /* width: 120rpx; */
+  height: 150rpx;
+  border-radius: 50%;
+  margin: 42rpx 0 47rpx;
+  position: relative;
+}
+.headerImg_mid{
+  width: 150rpx;
+  height: 150rpx;
+  border-radius: 50%;
+  /* margin: 42rpx 0 47rpx; */
+}
+.RankingText{
+  font-size:24rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(149,149,149,1);
+  line-height:33rpx;
+  letter-spacing:1rpx;
+  margin-bottom: 27rpx;
+}
+.RankingFirstText{
+  color: #896EFF;
+}
+.RankingTextCount{
+  color: #896EFF;
+}
+.RankingNum{
+  font-size:44rpx;
+  font-family:DINAlternate-Bold;
+  font-weight:bold;
+  color:rgba(55,55,55,1);
+  line-height:51rpx;
+  letter-spacing:2rpx;
+}
+.RankingTime{
+  font-size:20rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(149,149,149,1);
+  line-height:28rpx;
+  letter-spacing:1rpx;
+}
+.headerImgBox{
+  width: 100%;
+  height: 210rpx;
+  position: relative;
+  /* overflow: hidden */
+}
+.headerImgBoxShadow{
+  width: 230rpx;
+  height: 0;
+  border-top: 200rpx solid #E8E3FF;
+  border-bottom: 5rpx solid #E8E3FF;
+  border-right: 12rpx solid #E8E3FF;
+  border-left: 12rpx solid #E8E3FF;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  border-color: #E8E3FF transparent transparent transparent;
+  border-radius: 4rpx;
+  margin-top: 2rpx;
+  /* filter: blur(2rpx) */
+}
+.headerImgBox2{
+  width: 230rpx;
+  position: absolute;
+  z-index: 10;
+  background: #fff;
+  top: -33rpx;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  border-radius: 4rpx;
+}
+.JJRanking{
+  width: 100%;
+  border-radius: 4rpx;
+  background: #fff;
+  padding: 0 58rpx 30rpx;
+  box-sizing: border-box;
+  margin-top: 10rpx
+}
+.JJRanking_title{
+  font-size:30rpx;
+  font-family:PingFangSC-Medium;
+  font-weight:500;
+  color:rgba(55,55,55,1);
+  line-height:100rpx;
+  letter-spacing:1rpx;
+  text-align: center;
+}
+.JJRankingBox{
+  display: flex;
+  justify-content: space-between;
+}
+
+.JJRanking_item{
+  position: relative;
+}
+.JJRanking_img{
+  width:130rpx;
+  height:130rpx;
+  border-radius: 50%;
+}
+.JJRanking_tag{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 77rpx;
+  height: 56rpx;
+}
+.JJRanking_tag2{
+  bottom: -16rpx;
+}
+.lookPULS{
+  display: flex;
+  margin-top: 25rpx;
+  flex-direction: column;
+}
+.lookPULSText{
+  align-self: flex-end;
+  border-bottom: 1rpx solid #fff;
+  font-size:26rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+  line-height:40rpx;
+  letter-spacing:1rpx;
+  padding-right: 24rpx;
+  position: relative
+}
+.lookPULSTextBtn{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  opacity: 0;
+}
+.lookPULSText::after{
+  content: '';
+  position: absolute;
+  width: 12rpx;
+  height: 12rpx;
+  border-top: 1rpx solid #fff;
+  border-right: 1rpx solid #fff;
+  top: 0;
+  bottom: 0;
+  right: 4rpx;
+  margin: auto;
+  transform: rotate(45deg)
+}
+.shareRankingTime{
+  margin-top: 130rpx;
+  text-align: center;
+  font-size:24rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(202,190,255,1);
+  line-height:33rpx;
+  letter-spacing:1rpx;
+}
+.shareRankingBtn{
+  width:595rpx;
+  background:linear-gradient(180deg,rgba(254,227,100,1) 0%,rgba(208,154,58,1) 100%);
+  box-shadow:0px 2rpx 10rpx 0px rgba(100,78,195,1);
+  border-radius:44rpx;
+  text-align: center;
+  font-size:32rpx;
+  font-family:PingFangSC-Medium;
+  font-weight:500;
+  color:rgba(88,67,181,1);
+  line-height:77rpx;
+  letter-spacing:2rpx;
+  margin: 14rpx auto 0;
+  position: relative;
+}
+.shareRankingBtn2{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  top: 0
+}
+
