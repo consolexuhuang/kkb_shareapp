@@ -1,4 +1,5 @@
 // pages/groupRanking/groupRanking.js
+import Store from '../../utils/store.js'
 Page({
 
   /**
@@ -7,7 +8,7 @@ Page({
   data: {
     imgUrl: getApp().globalData.imgUrl,
     jurisdictionState: false, //授权显示
-    groupRankingList: ''
+    groupRankingList: '',
   },
   
   //分布渲染
@@ -32,31 +33,35 @@ Page({
   onLoad: function (options) {
     let list = [{ name: '小A与阿Jay', time: 5670 },
                 { name: '撕夜', time: 52270 },
-                { name: '小A与阿Jay', time: 56270 },
+                { name: '小A小A与阿Jay小A与阿Jay与阿Jay', time: 5620070 },
                 { name: '小米', time: 570 },
                 { name: '大爷', time: 70 },
                 { name: '大爷', time: 70 },
                 { name: '大爷', time: 70 },
-      { name: '小米', time: 570 },
-      { name: '大爷', time: 70 },
-      { name: '大爷', time: 70 },
-      { name: '大爷', time: 70 },
-      { name: '小米', time: 570 },
-      { name: '大爷', time: 70 },
-      { name: '大爷', time: 70 },
-      { name: '大爷', time: 70 },
-      { name: '小米', time: 570 },
-      { name: '大爷', time: 70 },
-      { name: '大爷', time: 70 },
-      { name: '大爷', time: 70 },
+                { name: '小米', time: 570 },
+                { name: '大爷', time: 70 },
+                { name: '大爷', time: 70 },
+                { name: '大爷', time: 70 },
+                { name: '小米', time: 570 },
+                { name: '大爷', time: 70 },
+                { name: '大爷', time: 70 },
+                { name: '大爷', time: 70 },
+                { name: '小米', time: 570 },
+                { name: '大爷', time: 70 },
+                { name: '大爷', time: 70 },
+                { name: '大爷', time: 70},
     ]
     this.showViewDom(list, 100)
-    getApp().wx_loginIn().then(() => {
-      this.setData({ jurisdictionState: false })
-      // this.LoadPageFunc()
-    }, () => {
-      this.setData({ jurisdictionState: true })
-    })
+    if (Store.getItem('userData') && Store.getItem('userData').token){
+      
+    } else {
+      getApp().wx_loginIn().then(() => {
+        this.setData({ jurisdictionState: false })
+        // this.LoadPageFunc()
+      }, () => {
+        this.setData({ jurisdictionState: true })
+      })
+    }
   },
 
   /**

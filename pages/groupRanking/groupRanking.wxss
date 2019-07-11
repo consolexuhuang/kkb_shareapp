@@ -5,6 +5,7 @@
   padding: 50rpx 30rpx;
   display: flex;
   align-items: center;
+  box-sizing: border-box;
 }
 .groupRanking_ownBox{
   margin-right: 42rpx;
@@ -33,6 +34,7 @@
 .groupRankingInfo{
   display: flex;
   align-items: center;
+  flex: 1
 }
 .ownImgTop{
   width:130rpx;
@@ -43,6 +45,7 @@
 }
 .groupData{
   text-align: left;
+  flex: 1;
 }
 .groupOwnName{
   font-size:26rpx;
@@ -51,6 +54,10 @@
   color:rgba(255,255,255,1);
   line-height:37rpx;
   letter-spacing:1rpx;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+  width: 300rpx;
 }
 .groupNameBox{
   display: flex;
@@ -69,6 +76,7 @@
   overflow: hidden;
   text-overflow:ellipsis;
   white-space: nowrap;
+  flex: 1;
   /* float: left; */
 }
 .courseBtn{
@@ -132,6 +140,10 @@
   color:rgba(100,100,100,1);
   line-height:37rpx;
   letter-spacing:1rpx;
+  width: 280rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .groupMemberTime{
   font-size:30rpx;

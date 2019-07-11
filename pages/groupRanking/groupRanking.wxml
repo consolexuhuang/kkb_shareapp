@@ -10,7 +10,7 @@
    <view class='groupRankingInfo'>
       <image class='ownImgTop' src='{{imgUrl}}invite/avatar.png'></image>
       <view class='groupData'>
-         <view class='groupOwnName'>-V乐署V-</view>
+         <view class='groupOwnName'>-V乐-V乐署V--V乐署乐署乐署乐署V-署V-</view>
          <view class='groupNameBox'>
             <view class='groupName'>军旅小纵军旅小纵队队
                <!-- <open-data type="groupName" open-gid="{{openGid}}"></open-data> -->
