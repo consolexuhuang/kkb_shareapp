@@ -294,8 +294,8 @@
 }
 
 .tips rich-text{
-  margin-top: 41rpx;
-  margin-left: 35rpx;
+  padding:40rpx 35rpx;
+  box-sizing: border-box;
   display: block;
   line-height: 42rpx;
   font-size: 26rpx;
