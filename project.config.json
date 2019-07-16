@@ -45,7 +45,7 @@
 					"id": 0,
 					"name": "分享入口",
 					"pathName": "pages/inviteShare/inviteShare",
-					"query": "shareMemberId=",
+					"query": "shareMemberId=1144542931479302144",
 					"scene": 1007
 				}
 			]

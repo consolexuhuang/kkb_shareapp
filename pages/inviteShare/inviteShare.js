@@ -14,7 +14,7 @@ Page({
     invitedCouponList:'', //拉新用户优惠券列表
     qrcode: '',        //获取带本人信息的二维码
     inviteMember: '',  //分享人的信息
-    inviteQrcode: '',  //分享者信息的二维码
+    // inviteQrcode: '',  //分享者信息的二维码
     imgUrl: getApp().globalData.imgUrl,
     isShadeShow:false , //面对面状态
     postConfig: {      //海报配置信息
@@ -119,18 +119,18 @@ Page({
     })
   },
   // 获取带分享者信息的二维码
-  getInviteQrcode: function () {
-    const shareMemberId = this.data.shareMemberId
-    const data = {
-      memberId: shareMemberId
-    }
-    api.post('getQrcode', data).then(res => {
-      const inviteQrcode = res.msg
-      this.setData({
-        inviteQrcode
-      })
-    })
-  },
+  // getInviteQrcode: function () {
+  //   const shareMemberId = this.data.shareMemberId
+  //   const data = {
+  //     memberId: shareMemberId
+  //   }
+  //   api.post('getQrcode', data).then(res => {
+  //     const inviteQrcode = res.msg
+  //     this.setData({
+  //       inviteQrcode
+  //     })
+  //   })
+  // },
   getFirstStepFriendList(){
     const data = {
       id: this.data.shareMemberId
@@ -155,7 +155,7 @@ Page({
     this.getQrcode()
     this.getInvitedInfo()
     this.getInviteMemberInfo()
-    this.getInviteQrcode()
+    // this.getInviteQrcode()
   },
 // -----------------------------------------------逻辑渲染层
   onReady(){
