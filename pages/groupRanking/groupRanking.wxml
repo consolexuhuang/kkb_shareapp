@@ -2,7 +2,7 @@
 <view class='groupRanking_top'>
    <view class='groupRanking_ownBox' wx:if='{{true}}'>
       <image src='{{imgUrl}}ranking/ownRank.png' class='ownRankImg'></image>
-      <view class='currentRanking'>444</view>
+      <view class='currentRanking'>122</view>
    </view>
    <view class='groupRanking_ownBox' wx:if='{{false}}'>
       <image src='{{imgUrl}}ranking/ownRank0.png' class='ownRankImg'></image>
