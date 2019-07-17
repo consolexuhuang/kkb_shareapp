@@ -9,11 +9,15 @@
   <view class='ownRanking fadeIn animated'>
     <view class='ownRanking_pre'>
        <view class='headerImgBox3'>
-         <image src='{{imgUrl}}invite/avatar.png' class='headerImg'></image>
-         <image class='JJRanking_tag JJRanking_tag2' src='{{imgUrl}}ranking/secondTag.png' wx:if='{{false}}'></image>
+         <image wx:if='{{!myRankData.before.head_img}}' src='{{imgUrl}}invite/avatar.png' class='headerImg'></image>
+         <image wx:if='{{myRankData.before.head_img}}' src='{{myRankData.before.head_img}}' class='headerImg'></image>
+
+         <image class='JJRanking_tag JJRanking_tag2' src='{{imgUrl}}ranking/firstTag.png' wx:if='{{myRankData.before.rank == 1}}'></image>
+         <image class='JJRanking_tag JJRanking_tag2' src='{{imgUrl}}ranking/secondTag.png' wx:if='{{myRankData.before.rank == 2}}'></image>
        </view>
-       <view class='RankingText'>前一名</view>
-       <view class='RankingNum'>2300</view>
+       <view class='RankingText' wx:if='{{!isShowAllRank}}'>前一名</view>
+       <view class='RankingText' wx:if='{{isShowAllRank}}'>{{myRankData.before.rank == 1 ? "第一名" : (myRankData.before.rank == 2 ? "第二名" : "--")}}</view>
+       <view class='RankingNum'>{{myRankData.before.minute || "--"}}</view>
        <view class='RankingTime'>分钟</view>
     </view>
     <view class='ownRanking_mid'>
@@ -21,46 +25,48 @@
           <view class='headerImgBoxShadow'></view>
           <view class='headerImgBox2'>
             <view class='headerImgBox4'>
-              <image src='{{imgUrl}}invite/avatar.png' class='headerImg_mid'></image>
-              <image class='JJRanking_tag JJRanking_tag2' src='{{imgUrl}}ranking/firstTag.png' wx:if='{{false}}'></image>
+              <image wx:if='{{!myRankData.self.head_img}}' src='{{imgUrl}}invite/avatar.png' class='headerImg_mid'></image>
+              <image wx:if='{{myRankData.self.head_img}}' src='{{myRankData.self.head_img}}' class='headerImg_mid'></image>
+              
+              <image class='JJRanking_tag JJRanking_tag2' src='{{imgUrl}}ranking/firstTag.png' wx:if='{{myRankData.self.rank == 1}}'></image>
+              <image class='JJRanking_tag JJRanking_tag2' src='{{imgUrl}}ranking/secondTag.png' wx:if='{{myRankData.self.rank == 2}}'></image>
             </view>
           </view>
        </view>
-       <view class='RankingText' wx:if='{{true}}'>排名：<text class='RankingTextCount'>100000+</text></view>
-       <view class='RankingText RankingFirstText' wx:if='{{false}}'>第一名</view>
-       <view class='RankingNum'>{{stepNumber}}</view>
+       <view class='RankingText' wx:if='{{!isShowAllRank}}'>排名：<text class='RankingTextCount'>{{myRankData.self.rank || '--'}}</text></view>
+       <view class='RankingText RankingFirstText' wx:if='{{isShowAllRank}}'>{{myRankData.self.rank == 1 ? "第一名" : (myRankData.self.rank == 2 ? "第二名" : "--")}}</view>
+       <view class='RankingNum'>{{myRankData.self.minute || "--"}}</view>
        <view class='RankingTime'>分钟</view>
     </view>
     <view class='ownRanking_next'>
        <view class='headerImgBox3'>
-         <image src='{{imgUrl}}invite/avatar.png' class='headerImg'></image>
-         <image class='JJRanking_tag JJRanking_tag2' src='{{imgUrl}}ranking/thirdTag.png' wx:if='{{false}}'></image>
+         <image wx:if='{{!myRankData.after.head_img}}' src='{{imgUrl}}invite/avatar.png' class='headerImg'></image>
+         <image wx:if='{{myRankData.after.head_img}}' src='{{myRankData.after.head_img}}' class='headerImg'></image>
+
+         <image class='JJRanking_tag JJRanking_tag2' src='{{imgUrl}}ranking/thirdTag.png' wx:if='{{isShowAllRank}}'></image>
        </view>
-       <view class='RankingText'>前一名</view>
-       <view class='RankingNum'>2300</view>
+       <view class='RankingText' wx:if='{{!isShowAllRank}}'>后一名</view>
+       <view class='RankingText' wx:if='{{isShowAllRank}}'>第三名</view>
+       <view class='RankingNum'>{{myRankData.after.minute || "--"}}</view>
        <view class='RankingTime'>分钟</view>
     </view>
   </view>
   
-  <view class='JJRanking fadeIn animated'>
+  <view class='JJRanking fadeIn animated' wx:if='{{!isShowAllRank}}'>
      <view class='JJRanking_title'>J&J排名</view>
      <view class='JJRankingBox'>
-       <view class='JJRanking_item'>
-          <image class='JJRanking_img' src='{{imgUrl}}invite/avatar.png'></image>
-          <image class='JJRanking_tag' src='{{imgUrl}}ranking/secondTag.png'></image>
-       </view>
-       <view class='JJRanking_item'>
-          <image class='JJRanking_img' src='{{imgUrl}}invite/avatar.png'></image>
-          <image class='JJRanking_tag' src='{{imgUrl}}ranking/firstTag.png'></image>
-       </view>
-       <view class='JJRanking_item'>
-          <image class='JJRanking_img' src='{{imgUrl}}invite/avatar.png'></image>
-          <image class='JJRanking_tag' src='{{imgUrl}}ranking/thirdTag.png'></image>
+       <view class='JJRanking_item' wx:for='{{myRankData.top3}}' wx:key='{{index}}'>
+          <image class='JJRanking_img' wx:if='{{!item.head_img}}' src='{{imgUrl}}invite/avatar.png'></image>
+          <image class='JJRanking_img' wx:if='{{item.head_img}}' src='{{item.head_img}}'></image>
+
+          <image class='JJRanking_tag' wx:if='{{item.rank == 2}}' src='{{imgUrl}}ranking/secondTag.png'></image>
+          <image class='JJRanking_tag' wx:if='{{item.rank == 1}}' src='{{imgUrl}}ranking/firstTag.png'></image>
+          <image class='JJRanking_tag' wx:if='{{item.rank == 3}}' src='{{imgUrl}}ranking/thirdTag.png'></image>
        </view>
      </view>
   </view>
 
-  <view class='lookPULS fadeIn animated'>
+  <view class='lookPULS fadeIn animated' wx:if='{{!myRankData.hasCard}}'>
     <view class='lookPULSText'>开通PLUS卡，享更多特权
       <button open-type='getUserInfo' 
              class='lookPULSTextBtn' 
@@ -69,10 +75,13 @@
     </view>
   </view>
 
-  <view class='shareRankingTime fadeIn animated'>数据更新时间：2019.07.03-11:54:21</view>
-  <view class='shareRankingBtn fadeIn animated'>转发到群 查看本月排名
-     <button class='shareRankingBtn2' open-type='share'></button>
+  <!-- <view class='shareRankingTime fadeIn animated'>数据更新时间：2019.07.03-11:54:21</view> -->
+  <view class='shareRankingBtnBox'>
+    <view class='shareRankingBtn fadeIn animated'>转发到群 查看本月排名
+      <button class='shareRankingBtn2' open-type='share'></button>
+    </view>
   </view>
 </view>
 
-
+<jurisdictionPopup state = '{{jurisdictionState}}'
+                   bindmyevent='bindgetuserinfo'></jurisdictionPopup>

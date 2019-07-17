@@ -3,5 +3,7 @@
   "backgroundTextStyle": "dark",
   "navigationBarTextStyle": "white",
   "navigationBarBackgroundColor": "#896EFF",
-  "usingComponents": {}
+  "usingComponents": {
+     "jurisdictionPopup": "/components/jurisdictionPopup/jurisdictionPopup"
+  }
 }

@@ -3,10 +3,24 @@
 <van-popup show="{{ state }}" custom-class='Jurisdictionstyle' z-index = '1001'>
   <view class='startUp'>
     <image src='{{imgUrl}}invite/startUp_logo.png' class='startUp_logo'></image>
-    <view class='startUpCont2_noneLogin'>需登录后方可使用</view>
-    <view class='startUpCont2 fadeIn animated' wx:if='{{!userData && !userData.nick_name}}'>
-      <button open-type='getUserInfo' bindgetuserinfo = 'bindgetuserinfo' class='getUserInfoBtn'></button>
-      微信授权登录
+    <view class='loading' wx:if='{{payLoad}}'>
+      <view class='startUpCont2_noneLogin loadText loadingBox'>
+        <view style='display:flex; align-items:center'>
+          <text>加载中 </text>
+          <text id="loading1">
+            <text class="demo1"></text>
+            <text class="demo1"></text>
+            <text class="demo1"></text>
+          </text>
+        </view>
+      </view>
+    </view>
+    <view class='box' wx:if='{{!payLoad}}'>
+      <view class='startUpCont2_noneLogin'>需登录后方可使用</view>
+      <view class='startUpCont2 fadeIn animated' wx:if='{{!userData && !userData.nick_name}}'>
+        <button open-type='getUserInfo' bindgetuserinfo = 'bindgetuserinfo' class='getUserInfoBtn'></button>
+        微信授权登录
+      </view>
     </view>
   </view>
 </van-popup>

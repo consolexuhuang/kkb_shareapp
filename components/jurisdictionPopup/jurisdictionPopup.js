@@ -11,6 +11,10 @@ Component({
     imgUrl:{
       type:String,
       value:'/images/'
+    },
+    payLoad:{
+      type: Boolean,
+      value: false,
     }
   },
 
@@ -20,6 +24,12 @@ Component({
   data: {
 
   },
+  // observers:{
+  //   'payLoad': function (newVal, oldVal){
+  //     console.log('newVal', newVal)
+  //     // this.setData({ payLoad : })
+  //   }
+  // },
 
   /**
    * 组件的方法列表

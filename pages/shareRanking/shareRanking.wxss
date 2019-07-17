@@ -53,6 +53,7 @@ page{
   width: 120rpx;
   height: 120rpx;
   border-radius: 50%;
+  border: 1rpx solid #ccc
 }
 .headerImgBox3{
   /* width: 120rpx; */
@@ -229,6 +230,13 @@ page{
   color:rgba(202,190,255,1);
   line-height:33rpx;
   letter-spacing:1rpx;
+}
+.shareRankingBtnBox{
+  position: absolute;
+  bottom: 50rpx;
+  left: 0;
+  right: 0;
+  margin: auto;
 }
 .shareRankingBtn{
   width:595rpx;

@@ -1,5 +1,6 @@
 // pages/groupRanking/groupRanking.js
 import Store from '../../utils/store.js'
+const api = getApp().api
 Page({
 
   /**
@@ -9,6 +10,8 @@ Page({
     imgUrl: getApp().globalData.imgUrl,
     jurisdictionState: false, //授权显示
     groupRankingList: '',
+    groupId:'',
+    loadState:false, //是否需要加载启动页
   },
   
   //分布渲染
@@ -22,53 +25,59 @@ Page({
         console.log('定时器关闭')
         clearInterval(timer)
       } else {
-        this.setData({ ['groupRankingList[' + count + ']']: domList[count] })
+        this.setData({ ['groupRankingList.list[' + count + ']']: domList[count] })
         count++
       } 
     }, durTime)
+  },
+  // 群排名数据
+  getGroupList(){
+    let _this = this
+    wx.login({
+      success(res_TicketCode){
+        wx.getShareInfo({
+          shareTicket: getApp().globalData.shareTicket_option.shareTicket,
+          success(shareTicket_res) {
+            console.log('shareTicket_res', shareTicket_res)
+            console.log('res_TicketCode', res_TicketCode.code)
+            if (Store.getItem('userData') && Store.getItem('userData').token){
+              let data = {
+                code: res_TicketCode.code || '',
+                encryptedData: shareTicket_res.encryptedData || '',
+                iv: shareTicket_res.iv || '',
+                // groupName:''
+              }
+              // _this.setData({ jurisdictionState: true, loadState: true})
+              api.post('v2/member/myGroupRank', data).then(res => {
+                _this.setData({ jurisdictionState: false })
+                console.log('群排名数据', res)
+                _this.setData({ groupId: res.msg.groupId})
+                _this.showViewDom(res.msg.list, 100)
+              })
+            }
+          }
+        })
+      }
+    })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let list = [{ name: '小A与阿Jay', time: 5670 },
-                { name: '撕夜', time: 52270 },
-                { name: '小A小A与阿Jay小A与阿Jay与阿Jay', time: 5620070 },
-                { name: '小米', time: 570 },
-                { name: '大爷', time: 70 },
-                { name: '大爷', time: 70 },
-                { name: '大爷', time: 70 },
-                { name: '小米', time: 570 },
-                { name: '大爷', time: 70 },
-                { name: '大爷', time: 70 },
-                { name: '大爷', time: 70 },
-                { name: '小米', time: 570 },
-                { name: '大爷', time: 70 },
-                { name: '大爷', time: 70 },
-                { name: '大爷', time: 70 },
-                { name: '小米', time: 570 },
-                { name: '大爷', time: 70 },
-                { name: '大爷', time: 70 },
-                { name: '大爷', time: 70},
-    ]
-    this.showViewDom(list, 100)
+    wx.showShareMenu({
+      withShareTicket: true
+    })
+    this.setData({ jurisdictionState: true, loadState: true })
     if (Store.getItem('userData') && Store.getItem('userData').token){
-      
+      this.getGroupList()
     } else {
       getApp().wx_loginIn().then(() => {
         this.setData({ jurisdictionState: false })
-        // this.LoadPageFunc()
+        this.getGroupList()
       }, () => {
         this.setData({ jurisdictionState: true })
       })
     }
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
   },
 
   /**
@@ -79,8 +88,8 @@ Page({
   },
   bindgetuserinfo() {
     getApp().wx_loginIn().then(() => {
-      this.setData({ jurisdictionState: false })
-      // this.LoadPageFunc()
+      this.setData({ loadState: true ,})
+      this.getGroupList()
     }, () => {
       this.setData({ jurisdictionState: true })
     })

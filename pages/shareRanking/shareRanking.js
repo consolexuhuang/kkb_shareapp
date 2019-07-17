@@ -1,5 +1,7 @@
 // pages/shareRanking/shareRanking.js
 import NumberAnimate from "../../utils/NumberAnimate";
+const api = getApp().api
+import Store from '../../utils/store.js'
 Page({
 
   /**
@@ -8,12 +10,15 @@ Page({
   data: {
     index:0, //索引
     imgUrl: getApp().globalData.imgUrl,
-    firstNum:2100,
-    stepNumber:0
+    // firstNum:2100,
+    // stepNumber:0,
+    myRankData:'', //排名数据
+    isShowAllRank:false,
+    jurisdictionState: false, //授权显示
   },
-  dealNumberStep() {
+  dealNumberStep(minutes) {
     let _this = this
-    let stepNumber = this.data.firstNum
+    let stepNumber = minutes
     wx.getSystemInfo({
       success: res => {
         if (res.platform == "ios" || res.platform == "devtools") {
@@ -24,16 +29,36 @@ Page({
             decimals: 0,//小数点后的位数
             onUpdate: () => {//更新回调函数
               _this.setData({
-                stepNumber: numberAnimate.tempValue
+                ['myRankData.self.minute']: numberAnimate.tempValue
               });
             },
           });
         } else {
           _this.setData({
-            stepNumber: this.data.firstNum
+            ['myRankData.self.minute']: minutes
           });
         }
       }
+    })
+  },
+  // 获取我的排名信息
+  getMemberRankInfo(type) {
+    let data = {
+      type: type == 0 ? 'month' : (type == 1 ? 'year' : (type == 2 ? 'total' : 'month'))
+    }
+    wx.showLoading({ title: '加载中' })
+    api.post('v2/member/myRank', data).then(res => {
+      console.log('获取我的排名信息', res)
+      wx.hideLoading()
+      res.msg.self.rank == 1 || res.msg.self.rank == 2
+        ? this.setData({ isShowAllRank: true })
+        : this.setData({ isShowAllRank: false })
+      if (res.msg.top3){
+        res.msg.top3[0] = res.msg.top3.splice(1, 1, res.msg.top3[0])[0]
+        console.log(res.msg.top3)
+      }
+      this.dealNumberStep(res.msg.self.minute)
+      this.setData({ myRankData: res.msg, index: type})
     })
   },
   /**
@@ -43,7 +68,16 @@ Page({
     wx.showShareMenu({
       withShareTicket: true
     })
-    this.dealNumberStep()
+    if (!Store.getItem('userData')) {
+      getApp().wx_loginIn().then(() => {
+        this.getMemberRankInfo(0)
+        this.setData({ jurisdictionState: false })
+      }, () => {
+        this.setData({ jurisdictionState: true })
+      })
+    } else {
+      this.getMemberRankInfo(0)
+    }
   },
 
   /**
@@ -52,11 +86,18 @@ Page({
   onShow: function () {
 
   },
+  bindgetuserinfo() {
+    getApp().wx_loginIn().then(() => {
+      this.setData({ jurisdictionState: false })
+      // this.setData({ loadState: true })
+      this.getMemberRankInfo(0)
+    }, () => {
+      this.setData({ jurisdictionState: true })
+    })
+  },
   //点击导航
   chooseItem(e){
-    this.setData({
-      index: e.currentTarget.dataset.id
-    })
+    this.data.index != e.currentTarget.dataset.id ? this.getMemberRankInfo(e.currentTarget.dataset.id) : console.log('无需加载')
   },
   //跳转小程序
   handleReturnCourseTap: function (event) {
