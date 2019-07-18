@@ -10,40 +10,40 @@ Page({
     imgUrl: getApp().globalData.imgUrl,
     jurisdictionState: false, //授权显示
     groupRankingList: '',
-    ownGroupInfo:'',
-    groupId:'',
-    loadState:false, //是否需要加载启动页
-    userData:'',
-    shareIsGroup:true,
+    ownGroupInfo: '',
+    groupId: '',
+    loadState: false, //是否需要加载启动页
+    userData: '',
+    shareIsGroup: true,
   },
-  
+
   //分布渲染
-  showViewDom(domList, durTime){
+  showViewDom(domList, durTime) {
     console.log('定时器开启')
     let length = domList.length
     let count = 0;
     let timer = null
-    timer = setInterval(()=>{
-      if (count == length){
+    timer = setInterval(() => {
+      if (count == length) {
         console.log('定时器关闭')
         clearInterval(timer)
       } else {
         this.setData({ ['groupRankingList.list[' + count + ']']: domList[count] })
         count++
-      } 
+      }
     }, durTime)
   },
   // 群排名数据
-  getGroupList(){
+  getGroupList() {
     let _this = this
     wx.login({
-      success(res_TicketCode){
+      success(res_TicketCode) {
         wx.getShareInfo({
           shareTicket: getApp().globalData.shareTicket_option.shareTicket,
           success(shareTicket_res) {
             console.log('shareTicket_res', shareTicket_res)
             console.log('res_TicketCode', res_TicketCode.code)
-            if (Store.getItem('userData') && Store.getItem('userData').token){
+            if (Store.getItem('userData') && Store.getItem('userData').token) {
               let data = {
                 code: res_TicketCode.code || '',
                 encryptedData: shareTicket_res.encryptedData || '',
@@ -52,17 +52,17 @@ Page({
               }
               // _this.setData({ jurisdictionState: true, loadState: true})
               api.post('v2/member/myGroupRank', data).then(res => {
-                _this.setData({ jurisdictionState: false, shareIsGroup: true})
+                _this.setData({ jurisdictionState: false, shareIsGroup: true })
                 console.log('群排名数据', res)
                 // res.msg.list.slice(1)
-                _this.setData({ groupId: res.msg.groupId, ownGroupInfo: res.msg.list.slice(0,1)})
+                _this.setData({ groupId: res.msg.groupId, ownGroupInfo: res.msg.list.slice(0, 1) })
                 _this.showViewDom(res.msg.list.slice(1), 100)
               })
             }
           },
-          fail(res){
-            console.log('shareTicket_Failres',res)
-            _this.setData({ jurisdictionState: false , shareIsGroup: false})
+          fail(res) {
+            console.log('shareTicket_Failres', res)
+            _this.setData({ jurisdictionState: false, shareIsGroup: false })
           }
         })
       }
@@ -72,7 +72,7 @@ Page({
   getMemberFollowState() {
     api.post('v2/member/memberInfo').then(res => {
       console.log('获取当前用信息', res)
-      this.setData({userData: res.msg})
+      this.setData({ userData: res.msg })
       // Store.setItem('userData', res.msg)
     })
   },
@@ -83,11 +83,11 @@ Page({
     wx.showShareMenu({
       withShareTicket: true
     })
-    this.setData({ 
-      jurisdictionState: true, 
+    this.setData({
+      jurisdictionState: true,
       loadState: Store.getItem('userData') && Store.getItem('userData').token ? true : false
-     })
-    if (Store.getItem('userData') && Store.getItem('userData').token){
+    })
+    if (Store.getItem('userData') && Store.getItem('userData').token) {
       this.getGroupList()
       this.getMemberFollowState()
     } else {
@@ -109,7 +109,7 @@ Page({
   },
   bindgetuserinfo() {
     getApp().wx_loginIn().then(() => {
-      this.setData({ loadState: true ,})
+      this.setData({ loadState: true, })
       this.getGroupList()
       this.getMemberFollowState()
     }, () => {
