@@ -12,8 +12,9 @@
          <image wx:if='{{!myRankData.before.head_img}}' src='{{imgUrl}}invite/avatar.png' class='headerImg'></image>
          <image wx:if='{{myRankData.before.head_img}}' src='{{myRankData.before.head_img}}' class='headerImg fadeIn animated'></image>
 
-         <image class='JJRanking_tag JJRanking_tag2' src='{{imgUrl}}ranking/firstTag.png' wx:if='{{myRankData.before.rank == 1}}'></image>
-         <image class='JJRanking_tag JJRanking_tag2' src='{{imgUrl}}ranking/secondTag.png' wx:if='{{myRankData.before.rank == 2}}'></image>
+          <image class='JJRanking_tag JJRanking_tag2' src='{{imgUrl}}ranking/firstTag.png' wx:if='{{myRankData.before.rank == 1}}'></image>
+          <image class='JJRanking_tag JJRanking_tag2' src='{{imgUrl}}ranking/secondTag.png' wx:if='{{myRankData.before.rank == 2}}'></image>
+          <image class='JJRanking_tag JJRanking_tag2' src='{{imgUrl}}ranking/thirdTag.png' wx:if='{{myRankData.before.rank == 3}}'></image>
        </view>
        <view class='RankingText' wx:if='{{!isShowAllRank}}'>前一名</view>
        <view class='RankingText' wx:if='{{isShowAllRank}}'>{{myRankData.before.rank == 1 ? "第一名" : (myRankData.before.rank == 2 ? "第二名" : "--")}}</view>
@@ -30,6 +31,7 @@
               
               <image class='JJRanking_tag JJRanking_tag2' src='{{imgUrl}}ranking/firstTag.png' wx:if='{{myRankData.self.rank == 1}}'></image>
               <image class='JJRanking_tag JJRanking_tag2' src='{{imgUrl}}ranking/secondTag.png' wx:if='{{myRankData.self.rank == 2}}'></image>
+              <image class='JJRanking_tag JJRanking_tag2' src='{{imgUrl}}ranking/thirdTag.png' wx:if='{{myRankData.self.rank == 3}}'></image>
             </view>
           </view>
        </view>
@@ -43,7 +45,9 @@
          <image wx:if='{{!myRankData.after.head_img}}' src='{{imgUrl}}invite/avatar.png' class='headerImg'></image>
          <image wx:if='{{myRankData.after.head_img}}' src='{{myRankData.after.head_img}}' class='headerImg fadeIn animated'></image>
 
-         <image class='JJRanking_tag JJRanking_tag2' src='{{imgUrl}}ranking/thirdTag.png' wx:if='{{isShowAllRank}}'></image>
+         <image class='JJRanking_tag JJRanking_tag2' src='{{imgUrl}}ranking/firstTag.png' wx:if='{{myRankData.after.rank == 1}}'></image>
+        <image class='JJRanking_tag JJRanking_tag2' src='{{imgUrl}}ranking/secondTag.png' wx:if='{{myRankData.after.rank == 2}}'></image>
+        <image class='JJRanking_tag JJRanking_tag2' src='{{imgUrl}}ranking/thirdTag.png' wx:if='{{myRankData.after.rank == 3}}'></image>
        </view>
        <view class='RankingText' wx:if='{{!isShowAllRank}}'>后一名</view>
        <view class='RankingText' wx:if='{{isShowAllRank}}'>第三名</view>
