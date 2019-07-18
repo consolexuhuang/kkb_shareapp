@@ -10,8 +10,11 @@ Page({
     imgUrl: getApp().globalData.imgUrl,
     jurisdictionState: false, //授权显示
     groupRankingList: '',
+    ownGroupInfo:'',
     groupId:'',
     loadState:false, //是否需要加载启动页
+    userData:'',
+    shareIsGroup:true,
   },
   
   //分布渲染
@@ -49,15 +52,28 @@ Page({
               }
               // _this.setData({ jurisdictionState: true, loadState: true})
               api.post('v2/member/myGroupRank', data).then(res => {
-                _this.setData({ jurisdictionState: false })
+                _this.setData({ jurisdictionState: false, shareIsGroup: true})
                 console.log('群排名数据', res)
-                _this.setData({ groupId: res.msg.groupId})
-                _this.showViewDom(res.msg.list, 100)
+                // res.msg.list.slice(1)
+                _this.setData({ groupId: res.msg.groupId, ownGroupInfo: res.msg.list.slice(0,1)})
+                _this.showViewDom(res.msg.list.slice(1), 100)
               })
             }
+          },
+          fail(res){
+            console.log('shareTicket_Failres',res)
+            _this.setData({ jurisdictionState: false , shareIsGroup: false})
           }
         })
       }
+    })
+  },
+  // 获取当前用信息
+  getMemberFollowState() {
+    api.post('v2/member/memberInfo').then(res => {
+      console.log('获取当前用信息', res)
+      this.setData({userData: res.msg})
+      // Store.setItem('userData', res.msg)
     })
   },
   /**
@@ -67,13 +83,18 @@ Page({
     wx.showShareMenu({
       withShareTicket: true
     })
-    this.setData({ jurisdictionState: true, loadState: true })
+    this.setData({ 
+      jurisdictionState: true, 
+      loadState: Store.getItem('userData') && Store.getItem('userData').token ? true : false
+     })
     if (Store.getItem('userData') && Store.getItem('userData').token){
       this.getGroupList()
+      this.getMemberFollowState()
     } else {
       getApp().wx_loginIn().then(() => {
         this.setData({ jurisdictionState: false })
         this.getGroupList()
+        this.getMemberFollowState()
       }, () => {
         this.setData({ jurisdictionState: true })
       })
@@ -90,6 +111,7 @@ Page({
     getApp().wx_loginIn().then(() => {
       this.setData({ loadState: true ,})
       this.getGroupList()
+      this.getMemberFollowState()
     }, () => {
       this.setData({ jurisdictionState: true })
     })

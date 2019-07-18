@@ -65,6 +65,8 @@ App({
       this.globalData.share = true
     }
     // 获取加密群信息
+    console.log('清除全局数据')
+    this.globalData.shareTicket_option = ''
     if (options.scene == 1044) {
       console.log('options.shareTicket', options.shareTicket)
       this.globalData.shareTicket_option = options

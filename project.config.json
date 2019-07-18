@@ -39,7 +39,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 1,
+			"current": 2,
 			"list": [
 				{
 					"id": 0,
@@ -49,15 +49,23 @@
 					"scene": 1007
 				},
 				{
-					"id": -1,
+					"id": 1,
 					"name": "分享群",
 					"pathName": "pages/groupRanking/groupRanking",
+					"query": "",
 					"scene": 1044,
 					"shareInfo": {
 						"groupName": "测试模拟群0",
 						"shareName": "6sUhR_g_eRBnKuNtnzOcljvkeSBnUuIACeCNk0nDg2Q@cr4dev",
 						"shareKey": "78zFAeymljJIloePfv28QwgP2fezs4Mub2j7Av-kkY19lvqESZDqp8W4miRaSU2u7EirCf5Alai5CnKdy9-oqg~~"
 					}
+				},
+				{
+					"id": -1,
+					"name": "分享个人错误群",
+					"pathName": "pages/groupRanking/groupRanking",
+					"query": "",
+					"scene": 1008
 				}
 			]
 		}

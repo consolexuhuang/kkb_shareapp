@@ -1,5 +1,5 @@
 <!--pages/shareRanking/shareRanking.wxml-->
-<view class='tab_nav'>
+<view class='tab_nav animated fadeIn'>
    <view class='mounth tab_navItem' bindtap='chooseItem' data-id='0' style='color:{{index == 0 ? "#fff" : "#BFB0FF"}}'>本月</view>
    <view class='year tab_navItem' bindtap='chooseItem' data-id='1' style='color:{{index == 1 ? "#fff" : "#BFB0FF"}}'>今年</view>
    <view class='allToatl tab_navItem' bindtap='chooseItem' data-id='2' style='color:{{index == 2 ? "#fff" : "#BFB0FF"}}'>总计</view>
@@ -10,7 +10,7 @@
     <view class='ownRanking_pre'>
        <view class='headerImgBox3'>
          <image wx:if='{{!myRankData.before.head_img}}' src='{{imgUrl}}invite/avatar.png' class='headerImg'></image>
-         <image wx:if='{{myRankData.before.head_img}}' src='{{myRankData.before.head_img}}' class='headerImg'></image>
+         <image wx:if='{{myRankData.before.head_img}}' src='{{myRankData.before.head_img}}' class='headerImg fadeIn animated'></image>
 
          <image class='JJRanking_tag JJRanking_tag2' src='{{imgUrl}}ranking/firstTag.png' wx:if='{{myRankData.before.rank == 1}}'></image>
          <image class='JJRanking_tag JJRanking_tag2' src='{{imgUrl}}ranking/secondTag.png' wx:if='{{myRankData.before.rank == 2}}'></image>
@@ -26,7 +26,7 @@
           <view class='headerImgBox2'>
             <view class='headerImgBox4'>
               <image wx:if='{{!myRankData.self.head_img}}' src='{{imgUrl}}invite/avatar.png' class='headerImg_mid'></image>
-              <image wx:if='{{myRankData.self.head_img}}' src='{{myRankData.self.head_img}}' class='headerImg_mid'></image>
+              <image wx:if='{{myRankData.self.head_img}}' src='{{myRankData.self.head_img}}' class='headerImg_mid fadeIn animated'></image>
               
               <image class='JJRanking_tag JJRanking_tag2' src='{{imgUrl}}ranking/firstTag.png' wx:if='{{myRankData.self.rank == 1}}'></image>
               <image class='JJRanking_tag JJRanking_tag2' src='{{imgUrl}}ranking/secondTag.png' wx:if='{{myRankData.self.rank == 2}}'></image>
@@ -41,7 +41,7 @@
     <view class='ownRanking_next'>
        <view class='headerImgBox3'>
          <image wx:if='{{!myRankData.after.head_img}}' src='{{imgUrl}}invite/avatar.png' class='headerImg'></image>
-         <image wx:if='{{myRankData.after.head_img}}' src='{{myRankData.after.head_img}}' class='headerImg'></image>
+         <image wx:if='{{myRankData.after.head_img}}' src='{{myRankData.after.head_img}}' class='headerImg fadeIn animated'></image>
 
          <image class='JJRanking_tag JJRanking_tag2' src='{{imgUrl}}ranking/thirdTag.png' wx:if='{{isShowAllRank}}'></image>
        </view>

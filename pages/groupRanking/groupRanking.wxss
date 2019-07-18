@@ -82,7 +82,7 @@
 .courseBtn{
   width:128rpx;
   border-radius:27rpx;
-  border:1rpx solid rgba(255,255,255,1);
+  border:2rpx solid rgba(255,255,255,.5);
   font-size:28rpx;
   font-family:PingFangSC-Regular;
   font-weight:400;
