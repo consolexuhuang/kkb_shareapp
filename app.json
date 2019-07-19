@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/shareRanking/shareRanking",
     "pages/inviteShare/inviteShare",
+    "pages/shareRanking/shareRanking",
     "pages/groupRanking/groupRanking",
     "pages/noFind/noFind",
     "pages/logs/logs"

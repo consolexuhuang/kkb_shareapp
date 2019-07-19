@@ -1,6 +1,6 @@
 // pages/groupRanking/groupRanking.js
 import Store from '../../utils/store.js'
-const api = getApp().api
+const api = getApp().api;
 Page({
 
   /**
@@ -15,6 +15,7 @@ Page({
     loadState: false, //是否需要加载启动页
     userData: '',
     shareIsGroup: true,
+    showBackTop: false,
   },
 
   //分布渲染
@@ -22,7 +23,11 @@ Page({
     console.log('定时器开启')
     let length = domList.length
     let count = 0;
-    let timer = null
+    let timer = null;
+    // //判断wx版本
+    const version = wx.getSystemInfoSync().SDKVersion
+    console.log('判断wx版本', version)
+
     timer = setInterval(() => {
       if (count == length) {
         console.log('定时器关闭')
@@ -30,6 +35,21 @@ Page({
       } else {
         this.setData({ ['groupRankingList.list[' + count + ']']: domList[count] })
         count++
+      }
+      
+      if (getApp().compareVersion(version, '2.7.7') >= 0) {
+        if (count === 40) {
+          this.setData({ ['groupRankingList.list[' + count + '].backTop']: true }, () => {
+            this._observer = wx.createIntersectionObserver(this).relativeToViewport({ bottom: 100 }).observe('.backTopStyle', (res) => {
+              console.log('容器相交触发', res)
+              if (res.boundingClientRect.top > 0 && res.intersectionRect.top == 0) {
+                this.setData({ showBackTop: false })
+              } else {
+                this.setData({ showBackTop: true })
+              }
+            })
+          })
+        }
       }
     }, durTime)
   },
@@ -107,6 +127,9 @@ Page({
   onShow: function () {
 
   },
+  onUnload(){
+    if (this._observer) this._observer.disconnect()
+  },
   bindgetuserinfo() {
     getApp().wx_loginIn().then(() => {
       this.setData({ loadState: true, })
@@ -114,6 +137,12 @@ Page({
       this.getMemberFollowState()
     }, () => {
       this.setData({ jurisdictionState: true })
+    })
+  },
+  scrollToTop(){
+    wx.pageScrollTo({
+      scrollTop: 0,
+      duration: 1000
     })
   },
   //跳转小程序
