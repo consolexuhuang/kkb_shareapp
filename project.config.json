@@ -39,7 +39,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 2,
+			"current": 1,
 			"list": [
 				{
 					"id": 0,
@@ -55,9 +55,9 @@
 					"query": "",
 					"scene": 1044,
 					"shareInfo": {
-						"groupName": "测试模拟群0",
-						"shareName": "6sUhR_g_eRBnKuNtnzOcljvkeSBnUuIACeCNk0nDg2Q@cr4dev",
-						"shareKey": "78zFAeymljJIloePfv28QwgP2fezs4Mub2j7Av-kkY19lvqESZDqp8W4miRaSU2u7EirCf5Alai5CnKdy9-oqg~~"
+						"groupName": "测试模拟群6",
+						"shareName": "6sUhR_g_eRBnKuNtnzOcloc0HZgeKqyIEUAcEBU3t9A@cr4dev",
+						"shareKey": "bLYOOBU1TvwZUfE4PZBnVr4bqnzijW9a2zTHtKtaR6fHsM6ldrrMD5hT-6pr1F-OO-ufwHRAWwYrdSNI6DK-Jg~~"
 					}
 				},
 				{

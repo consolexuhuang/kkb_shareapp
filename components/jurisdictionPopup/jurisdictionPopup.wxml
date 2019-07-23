@@ -2,7 +2,10 @@
 <!--pages/index/index.wxml-->
 <van-popup show="{{ state }}" custom-class='Jurisdictionstyle' z-index = '1001'>
   <view class='startUp'>
-    <image src='{{imgUrl}}invite/startUp_logo.png' class='startUp_logo'></image>
+    <view class='startUpBox'>
+       <text class='iconfont iconxingzhuangjiehe-1 icon1'></text>
+       <text class='iconfont iconfenzu-9 icon2'></text>
+    </view>
     <view class='loading' wx:if='{{payLoad}}'>
       <view class='startUpCont2_noneLogin loadText loadingBox'>
         <view style='display:flex; align-items:center'>
