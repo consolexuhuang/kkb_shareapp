@@ -107,6 +107,8 @@ Page({
       jurisdictionState: true,
       loadState: Store.getItem('userData') && Store.getItem('userData').token ? true : false
     })
+    console.log('loadState', this.data.loadState, Store.getItem('userData'))
+
     if (Store.getItem('userData') && Store.getItem('userData').token) {
       this.getGroupList()
       this.getMemberFollowState()
