@@ -118,9 +118,9 @@ Page({
   },
   onShareAppMessage(){
     return {
-      title: '本群J&J的排名出炉啦！来看看本月超过了多少群友',
+      title: '这周本群的J&J冠军诞生！来看看你超过了多少群友',
       path: 'pages/groupRanking/groupRanking',
-      imageUrl: 'https://img.cdn.powerpower.net/5d244d90e4b0df3810725f06.png',
+      imageUrl: 'https://img.cdn.powerpower.net/5d3ecd89e4b0985f5293e516.png',
       success: function (res) {
       },
       fail: function (res) {

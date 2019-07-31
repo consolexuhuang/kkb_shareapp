@@ -13,7 +13,7 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.7.2",
-	"appid": "wx322a8a72b755aa57",
+	"appid": "wxec1fe04fad9d4e02",
 	"projectname": "%E9%82%80%E8%AF%B7%E5%B0%8F%E7%A8%8B%E5%BA%8F",
 	"debugOptions": {
 		"hidedInDevtools": []
@@ -51,13 +51,13 @@
 				{
 					"id": 1,
 					"name": "分享群",
-					"pathName": "pages/groupRanking/groupRanking",
+					"pathName": "pages/shareRanking/shareRanking",
 					"query": "",
 					"scene": 1044,
 					"shareInfo": {
-						"groupName": "测试模拟群6",
-						"shareName": "6sUhR_g_eRBnKuNtnzOcloc0HZgeKqyIEUAcEBU3t9A@cr4dev",
-						"shareKey": "bLYOOBU1TvwZUfE4PZBnVr4bqnzijW9a2zTHtKtaR6fHsM6ldrrMD5hT-6pr1F-OO-ufwHRAWwYrdSNI6DK-Jg~~"
+						"groupName": "测试模拟群0",
+						"shareName": "xaxQ7AngF9WhgpO0JWnXGlH7wGfJGd-gB2_ZhEFKPEI@cr4dev",
+						"shareKey": "RchJVt4pYl4UlvmFqvYEKbRyf5zeP0Jl3CTWoY2n34DfvF5-vDefDbrlS_tlb-av05iEO8olWWvEka63DukUXQ~~"
 					}
 				},
 				{
