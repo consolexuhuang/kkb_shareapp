@@ -1,11 +1,11 @@
 @charset "UTF-8";
 
 @keyframes fadeIn {
-  from {
+  0% {
     opacity: 0;
   }
 
-  to {
+  100% {
     opacity: 1;
   }
 }
@@ -17,12 +17,12 @@
 
 
 @keyframes fadeInDown {
-  from {
+  0% {
     opacity: 0;
     transform: translate3d(0, -100%, 0);
   }
 
-  to {
+  100% {
     opacity: 1;
     transform: translate3d(0, 0, 0);
   }
@@ -35,12 +35,12 @@
 
 
 @keyframes fadeInDownBig {
-  from {
+  0% {
     opacity: 0;
     transform: translate3d(0, -2000px, 0);
   }
 
-  to {
+  100% {
     opacity: 1;
     transform: translate3d(0, 0, 0);
   }
@@ -53,17 +53,49 @@
 
 
 @keyframes fadeInLeft {
-  from {
+  0% {
     opacity: 0;
     transform: translate3d(-100%, 0, 0);
   }
 
-  to {
+  100% {
     opacity: 1;
     transform: translate3d(0, 0, 0);
   }
 }
+/* @-moz-keyframes fadeInLeft {
+  0% {
+    opacity: 0;
+    transform: translate3d(-100%, 0, 0);
+  }
 
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+} */
+@-webkit-keyframes fadeInLeft {
+  0% {
+    opacity: 0;
+    transform: translate3d(-100%, 0, 0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+/* @-o-keyframes fadeInLeft {
+  0% {
+    opacity: 0;
+    transform: translate3d(-100%, 0, 0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+} */
 .fadeInLeft {
   animation-name: fadeInLeft;
 }
@@ -71,12 +103,12 @@
 
 
 @keyframes fadeInLeftBig {
-  from {
+  0% {
     opacity: 0;
     transform: translate3d(-2000px, 0, 0);
   }
 
-  to {
+  100% {
     opacity: 1;
     transform: translate3d(0, 0, 0);
   }
@@ -89,12 +121,12 @@
 
 
 @keyframes fadeInRight {
-  from {
+  0% {
     opacity: 0;
     transform: translate3d(100%, 0, 0);
   }
 
-  to {
+  100% {
     opacity: 1;
     transform: translate3d(0, 0, 0);
   }
@@ -107,12 +139,12 @@
 
 
 @keyframes fadeInRightBig {
-  from {
+  0% {
     opacity: 0;
     transform: translate3d(2000px, 0, 0);
   }
 
-  to {
+  100% {
     opacity: 1;
     transform: translate3d(0, 0, 0);
   }
@@ -125,12 +157,12 @@
 
 
 @keyframes fadeInUp {
-  from {
+  0% {
     opacity: 0;
     transform: translate3d(0, 100%, 0);
   }
 
-  to {
+  100% {
     opacity: 1;
     transform: translate3d(0, 0, 0);
   }
@@ -143,12 +175,12 @@
 
 
 @keyframes fadeInUpBig {
-  from {
+  0% {
     opacity: 0;
     transform: translate3d(0, 2000px, 0);
   }
 
-  to {
+  100% {
     opacity: 1;
     transform: translate3d(0, 0, 0);
   }
@@ -161,11 +193,11 @@
 
 
 @keyframes fadeOut {
-  from {
+  0% {
     opacity: 1;
   }
 
-  to {
+  100% {
     opacity: 0;
   }
 }
@@ -177,11 +209,11 @@
 
 
 @keyframes fadeOutDown {
-  from {
+  0% {
     opacity: 1;
   }
 
-  to {
+  100% {
     opacity: 0;
     transform: translate3d(0, 100%, 0);
   }
@@ -194,11 +226,11 @@
 
 
 @keyframes fadeOutDownBig {
-  from {
+  0% {
     opacity: 1;
   }
 
-  to {
+  100% {
     opacity: 0;
     transform: translate3d(0, 2000px, 0);
   }
@@ -211,11 +243,11 @@
 
 
 @keyframes fadeOutLeft {
-  from {
+  0% {
     opacity: 1;
   }
 
-  to {
+  100% {
     opacity: 0;
     transform: translate3d(-100%, 0, 0);
   }
@@ -228,11 +260,11 @@
 
 
 @keyframes fadeOutLeftBig {
-  from {
+  0% {
     opacity: 1;
   }
 
-  to {
+  100% {
     opacity: 0;
     transform: translate3d(-2000px, 0, 0);
   }
@@ -245,11 +277,11 @@
 
 
 @keyframes fadeOutRight {
-  from {
+  0% {
     opacity: 1;
   }
 
-  to {
+  100% {
     opacity: 0;
     transform: translate3d(100%, 0, 0);
   }
@@ -262,11 +294,11 @@
 
 
 @keyframes fadeOutRightBig {
-  from {
+  0% {
     opacity: 1;
   }
 
-  to {
+  100% {
     opacity: 0;
     transform: translate3d(2000px, 0, 0);
   }
@@ -279,11 +311,11 @@
 
 
 @keyframes fadeOutUp {
-  from {
+  0% {
     opacity: 1;
   }
 
-  to {
+  100% {
     opacity: 0;
     transform: translate3d(0, -100%, 0);
   }
@@ -294,11 +326,11 @@
 }
 
 @keyframes fadeOutUpBig {
-  from {
+  0% {
     opacity: 1;
   }
 
-  to {
+  100% {
     opacity: 0;
     transform: translate3d(0, -2000px, 0);
   }
@@ -313,12 +345,12 @@
 }
 
 @keyframes bounceIn {
-  from,
+  0%,
   20%,
   40%,
   60%,
   80%,
-  to {
+  100% {
     -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
     animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
   }
@@ -350,7 +382,7 @@
     transform: scale3d(0.97, 0.97, 0.97);
   }
 
-  to {
+  100% {
     opacity: 1;
     -webkit-transform: scale3d(1, 1, 1);
     transform: scale3d(1, 1, 1);
@@ -373,7 +405,7 @@
     transform: scale3d(1.1, 1.1, 1.1);
   }
 
-  to {
+  100% {
     opacity: 0;
     -webkit-transform: scale3d(0.3, 0.3, 0.3);
     transform: scale3d(0.3, 0.3, 0.3);

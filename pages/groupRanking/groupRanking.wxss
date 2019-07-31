@@ -1,0 +1,253 @@
+/* pages/groupRanking/groupRanking.wxss */
+.groupRanking_top{
+  width: 100%;
+  background: #896EFF;
+  padding: 50rpx 30rpx;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+}
+.groupRanking_ownBox{
+  margin-right: 42rpx;
+  position: relative;
+  width: 42rpx;
+  height: 62rpx;
+}
+.ownRankImg{
+  width: 100%;
+  height: 100%;
+}
+.currentRanking{
+  font-size:17rpx;
+  font-family:DINAlternate-Bold;
+  font-weight:bold;
+  color:rgba(62,57,57,1);
+  line-height:35rpx;
+  position: absolute;
+  bottom: 0rpx;
+  left: 0;
+  right: 0;
+  margin: auto;
+  z-index: 10;
+  text-align: center;
+}
+.groupRankingInfo{
+  display: flex;
+  align-items: center;
+  flex: 1
+}
+.ownImgTop{
+  width:130rpx;
+  height:130rpx;
+  border-radius: 50%;
+  border: 2rpx solid #fff;
+  margin-right: 36rpx;
+}
+.groupData{
+  text-align: left;
+  flex: 1;
+}
+.groupOwnName{
+  font-size:26rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+  line-height:37rpx;
+  letter-spacing:1rpx;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+  width: 300rpx;
+}
+.groupNameBox{
+  display: flex;
+  justify-content: space-between;
+  align-items: center
+  /* overflow: hidden */
+}
+.groupName{
+  font-size:38rpx;
+  font-family:PingFangSC-Semibold;
+  font-weight:600;
+  color:rgba(255,255,255,1);
+  line-height:60rpx;
+  letter-spacing:2rpx;
+  width: 260rpx;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+  flex: 1;
+  /* float: left; */
+}
+.courseBtn{
+  width:128rpx;
+  border-radius:27rpx;
+  border:2rpx solid rgba(255,255,255,.5);
+  font-size:28rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+  line-height:46rpx;
+  height:46rpx;
+  letter-spacing:1rpx;
+  text-align: center;
+  margin-left: 30rpx;
+  /* float: right; */
+}
+.groupOwnTime{
+  font-size:24rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+  line-height:40rpx;
+  letter-spacing:1rpx;
+}
+.groupRankingList{
+  padding: 30rpx 0 130rpx 30rpx;
+  box-sizing: border-box;
+}
+.groupRanking_item{
+  padding: 25rpx 30rpx 25rpx 0;
+  border-bottom: 1rpx solid #F0F0F0;
+  display: flex;
+  align-items: center;
+}
+.groupNumber{
+  font-family:DINAlternate-Bold;
+  font-weight:bold;
+  color:rgba(110,110,110,1);
+  line-height:58rpx;
+  letter-spacing:2rpx;
+  margin-right: 41rpx;
+  min-width: 34rpx;
+  text-align: center;
+}
+.groupMemberImg{
+  width: 34rpx;
+  height: 49rpx;
+  margin-right: 39rpx;
+}
+.ownImg{
+  width:100rpx;
+  height:100rpx;
+  border-radius: 50%;
+  margin-right: 30rpx
+}
+.groupMemberName{
+  font-size:26rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(100,100,100,1);
+  line-height:37rpx;
+  letter-spacing:1rpx;
+  width: 280rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.groupMemberTime{
+  font-size:30rpx;
+  font-family:PingFangSC-Medium;
+  font-weight:500;
+  color:#ACACAC;
+  line-height:42rpx;
+  flex: 1;
+  text-align: right;
+}
+.groupMemberTimeNum{
+  color: rgba(137,110,255,1);
+}
+.lookOtherGroup{
+  width: 100%;
+  background:rgba(137,110,255,1);
+  font-size:32rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+  line-height:120rpx;
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+}
+.lookOtherGroupBtn{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  opacity: 0
+}
+.groupRankingNone{
+  position: relative;
+}
+.groupRankingNoneBox{
+  /* position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto; */
+  height: 120rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 290rpx;
+}
+.groupRankingNone_bg{
+  text-align: center;
+  width:54rpx;
+  height:54rpx;
+  border-radius: 50%;
+  background: #EAE6FF;
+  position: relative;
+}
+.iconImg{
+  font-size: 53rpx;
+  position: absolute;
+  color: #C4B7FF;
+  left: -25%;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+}
+.groupRankingNone_text{
+  text-align: center;
+  font-size:26rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(100,100,100,1);
+  line-height:37rpx;
+  margin-top: 20rpx
+}
+.backTopImg{
+  width: 34rpx;
+  height: 37rpx;
+  /* font-size: 37rpx;
+  color: #fff; */
+  /* box-shadow:0px 4rpx 0rpx 0px #6349E4; */
+}
+.backTopBox{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  flex: 1
+}
+.backTopText{
+  font-size:22rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+  line-height:34rpx;
+}
+.backTop{
+  width: 86rpx;
+  height: 86rpx;
+  background:linear-gradient(206deg,rgba(154,135,255,1) 0%,rgba(137,110,255,1) 100%);
+  box-shadow:0px 0px 11rpx 0px rgba(193,179,255,1);
+  position: fixed;
+  bottom: 164rpx;
+  right: 44rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+}

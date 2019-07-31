@@ -1,0 +1,69 @@
+<!--pages/groupRanking/groupRanking.wxml-->
+<view class='groupRanking_top'>
+    <view wx:if='{{ownGroupInfo[0].month_minute}}'>
+        <image wx:if='{{ownGroupInfo[0].rank == 1}}' src='{{imgUrl}}ranking/ownRank1.png' class='groupMemberImg'></image>
+        <image wx:elif='{{ownGroupInfo[0].rank == 2}}' src='{{imgUrl}}ranking/ownRank2.png' class='groupMemberImg'></image>
+        <image wx:elif='{{ownGroupInfo[0].rank == 3}}' src='{{imgUrl}}ranking/ownRank3.png' class='groupMemberImg'></image>
+        <view wx:else class='groupRanking_ownBox'>
+            <image src='{{imgUrl}}ranking/ownRank.png' class='ownRankImg'></image>
+            <view class='currentRanking'>{{ownGroupInfo[0].rank}}</view>
+        </view>
+    </view>
+   <!-- <view class='groupRanking_ownBox' wx:if='{{ownGroupInfo[0].month_minute}}'>
+      <image src='{{imgUrl}}ranking/ownRank0.png' class='ownRankImg'></image>
+   </view> -->
+   <view class='groupRankingInfo'>
+      <image class='ownImgTop fadeIn animated' wx:if='{{!ownGroupInfo[0].head_img && !userData.head_img}}' src='{{imgUrl}}invite/avatar.png'></image>
+      <image class='ownImgTop fadeIn animated' wx:else src='{{ownGroupInfo[0].head_img || userData.head_img}}'></image>
+      <view class='groupData fadeIn animated'>
+         <view class='groupOwnName'>{{ownGroupInfo[0].nick_name || userData.nick_name || '--'}}</view>
+         <view class='groupNameBox'>
+            <view class='groupName'>
+               <open-data type="groupName" open-gid="{{groupId}}"></open-data>
+            </view>
+            <view class='courseBtn' data-path='pages/index/index' bindtap='handleReturnCourseTap'>去约课</view>
+         </view>
+         <view class='groupOwnTime fadeIn animated'>{{ownGroupInfo[0].month || "--"}} /
+            <text wx:if='{{ownGroupInfo[0].month_minute || userData.month_minute}}'>累计{{ownGroupInfo[0].month_minute || userData.month_minute}}分钟</text>
+            <text wx:else>本月还未上课</text>
+         </view>
+      </view>
+   </view>
+</view>
+
+<view class='groupRankingList' wx:if='{{groupRankingList}}'>
+   <view class='groupRanking_item fadeInLeft animated {{item.backTop ? "backTopStyle" : ""}}' wx:for='{{groupRankingList.list}}' wx:key='{{index}}'>
+     <image wx:if='{{item.rank == 1}}' src='{{imgUrl}}ranking/ownRank1.png' class='groupMemberImg'></image>
+     <image wx:elif='{{item.rank == 2}}' src='{{imgUrl}}ranking/ownRank2.png' class='groupMemberImg'></image>
+     <image wx:elif='{{item.rank == 3}}' src='{{imgUrl}}ranking/ownRank3.png' class='groupMemberImg'></image>
+     <view wx:else class='groupNumber'>{{item.rank}}</view>
+     <image class='ownImg' wx:if='{{!item.head_img}}' src='{{imgUrl}}invite/avatar.png'></image>
+     <image class='ownImg' wx:else src='{{item.head_img}}'></image>
+     <view class='groupMemberName'>{{item.nick_name}}</view>
+     <view class='groupMemberTime'><text class='groupMemberTimeNum'>{{item.month_minute}}</text> 分钟</view>
+   </view>
+</view>
+
+<view class='groupRankingNone' wx:if='{{(!userData.month_minute && groupRankingList.list.lengh<2) || !shareIsGroup}}'>
+   <view class='groupRankingNoneBox'>
+      <view class='groupRankingNone_bg'>
+         <text class='iconyaling iconfont iconImg'></text>
+      </view>
+      <view class='groupRankingNone_text'>{{shareIsGroup ? "本月还未上课哦 !" : "分享至群查看排名！"}}</view>
+   </view>
+</view>
+
+<view class='backTop animated {{showBackTop ? "fadeIn" : "fadeOut"}}' bindtap='scrollToTop'>
+  <view class='backTopBox' >
+    <image src='{{imgUrl}}ranking/backTop.png' class='backTopImg'></image>
+    <!-- <text class='iconfont iconxingzhuangjiehe- backTopImg'></text> -->
+    <text class='backTopText'>置顶</text>
+  </view>
+</view>
+<view class='lookOtherGroup fadeIn animated'>查看其它群
+  <button class='lookOtherGroupBtn' open-type='share'></button>
+</view>
+
+<jurisdictionPopup state = '{{jurisdictionState}}'
+                   bindmyevent='bindgetuserinfo'
+                   payLoad='{{loadState}}'></jurisdictionPopup>

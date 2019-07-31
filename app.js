@@ -56,12 +56,20 @@ App({
     })
   },
   onShow(options){
+    let _this = this
     console.log('scene', options.scene)
     this.globalData.scene = options.scene
     if (options.scene == 1007 || options.scene == 1008) {
       this.globalData.share = false
     } else {
       this.globalData.share = true
+    }
+    // 获取加密群信息
+    console.log('清除全局数据')
+    this.globalData.shareTicket_option = ''
+    if (options.scene == 1044) {
+      console.log('options.shareTicket', options.shareTicket)
+      this.globalData.shareTicket_option = options
     }
   },
   globalData: {
@@ -75,17 +83,18 @@ App({
     isIpX: false, //是否是ipHonex
     redirectToState: true,
     scene:'',
+    shareTicket_option:'',
 
-    JumpAppId: {                    //测试
-      appid: 'wx6b00bfc932f22210',
-      envVersion: 'trial' //体验版
-      // envVersion: 'release' //正式版
-    },
-    // JumpAppId: {                   //正式
-    //   appid: 'wx29946485f206d315',
-    //   // envVersion: 'trial' //体验版
-    //   envVersion: 'release' //正式版
-    // }, 
+    // JumpAppId: {                    //测试
+    //   appid: 'wx6b00bfc932f22210',
+    //   envVersion: 'trial' //体验版
+    //   // envVersion: 'release' //正式版
+    // },
+    JumpAppId: {                   //正式
+      appid: 'wx29946485f206d315',
+      // envVersion: 'trial' //体验版
+      envVersion: 'release' //正式版
+    }, 
   },
   wx_loginIn: function () {
     let _this = this
@@ -143,6 +152,31 @@ App({
       })
     })
   },
+  compareVersion(v1, v2) {
+      v1 = v1.split('.')
+      v2 = v2.split('.')
+      const len = Math.max(v1.length, v2.length)
+
+      while(v1.length <len) {
+          v1.push('0')
+        }
+      while(v2.length <len) {
+          v2.push('0')
+        }
+
+      for(let i = 0; i<len; i++) {
+      const num1 = parseInt(v1[i])
+      const num2 = parseInt(v2[i])
+
+      if (num1 > num2) {
+        return 1
+      } else if (num1 < num2) {
+        return -1
+      }
+    }
+
+    return 0
+  }
   //修改用户信息接口
   // wx_modifyUserInfo() {
   //   wx.showLoading({ title: '加载中...',})

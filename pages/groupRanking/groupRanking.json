@@ -1,9 +1,9 @@
 {
-  "navigationBarTitleText": "J&J排名",
+  "navigationBarTitleText": "J&J群排名",
   "backgroundTextStyle": "dark",
   "navigationBarTextStyle": "white",
   "navigationBarBackgroundColor": "#896EFF",
   "usingComponents": {
-     "jurisdictionPopup": "/components/jurisdictionPopup/jurisdictionPopup"
+    "jurisdictionPopup": "/components/jurisdictionPopup/jurisdictionPopup"
   }
 }

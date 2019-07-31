@@ -1,6 +1,6 @@
 /* components/jurisdictionPopup/jurisdictionPopup.wxss */
 /* pages/index/index.wxss */
-
+@import '/style/iconfont.wxss';
 page {
   width: 100%;
   height: 100%;
@@ -15,13 +15,28 @@ page {
   background: #8969FF;
   overflow: hidden;
 }
+.startUpBox{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 180rpx;
+}
+.icon1{
+  color: #fff;
+  font-size: 168rpx;
+}
+.icon2{
+  color: #fff;
+  font-size: 86rpx;
+  margin-top: 60rpx;
+}
 
-.startUp_logo {
+/* .startUp_logo {
   width: 275rpx;
   height: 324rpx;
   margin: 299rpx auto 0;
   display: block;
-}
+} */
 
 .startUp_bottom {
   width: 100%;
@@ -64,6 +79,13 @@ page {
   line-height:60rpx;
   color: #C2B4FF;
   text-align: center;
+}
+.loadText{
+  font-size: 32rpx;
+  font-family: PingFangSC-Light;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 1);
+  line-height: 33rpx;
 }
 .getUserInfoBtn{
   position: absolute;
