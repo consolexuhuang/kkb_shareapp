@@ -7,6 +7,7 @@
   <text class='iconicon-test5 iconfont netWorkImg'></text>
   <text class='netWorkCont'>当前网络不可用，请检查你的网络设置</text>
 </view>
+<!-- 不是新用户 -->
 <block wx:if="{{!userData.isNewMember}}">
   <view>
     <view class="banner">
@@ -15,6 +16,10 @@
         <image src="{{qrcode}}" class='fadeIn animated' />
         <text>点击保存并分享</text>
       </view> -->
+        <view class='ruleBtn'>
+           <text class='iconfont iconicon-test20 ruleBtnIcon'></text>
+           <text class='ruleText'>活动规则</text>
+        </view>
     </view>
 
     <view class="content">
@@ -64,7 +69,10 @@
 
             <loading invitedCouponList = '{{!invitedCouponList}}'></loading>
             <view wx:if='{{invitedCouponList[idx].sub_flag === 0 && invitedCouponList}}' class='remind'>提醒关注 <button class='remindBtn' open-type='share'></button> </view>
-            <view wx:elif='{{invitedCouponList[idx].sub_flag === 1 && invitedCouponList}}' class='receiveCoupon'>已领取<text class='receiveCouponPrice'>{{invitedCouponList[idx].coupon_amount || 0}}元</text>券</view>
+            <view wx:elif='{{invitedCouponList[idx].sub_flag === 1 && invitedCouponList}}' class='receiveCoupon'>
+               <text class='receiveCouponPrice'>+{{invitedCouponList[idx].coupon_amount || 0}}元</text>
+               <text>已关注公众号，{{invitedCouponList[idx].order_count > 0 ? "已下单" : "未下单"}}</text>
+            </view>
           </view>
         </view>
       </view>
@@ -78,7 +86,7 @@
 
   </view>
 </block>
-
+<!-- 新用户 -->
 <block wx:else>
   <view style="position:relative;margin-top:{{marginTopBar}}px;">
     <view class="header-background">
@@ -105,7 +113,7 @@
   </view>
 </block>
 
-<van-popup show="{{ showShareState }}" 
+<!-- <van-popup show="{{ showShareState }}" 
            bind:click-overlay='onCloseShareImg' 
            catchtouchmove="{{true}}" 
            safe-area-inset-bottom 
@@ -116,7 +124,7 @@
       </view>
       <view class='sharePostBtn' bindtap='savePostLocation'>保存本地</view>
     </view>
-</van-popup>
+</van-popup> -->
 
 <van-popup show="{{ isShadeShow }}" 
            bind:click-overlay='onClose' 

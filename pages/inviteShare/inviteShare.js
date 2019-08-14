@@ -189,6 +189,7 @@ Page({
     }
   },
   onShow() {
+    wx.hideShareMenu();
     //断网 
     wx.onNetworkStatusChange(res => {
       this.setData({
@@ -246,11 +247,11 @@ Page({
   //   })
   // },
   // 关闭分享
-  onCloseShareImg() {
-    this.setData({
-      showShareState: false
-    })
-  },
+  // onCloseShareImg() {
+  //   this.setData({
+  //     showShareState: false
+  //   })
+  // },
   // 显示面对面
   handleFaceInviteBtnTap: function (event) {
     const isShadeShow = true
@@ -258,12 +259,12 @@ Page({
       isShadeShow
     })
   },
-  //关闭海报
-  onCloseShareImg() {
-    this.setData({
-      showShareState: false
-    })
-  },
+  // //关闭海报
+  // onCloseShareImg() {
+  //   this.setData({
+  //     showShareState: false
+  //   })
+  // },
   //关闭面对面
   onClose(){
     this.setData({

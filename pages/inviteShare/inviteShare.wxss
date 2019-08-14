@@ -42,7 +42,35 @@
   width: 100%;
   height: 670rpx;
 }
-
+.ruleBtn{
+  display: flex;
+  align-items: center;
+  width:162rpx;
+  height:40rpx;
+  background:rgba(255,255,255,1);
+  /* border-radius:20rpx; */
+  border-top-left-radius: 20rpx;
+  border-bottom-left-radius: 20rpx;
+  position: absolute;
+  right: 0;
+  top: 60rpx;
+  padding-left: 10rpx;
+  box-sizing: border-box;
+}
+.ruleBtnIcon{
+  color: #896CFF;
+  font-size: 24rpx;
+  line-height: 36rpx;
+  margin: 0 4rpx;
+  /* align-self: baseline; */
+}
+.ruleText{
+  font-size:24rpx;
+  font-family:SourceHanSansCN-Normal;
+  font-weight:400;
+  color:rgba(137,108,255,1);
+  line-height:36rpx;
+}
 .qrcode{
   position: absolute;
   left: 33rpx;
@@ -269,6 +297,9 @@
   font-family:SourceHanSansCN-Normal;
   font-weight:400;
   color:rgba(146,146,146,1);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
   /* line-height:36rpx; */
 }
 .receiveCouponPrice{
