@@ -8,7 +8,7 @@
   <text class='netWorkCont'>当前网络不可用，请检查你的网络设置</text>
 </view>
 <!-- 不是新用户 -->
-<block wx:if="{{!userData.isNewMember}}">
+<block wx:if="{{!userAdmin}}">
   <view>
     <view class="banner">
       <image src="{{inviteMember.config.banner1}}" class='fadeIn animated'/>
@@ -16,7 +16,7 @@
         <image src="{{qrcode}}" class='fadeIn animated' />
         <text>点击保存并分享</text>
       </view> -->
-        <view class='ruleBtn'>
+        <view class='ruleBtn fadeInRight animated.delay-05s' bindtap='jumpToRuleDetail'>
            <text class='iconfont iconicon-test20 ruleBtnIcon'></text>
            <text class='ruleText'>活动规则</text>
         </view>
@@ -29,17 +29,17 @@
         <button open-type='getUserInfo' class='couponRightButton' bindgetuserinfo = 'handleReturnCourseTap' data-path='pages/index/index'></button>
       </view>
 
-      <view class="invite-wrapper fadeIn animated" wx:if="{{inviteMember.name && !isShare}}">
+      <!-- <view class="invite-wrapper fadeIn animated" wx:if="{{inviteMember.name && !isShare}}">
         <image class="invite-avatar" wx:if='{{inviteMember.head_img}}' src="{{inviteMember.head_img}}" />
         <image class="invite-avatar"wx:elif='{{!inviteMember.head_img}}' src="{{imgUrl}}invite/default_header.png" />
         <view class="invite-title-wrapper">
           <view class="invite-title"><text>{{inviteMember.name}}</text>{{inviteMember.config.info1}}</view>
           <view class="invite-subtitle">{{inviteMember.config.info2}}</view>
         </view>
-      </view>
+      </view> -->
 
       <button class="invite-btn fadeIn animated" open-type='share' wx:if='{{userData.id}}'>立即邀请</button>
-      <view wx:if='{{isShare}}' class="face-invite-btn" bindtap="handleFaceInviteBtnTap">面对面邀请</view>
+      <view class="face-invite-btn" bindtap="handleFaceInviteBtnTap">面对面邀请</view>
 
       <view class="total-wrapper">
         <view class="total-amount">
@@ -68,7 +68,7 @@
             <view class="invite-member-name">{{item.nick_name || '神秘好友'}}</view>
 
             <loading invitedCouponList = '{{!invitedCouponList}}'></loading>
-            <view wx:if='{{invitedCouponList[idx].sub_flag === 0 && invitedCouponList}}' class='remind'>提醒关注 <button class='remindBtn' open-type='share'></button> </view>
+            <view wx:if='{{invitedCouponList[idx].sub_flag === 0 && invitedCouponList}}' class='remind'>提醒关注 <button class='remindBtn' bindtap='showCopyPopup'></button> </view>
             <view wx:elif='{{invitedCouponList[idx].sub_flag === 1 && invitedCouponList}}' class='receiveCoupon'>
                <text class='receiveCouponPrice'>+{{invitedCouponList[idx].coupon_amount || 0}}元</text>
                <text>已关注公众号，{{invitedCouponList[idx].order_count > 0 ? "已下单" : "未下单"}}</text>
@@ -79,40 +79,91 @@
 
     </view>
 
-    <view class="tips">
+    <!-- <view class="tips">
       <view class="tips-title">【活动细则】</view>
       <rich-text nodes="{{shareCoupon.info}}"></rich-text>
-    </view>
+    </view> -->
 
   </view>
 </block>
 <!-- 新用户 -->
-<block wx:else>
+<block wx:if="{{userAdmin}}">
   <view style="position:relative;margin-top:{{marginTopBar}}px;">
-    <view class="header-background">
+    <view class="header-background fadeIn animated">
       <image src="{{inviteMember.config.banner2}}" />
     </view>
     <view class="center-background"></view>
     <view class="center-content">
-      <image class="center-avatar" src="{{inviteMember.head_img}}" />
-      <view class="center-name"><text class='inviteName'>{{inviteMember.name || "J&J"}}@ </text>带你1小时变瘦变美
+      <image class="center-avatar fadeIn animated" src="{{inviteMember.head_img}}" />
+      <view class="center-name fadeIn animated"><text class='inviteName'>{{inviteMember.name || "J&J"}}@ </text>带你1小时变瘦变美
       </view>
-      <!-- 未领取 -->
-      <!-- <view class='center-text' wx:if='{{userData.isNewMember && !isReceiveState}}'>送你50元新手礼券，一起来健身吧！</view> -->
-      <view class='centerText' wx:if='{{userData.isNewMember && !isReceiveState}}'>      <text class='iconxingzhuang iconfont point'></text>
-        <view class='centerText2'>
-           <view class='centerText2'>首次上课仅<text class='dollor2'>39</text>元 </view>
-           <text class='centerText3'>关注公众号</text>再送<text class='dollor2'>50</text>元代金券
+      
+      <view class='centerText fadeIn animated'>      
+        <text class='iconxingzhuang iconfont point'></text>
+        <!-- 新用户 -->
+        <view class='centerText2' wx:if='{{userAdmin == 2}}'>
+           <view class='centerText2'>您已获得新人专属特权
+           <view class='centerText2'>任意课程，首单立减至<text class='dollor2'>39元</text></view>
+           </view>
+        </view>
+        <!-- 本人 -->
+        <view class='centerText2' wx:if='{{userAdmin == 1}}'>
+           <view class='centerText2'>不能领取自己
+           <view class='centerText2'>发放的特权哦～</view>
+          </view>
+        </view>
+        <!-- 老用户，未下单/已下单 -->
+        <view class='centerText2' wx:if='{{userAdmin == 3}}'>
+           <view class='centerText2'>您已领取过特权，
+           <view class='centerText2'>不能重复领取哦～</view>
+           </view>
         </view>
         <text class='iconxingzhuang- iconfont point2'></text>
       </view>
-      <view class='courseBtn'>立即约课
-         <button class='couponRightButton' open-type='getUserInfo' bindgetuserinfo = 'handleReturnCourseTap'></button>
+      
+      <view class='courseBtnBox fadeIn animated' wx:if='{{userAdmin == 1}}'>
+          <view class='courseBtn'>邀请好友赢礼券
+            <button class='couponRightButton' open-type='share'></button>
+          </view>
       </view>
+      <view class='courseBtnBox fadeIn animated' wx:elif='{{userAdmin == 2}}'>
+          <view class='courseBtn'>查看课表
+            <button class='couponRightButton' open-type='getUserInfo' bindgetuserinfo = 'handleReturnCourseTap'></button>
+          </view>
+      </view>
+      <view class='courseBtnBox fadeIn animated' wx:elif='{{userAdmin == 3 && userData.order_count > 0}}'>
+          <view class='courseBtn2'>邀请好友赢领券
+             <button class='couponRightButton' open-type='share'></button>
+          </view>
+          <view class='courseBtn courseBtn3'>开始约课
+            <button class='couponRightButton' open-type='getUserInfo' bindgetuserinfo = 'handleReturnCourseTap'></button>
+          </view>
+      </view>
+      <view class='courseBtnBox fadeIn animated' wx:else>
+          <view class='courseBtn'>开始约课
+            <button class='couponRightButton' open-type='getUserInfo' bindgetuserinfo = 'handleReturnCourseTap'></button>
+          </view>
+      </view>
+
     </view>
   </view>
 </block>
 
+<van-popup show='{{tipsState}}' 
+           custom-class='tipsStyle'
+           z-index = '1001'>
+    <view class='tips2'>
+      <view class='tips_title2'>提醒关注口令以生成</view>
+      <view class='tips_text'>点击下方链接，关注Justin & Julie公众号。资讯福利一手掌握，活动福利不再错过~
+      {{copyLinkGZH}}</view>
+      <view class='btn_popup'>
+         <view class='noneBtn' bindtap='closeNone'>暂不提醒</view>
+         <view class='cofirmBtn' bindtap='comfirmCopy'>
+             去粘贴
+         </view>
+      </view>
+   </view>
+</van-popup>
 <!-- <van-popup show="{{ showShareState }}" 
            bind:click-overlay='onCloseShareImg' 
            catchtouchmove="{{true}}" 
@@ -151,7 +202,8 @@
       <text class="text" decode="true"><text class='textNew'>新用户扫码</text>\n领取共{{shareCoupon.amount}}元代金券</text>
     </view>
   </view>
-  <image src='{{imgUrl}}invite/closeBtn.png' class='closeBtn' bindtap='onClose'></image>
+  <!-- <image src='{{imgUrl}}invite/closeBtn.png' class='closeBtn' bindtap='onClose'></image> -->
+  <text class='iconfont iconicon-test18 closeIcon' bindtap='onClose'></text>
 </van-popup>
 
 <jurisdictionPopup state = '{{jurisdictionState}}'

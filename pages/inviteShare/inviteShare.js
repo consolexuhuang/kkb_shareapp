@@ -24,6 +24,10 @@ Page({
     isShare: getApp().globalData.share,
     jurisdictionState: false, //授权显示
     IsshowNetStatus:true,
+
+    copyLinkGZH: getApp().globalData.copyLinkGZH,
+    tipsState: false, //提示
+    userAdmin:'', //当前用户身份 1：自己，2: 新用户, 3: 其他（老用户下单/为下单）
     // isReceiveState: false
 
     // navbarData: {
@@ -36,6 +40,20 @@ Page({
     // marginTopBar: getApp().globalData.tab_height * 2 + 20
   },
 // ----------------------------------------公共方法层
+  getUserAdmin(){
+    if (!getApp().globalData.share){
+      this.setData({ userAdmin: '' })
+    } else {
+      if (this.data.shareMemberId == this.data.userData.id){
+        this.setData({ userAdmin: 1})
+      } else if (this.data.userData.isNewMember){
+        this.setData({ userAdmin: 2 })
+      } else {
+        this.setData({ userAdmin: 3 })
+      }
+    }
+    console.log('身份', this.data.userAdmin)
+  },
   // 获取当前用户关注状态
   getMemberFollowState() {
     api.post('v2/member/memberInfo').then(res => {
@@ -110,8 +128,9 @@ Page({
       id: shareMemberId
     }
     api.post('v2/member/inviteMemberInfo', data).then(res => {
-      const inviteMember = res.msg
       res.msg.config.banner1 = res.msg.config.banner1 + '?imageView/1/w/750/h/670'
+      res.msg.config.banner2 = res.msg.config.banner2 + '?imageView/1/w/500/h/500'
+      const inviteMember = res.msg
       console.log("inviteMember",res.msg)
       this.setData({
         inviteMember
@@ -155,6 +174,7 @@ Page({
     this.getQrcode()
     this.getInvitedInfo()
     this.getInviteMemberInfo()
+    this.getUserAdmin()
     // this.getInviteQrcode()
   },
 // -----------------------------------------------逻辑渲染层
@@ -199,7 +219,7 @@ Page({
       // res.isConnected ? this.LoadPageFunc() : ''
     })
     console.log('shareState', getApp().globalData.share)
-    this.setData({ isShare : getApp().globalData.share })
+    // this.setData({ isShare : getApp().globalData.share })
   },
 // -----------------------------------------------视图层事件
   bindgetuserinfo(){
@@ -269,6 +289,36 @@ Page({
   onClose(){
     this.setData({
       isShadeShow : false
+    })
+  },
+  showCopyPopup(){
+    this.setData({ tipsState: true})
+  },
+  //暂不黏贴
+  closeNone(){
+    this.setData({ tipsState: false })
+  },
+  //黏贴
+  comfirmCopy(){
+    this.setData({ tipsState: false })
+    wx.setClipboardData({
+      data: this.data.copyLinkGZH,
+      success: res => {
+        wx.getClipboardData({
+          success: res => {
+            wx.showToast({
+              title: '文本已复制成功，可以直接去粘贴',
+              icon: 'none'
+            })
+            wx.vibrateShort()
+          }
+        })
+      }
+    })
+  },
+  jumpToRuleDetail(){
+    wx.navigateTo({
+      url: '/pages/ruleDetail/ruleDetail',
     })
   },
   //分享

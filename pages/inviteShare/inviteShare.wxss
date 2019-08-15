@@ -60,7 +60,7 @@
 .ruleBtnIcon{
   color: #896CFF;
   font-size: 24rpx;
-  line-height: 36rpx;
+  line-height: 24rpx;
   margin: 0 4rpx;
   /* align-self: baseline; */
 }
@@ -69,7 +69,7 @@
   font-family:SourceHanSansCN-Normal;
   font-weight:400;
   color:rgba(137,108,255,1);
-  line-height:36rpx;
+  line-height:24rpx;
 }
 .qrcode{
   position: absolute;
@@ -220,7 +220,7 @@
 
 .invite-member-wrapper{
   margin-top: 53rpx;
-  padding-bottom: 35rpx;
+  padding-bottom: 100rpx;
 }
 
 .invite-member-title{
@@ -258,6 +258,9 @@
   border-bottom: 1rpx solid #DFDFDF;
   display: flex;
   align-items: center;
+}
+.invite-member-item:last-child{
+  border-bottom: none
 }
 
 .invite-member-avatar{
@@ -312,7 +315,7 @@
   color: #4A4A4A;
 }
 
-.tips{
+/* .tips{
   margin-top: 40rpx;
   padding-bottom: 52rpx;
 }
@@ -331,7 +334,7 @@
   line-height: 42rpx;
   font-size: 26rpx;
   color: #A0A0A0;
-}
+} */
 
 .header-background {
   position: absolute;
@@ -349,7 +352,7 @@
   top: 598rpx;
   left: 32.5rpx;
   width: 685rpx;
-  height: 562rpx;
+  min-height: 562rpx;
   border-radius: 8rpx;
   background-color: #FFFFFF;
   box-shadow: 0 0 29rpx 0 rgba(214,214,214,0.5);
@@ -390,7 +393,7 @@
 }
 .centerText{
   /* width: 446rpx; */
-  margin: 50rpx auto 70rpx;
+  margin: 70rpx auto 100rpx;
   position: relative;
 }
 .centerText2{
@@ -398,22 +401,23 @@
   font-family:PingFangSC-Regular;
   font-weight:400;
   color:rgba(70,70,70,1);
-  line-height:48rpx;
+  line-height:56rpx;
   margin-bottom: 20rpx;
+  letter-spacing: 4rpx;
 }
 .point{
   color: #E3E3E3;
   font-size: 30rpx;
   position: absolute;
   left: 118rpx;
-  top: 0
+  top: -30rpx;
 }
 .point2{
   color: #E3E3E3;
   font-size: 30rpx;
   position: absolute;
   right: 95rpx;
-  bottom: 0
+  bottom: -30rpx
 }
 .centerText3{
   color: #9F60FF
@@ -427,18 +431,38 @@
   /* font-style:italic;
   padding:0 6rpx 0 0; */
 }
-
+.courseBtnBox{
+  display: flex;
+  justify-content: space-around;
+  padding: 0 32rpx
+}
 .courseBtn{
   width:623rpx;
   background:rgba(139,112,255,1);
   border-radius:42rpx;
-  margin: 0 auto;
+  /* margin: 0 auto; */
   position: relative;
   font-size:30rpx;
   font-family:SourceHanSansCN-Normal;
   font-weight:400;
   color:rgba(255,255,255,1);
   line-height:83rpx;
+}
+.courseBtn2{
+  width:312rpx;
+  background:#fff;
+  border-radius:42rpx;
+  position: relative;
+  font-size:30rpx;
+  font-family:SourceHanSansCN-Normal;
+  font-weight:400;
+  color:#896eFF;
+  line-height:83rpx;
+  border: 2rpx solid #896eFF;
+  text-align: center
+}
+.courseBtn3{
+  width:312rpx;
 }
 .center-text2{
   font-size:30rpx;
@@ -741,4 +765,79 @@
   right: 0;
   bottom: -160rpx;
   margin: auto;
+}
+.closeIcon{
+  font-size: 60rpx;
+  color: #fff;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -160rpx;
+  margin: auto;
+  text-align: center;
+}
+/* --------------------------------复制口令 */
+.tipsStyle{
+  border-radius: 14rpx;
+}
+/* .tipsBox{
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0,0,0,.5);
+  z-index: 1001
+} */
+.tips2{
+  background: #fff;
+  border-radius: 14rpx;
+  width: 600rpx;
+}
+.tips_title2{
+  font-size:40rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(3,3,3,1);
+  line-height:120rpx !important;
+  text-align: center;
+  white-space: normal
+}
+.tips_text{
+  padding: 0 35rpx 60rpx;
+  box-sizing: border-box;
+  font-size:28rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(160,160,160,1);
+  line-height:40rpx !important;
+  white-space: normal;
+  word-break: break-word;
+}
+.btn_popup{
+  display: flex;
+}
+.noneBtn{
+  flex: 1;
+  font-size:32rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(3,3,3,1);
+  line-height:87rpx !important;
+  text-align: center;
+  border-top: 1rpx solid #E6E6E6;
+  border-right: 1rpx solid #E6E6E6;
+  white-space: normal
+}
+.cofirmBtn{
+  flex: 1;
+  font-size:32rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:#896EFF;
+  line-height:87rpx !important;
+  text-align: center;
+  border-top: 1rpx solid #E6E6E6;
+  position: relative;
+  white-space: normal;
 }

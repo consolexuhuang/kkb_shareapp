@@ -1,0 +1,33 @@
+/* pages/ruleDetail/ruleDetail.wxss */
+.tips{
+  margin-top: 40rpx;
+  padding-bottom: 52rpx;
+}
+
+.tips-title{
+  margin-left: 16rpx;
+  line-height: 30rpx;
+  font-size: 30rpx;
+  color: #323232;
+}
+
+.tips rich-text{
+  padding:40rpx 35rpx 140rpx;
+  box-sizing: border-box;
+  display: block;
+  line-height: 42rpx;
+  font-size: 26rpx;
+  color: #A0A0A0;
+}
+.iconBox{
+  position: absolute;
+  bottom: 42rpx;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  text-align: center;
+}
+.icon{
+  font-size: 42rpx;
+  color: #896eff;
+}

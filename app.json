@@ -4,7 +4,8 @@
     "pages/shareRanking/shareRanking",
     "pages/groupRanking/groupRanking",
     "pages/noFind/noFind",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/ruleDetail/ruleDetail"
   ],
   "window": {
     "backgroundTextStyle": "light",

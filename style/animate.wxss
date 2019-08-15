@@ -425,7 +425,9 @@
 .animated.infinite {
   animation-iteration-count: infinite;
 }
-
+.animated.delay-05s {
+  animation-delay: .5s;
+}
 .animated.delay-1s {
   animation-delay: 1s;
 }

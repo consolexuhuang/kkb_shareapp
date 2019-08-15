@@ -39,14 +39,14 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 1,
+			"current": 0,
 			"list": [
 				{
 					"id": 0,
-					"name": "分享入口",
+					"name": "分享入口（本人）",
 					"pathName": "pages/inviteShare/inviteShare",
-					"query": "shareMemberId=1144542931479302144",
-					"scene": 1007
+					"query": "shareMemberId=1161887839647043584",
+					"scene": 1008
 				},
 				{
 					"id": 1,
@@ -66,6 +66,13 @@
 					"pathName": "pages/groupRanking/groupRanking",
 					"query": "",
 					"scene": 1008
+				},
+				{
+					"id": 3,
+					"name": "分享入口（老用户）",
+					"pathName": "pages/inviteShare/inviteShare",
+					"query": "shareMemberId=1146773226525954048",
+					"scene": 1007
 				}
 			]
 		}
