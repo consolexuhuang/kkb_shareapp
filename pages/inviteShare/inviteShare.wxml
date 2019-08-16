@@ -38,8 +38,8 @@
         </view>
       </view> -->
 
-      <button class="invite-btn fadeIn animated" open-type='share' wx:if='{{userData.id}}'>立即邀请</button>
-      <view class="face-invite-btn" bindtap="handleFaceInviteBtnTap">面对面邀请</view>
+      <button class="invite-btn fadeIn animated analysis_invite_Immediate" open-type='share' wx:if='{{userData.id}}'>立即邀请</button>
+      <view class="face-invite-btn" bindtap="handleFaceInviteBtnTap analysis_invite_facetoface">面对面邀请</view>
 
       <view class="total-wrapper">
         <view class="total-amount">
@@ -68,7 +68,7 @@
             <view class="invite-member-name">{{item.nick_name || '神秘好友'}}</view>
 
             <loading invitedCouponList = '{{!invitedCouponList}}'></loading>
-            <view wx:if='{{invitedCouponList[idx].sub_flag === 0 && invitedCouponList}}' class='remind'>提醒关注 <button class='remindBtn' bindtap='showCopyPopup'></button> </view>
+            <view wx:if='{{invitedCouponList[idx].sub_flag === 0 && invitedCouponList}}' class='remind analysis_invite_tip'>提醒关注 <button class='remindBtn' bindtap='showCopyPopup'></button> </view>
             <view wx:elif='{{invitedCouponList[idx].sub_flag === 1 && invitedCouponList}}' class='receiveCoupon'>
                <text class='receiveCouponPrice'>+{{invitedCouponList[idx].coupon_amount || 0}}元</text>
                <text>已关注公众号，{{invitedCouponList[idx].order_count > 0 ? "已下单" : "未下单"}}</text>
