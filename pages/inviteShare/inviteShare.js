@@ -329,7 +329,7 @@ Page({
     return {
       title: title,
       path: '/pages/inviteShare/inviteShare?shareMemberId=' + currentShareMemberId,
-      imageUrl: 'https://img.cdn.powerpower.net/5d1974b1e4b07bc63b17acc7.png?imageView/1/w/500/h/400',
+      imageUrl: 'https://img.cdn.powerpower.net/5d560e07e4b0b1ac63d89462.png?imageView/1/w/500/h/400',
       success: function (res) {
         console.log(res)
       },
