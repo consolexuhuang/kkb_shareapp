@@ -39,7 +39,7 @@
       </view> -->
 
       <button class="invite-btn fadeIn animated analysis_invite_Immediate" open-type='share' wx:if='{{userData.id}}'>立即邀请</button>
-      <view class="face-invite-btn" bindtap="handleFaceInviteBtnTap analysis_invite_facetoface">面对面邀请</view>
+      <view class="face-invite-btn analysis_invite_facetoface" bindtap="handleFaceInviteBtnTap">面对面邀请</view>
 
       <view class="total-wrapper">
         <view class="total-amount">
@@ -153,7 +153,7 @@
            custom-class='tipsStyle'
            z-index = '1001'>
     <view class='tips2'>
-      <view class='tips_title2'>提醒关注口令以生成</view>
+      <view class='tips_title2'>提醒关注口令已生成</view>
       <view class='tips_text'>点击下方链接，关注Justin & Julie公众号。资讯福利一手掌握，活动福利不再错过~
       {{copyLinkGZH}}</view>
       <view class='btn_popup'>

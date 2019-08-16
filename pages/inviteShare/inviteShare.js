@@ -302,7 +302,8 @@ Page({
   comfirmCopy(){
     this.setData({ tipsState: false })
     wx.setClipboardData({
-      data: this.data.copyLinkGZH,
+      data: `点击下方链接，关注Justin & Julie公众号。资讯一手掌握，福利不再错过~
+${this.data.copyLinkGZH}`,
       success: res => {
         wx.getClipboardData({
           success: res => {

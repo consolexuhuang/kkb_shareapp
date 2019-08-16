@@ -86,20 +86,20 @@ App({
     shareTicket_option:'',
 
     //测试公众号地址
-    copyLinkGZH: 'https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzUxNDc0OTcxMg==&scene=110#wechat_redirect',
+    // copyLinkGZH: 'https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzUxNDc0OTcxMg==&scene=110#wechat_redirect',
     //正式公众号地址
-    // copyLinkGZH: 'https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzU0OTcyNDU4Ng==&scene=110#wechat_redirect',
+    copyLinkGZH: 'https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzU0OTcyNDU4Ng==&scene=110#wechat_redirect',
 
-    JumpAppId: {                    //测试
-      appid: 'wx6b00bfc932f22210',
-      // envVersion: 'trial' //体验版
-      envVersion: 'release' //正式版
-    },
-    // JumpAppId: {                   //正式
-    //   appid: 'wx29946485f206d315',
+    // JumpAppId: {                    //测试
+    //   appid: 'wx6b00bfc932f22210',
     //   // envVersion: 'trial' //体验版
     //   envVersion: 'release' //正式版
-    // }, 
+    // },
+    JumpAppId: {                   //正式
+      appid: 'wx29946485f206d315',
+      // envVersion: 'trial' //体验版
+      envVersion: 'release' //正式版
+    }, 
   },
   wx_loginIn: function () {
     let _this = this

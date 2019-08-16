@@ -1,6 +1,6 @@
 <!--pages/ruleDetail/ruleDetail.wxml-->
 <view class="tips">
-  <view class="tips-title">【活动细则】</view>
+  <view class="tips-title">【活动规则】</view>
   <rich-text nodes="{{shareCoupon.info}}"></rich-text>
 </view>
 
