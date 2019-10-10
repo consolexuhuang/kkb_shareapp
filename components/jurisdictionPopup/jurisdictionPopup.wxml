@@ -5,6 +5,20 @@
     <view class='startUpBox'>
        <text class='iconfont iconxingzhuangjiehe-1 icon1'></text>
        <text class='iconfont iconfenzu-9 icon2'></text>
+       <view class="introductionBox">
+          <view class="lineBox">
+            <view class="line" wx:for='{{3}}' wx:key='{{index}}'></view>
+          </view>
+          <view class="introduction">
+            <view class="introductionItem">查看门店</view>
+            <view class="introductionItem">预约课程</view>
+            <view class="introductionItem">路线指引</view>
+            <view class="introductionItem">优惠活动</view>
+          </view>
+          <view class="lineBox lineBox2">
+            <view class="line" wx:for='{{3}}' wx:key='{{index}}'></view>
+          </view>
+        </view>
     </view>
     <view class='loading' wx:if='{{payLoad}}'>
       <view class='startUpCont2_noneLogin loadText loadingBox'>
@@ -19,7 +33,7 @@
       </view>
     </view>
     <view class='box' wx:if='{{!payLoad}}'>
-      <view class='startUpCont2_noneLogin'>需登录后方可使用</view>
+      <!-- <view class='startUpCont2_noneLogin'>需登录后方可使用</view> -->
       <view class='startUpCont2 fadeIn animated' wx:if='{{!userData && !userData.nick_name}}'>
         <button open-type='getUserInfo' bindgetuserinfo = 'bindgetuserinfo' class='getUserInfoBtn'></button>
         微信授权登录

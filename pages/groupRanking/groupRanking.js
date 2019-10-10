@@ -109,17 +109,15 @@ Page({
     })
     console.log('loadState', this.data.loadState, Store.getItem('userData'))
 
-    if (Store.getItem('userData') && Store.getItem('userData').token) {
-      this.getGroupList()
-      this.getMemberFollowState()
-    } else {
-      getApp().wx_loginIn().then(() => {
+
+    if (getApp().passIsLogin()) {
+      getApp().checkSessionFun().then(() => {
         this.setData({ jurisdictionState: false })
         this.getGroupList()
         this.getMemberFollowState()
-      }, () => {
-        this.setData({ jurisdictionState: true })
       })
+    } else {
+      this.setData({ jurisdictionState: true })
     }
   },
 
@@ -133,7 +131,7 @@ Page({
     if (this._observer) this._observer.disconnect()
   },
   bindgetuserinfo() {
-    getApp().wx_loginIn().then(() => {
+    getApp().wx_AuthUserLogin().then(() => {
       this.setData({ loadState: true, })
       this.getGroupList()
       this.getMemberFollowState()

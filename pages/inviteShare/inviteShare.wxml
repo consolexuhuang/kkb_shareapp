@@ -26,7 +26,7 @@
       <view class="return-course">
         <text>返回约课</text>
         <image src="{{imgUrl}}invite/icon_arrow_right.png" />
-        <button open-type='getUserInfo' class='couponRightButton' bindgetuserinfo = 'handleReturnCourseTap' data-path='pages/index/index'></button>
+        <button class='couponRightButton' bindtap = 'handleReturnCourseTap' data-path='pages/index/index'></button>
       </view>
 
       <!-- <view class="invite-wrapper fadeIn animated" wx:if="{{inviteMember.name && !isShare}}">
@@ -44,13 +44,13 @@
       <view class="total-wrapper">
         <view class="total-amount">
           <!-- <loading invitedInfo = '{{!invitedInfo}}'></loading> -->
-          <view class="total-number" wx:if='{{invitedInfo}}'>{{invitedInfo.invited_coupon_amount || 0}}<text class='dollor'>元</text></view>
+          <view class="total-number">{{invitedInfo.invited_coupon_amount || 0}}<text class='dollor'>元</text></view>
           <view class="total-tips">代金券累计金额</view>
         </view>
         <view class="totle-line"></view>
         <view class="total-count">
           <!-- <loading invitedInfo = '{{!invitedInfo}}'></loading> -->
-          <view class="total-number" wx:if='{{invitedInfo}}'>{{invitedInfo.invited_member_count || 0}}<text class='dollor'>人</text></view>
+          <view class="total-number">{{invitedInfo.invited_member_count || 0}}<text class='dollor'>人</text></view>
           <view class="total-tips">累计邀请人</view>
         </view>
       </view>
@@ -206,8 +206,9 @@
   <text class='iconfont iconicon-test18 closeIcon' bindtap='onClose'></text>
 </van-popup>
 
-<jurisdictionPopup state = '{{jurisdictionState}}'
-                   bindmyevent='bindgetuserinfo'></jurisdictionPopup>
+<!-- <jurisdictionPopup state = '{{jurisdictionState}}'
+                   bindmyevent='bindgetuserinfo'></jurisdictionPopup> -->
+<jurisdictionSmallPopup state='{{jurisdictionSmallState}}' bindmyevent='bindgetuserinfo'></jurisdictionSmallPopup>
 
 
 

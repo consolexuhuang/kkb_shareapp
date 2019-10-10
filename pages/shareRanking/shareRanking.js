@@ -68,15 +68,14 @@ Page({
     wx.showShareMenu({
       withShareTicket: true
     })
-    if (!Store.getItem('userData')) {
-      getApp().wx_loginIn().then(() => {
+    if (getApp().passIsLogin()) {
+      getApp().checkSessionFun().then(() => {
         this.getMemberRankInfo(0)
         this.setData({ jurisdictionState: false })
-      }, () => {
-        this.setData({ jurisdictionState: true })
       })
     } else {
-      this.getMemberRankInfo(0)
+      this.setData({ jurisdictionState: true })
+      // this.getMemberRankInfo(0)
     }
   },
 
@@ -87,7 +86,7 @@ Page({
 
   },
   bindgetuserinfo() {
-    getApp().wx_loginIn().then(() => {
+    getApp().wx_AuthUserLogin().then(() => {
       this.setData({ jurisdictionState: false })
       // this.setData({ loadState: true })
       this.getMemberRankInfo(0)

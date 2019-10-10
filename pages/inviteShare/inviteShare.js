@@ -22,7 +22,8 @@ Page({
       codeImg: ''
     },
     isShare: getApp().globalData.share,
-    jurisdictionState: false, //授权显示
+    // jurisdictionState: false, //授权显示
+    jurisdictionSmallState: false,
     IsshowNetStatus:true,
 
     copyLinkGZH: getApp().globalData.copyLinkGZH,
@@ -153,6 +154,11 @@ Page({
       })
     })
   },
+  // 无需token方法
+  LoadCommonPageFunc(){
+    this.getInviteMemberInfo()
+    this.getShareCouponInfo()
+  },
   //加载用户信息总配置
   LoadPageFunc(){
     let userData = Store.getItem('userData') || ''
@@ -161,10 +167,10 @@ Page({
     })
     this.getMemberFollowState()
     this.getFirstStepFriendList()
-    this.getShareCouponInfo()
+    // this.getShareCouponInfo()
     this.getQrcode()
     this.getInvitedInfo()
-    this.getInviteMemberInfo()
+    // this.getInviteMemberInfo()
     this.getUserAdmin()
     // this.getInviteQrcode()
   },
@@ -179,23 +185,12 @@ Page({
       shareMemberId
     })
     getApp().globalData.shareMemberId = options.shareMemberId
-    // Store.clear('userData')
-    if (!Store.getItem('userData')) {
-      getApp().wx_loginIn().then(() => {
+    getApp().checkSessionFun().then(()=>{
+      this.LoadCommonPageFunc()
+      if (getApp().passIsLogin()){
         this.LoadPageFunc()
-      }, () => {
-        wx.setNavigationBarColor({
-          frontColor: "#ffffff",
-          backgroundColor: '#8969FF'
-        });
-        wx.setNavigationBarTitle({
-          title:''
-        })
-        this.setData({ jurisdictionState: true })
-      })
-    } else {
-      this.LoadPageFunc()
-    }
+      }
+    })    
   },
   onShow() {
     wx.hideShareMenu();
@@ -213,22 +208,12 @@ Page({
 // -----------------------------------------------视图层事件
   // 授权method
   bindgetuserinfo(){
-    getApp().wx_loginIn().then(() => {
-      wx.setNavigationBarColor({
-        frontColor: "#000000",
-        backgroundColor: '#ffffff'
-      });
-      wx.setNavigationBarTitle({
-        title: '邀请好友'
+    getApp().wx_AuthUserLogin().then(() => {
+      this.setData({
+        jurisdictionSmallState: false,
       })
-      this.setData({ jurisdictionState : false})
+      this.LoadCommonPageFunc()
       this.LoadPageFunc()
-    },()=>{
-      wx.setNavigationBarColor({
-        frontColor: "#ffffff",
-        backgroundColor: '#8969FF'
-      });
-      this.setData({ jurisdictionState: true })
     })
   },
   //跳转小程序
@@ -251,10 +236,16 @@ Page({
   
   // 显示面对面
   handleFaceInviteBtnTap: function (event) {
-    const isShadeShow = true
-    this.setData({
-      isShadeShow
-    })
+    if (getApp().passIsLogin()){
+      const isShadeShow = true
+      this.setData({
+        isShadeShow
+      })
+    } else {
+      this.setData({
+        jurisdictionSmallState: true
+      })
+    }
   },
   //关闭面对面
   onClose(){
@@ -314,13 +305,12 @@ ${this.data.copyLinkGZH}`,
   //下拉
   onPullDownRefresh(){
     if (this.data.IsshowNetStatus){
-      if (!Store.getItem('userData')) {
-        getApp().wx_loginIn().then(() => {
+      getApp().checkSessionFun().then(() => {
+        this.LoadCommonPageFunc()
+        if (getApp().passIsLogin()) {
           this.LoadPageFunc()
-        })
-      } else {
-        this.LoadPageFunc()
-      }
+        }
+      }) 
     }
     wx.stopPullDownRefresh()
   },

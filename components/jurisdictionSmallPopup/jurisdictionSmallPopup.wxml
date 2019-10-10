@@ -1,0 +1,14 @@
+<!--components/jurisdictionSmallPopup/jurisdictionSmallPopup.wxml-->
+<van-popup show="{{ state }}" custom-class='JurisdictionSmallstyle' z-index = '1001'>
+   <view class="title">您还未登录</view>
+   <view class="tip">请先登录再进行操作哟～</view>
+   <image src="https://img.cdn.powerpower.net/5d6f52a9e4b01651967f19e7.png" class="imgLogin"></image>
+
+   <view class="btnBox">
+      <view class="disNone" bindtap="_hiddenLogin">暂不登录</view>
+      <view class="sure">
+        立即登录
+        <button open-type='getUserInfo' bindgetuserinfo = 'bindgetuserinfo' class='getUserInfoBtn'></button>
+      </view>
+   </view>
+</van-popup>

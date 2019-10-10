@@ -39,13 +39,13 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
+			"current": 1,
 			"list": [
 				{
 					"id": 0,
 					"name": "分享入口（本人）",
 					"pathName": "pages/inviteShare/inviteShare",
-					"query": "shareMemberId=1161887839647043584",
+					"query": "shareMemberId=1177063354959794176",
 					"scene": 1008
 				},
 				{
