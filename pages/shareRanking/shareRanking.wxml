@@ -75,7 +75,7 @@
       <button open-type='getUserInfo' 
              class='lookPULSTextBtn' 
              bindgetuserinfo = 'handleReturnCourseTap'
-             data-path='pages/card/card'></button>
+             data-path='pages/member/member'></button>
     </view>
   </view>
 
