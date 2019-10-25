@@ -85,7 +85,7 @@ App({
     scene:'',
     shareTicket_option:'',
 
-    // //测试公众号地址
+    //测试公众号地址
     // copyLinkGZH: 'https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzUxNDc0OTcxMg==&scene=110#wechat_redirect',
     // 正式公众号地址
     copyLinkGZH: 'https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzU0OTcyNDU4Ng==&scene=110#wechat_redirect',
@@ -147,6 +147,7 @@ App({
           _this.globalData.code = res_code.code
           Store.setItem('code', res_code.code)
           let shareMemberId = wx.getStorageSync('shareMemberId') ? wx.getStorageSync('shareMemberId') : '';
+          // console.log('shareMemberId-api------', wx.getStorageSync('shareMemberId'))
           let data = {
             code: res_code.code,
             sourceData: _this.globalData.scene,

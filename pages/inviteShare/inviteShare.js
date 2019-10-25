@@ -180,10 +180,13 @@ Page({
    */
   onLoad: function (options) {
     console.log('上级id', options.shareMemberId)
-    const shareMemberId = options.shareMemberId || ''
-    this.setData({
-      shareMemberId
-    })
+    if (options.shareMemberId){
+      const shareMemberId = options.shareMemberId || ''
+      Store.setItem('shareMemberId', options.shareMemberId)
+      this.setData({
+        shareMemberId
+      })
+    }
     getApp().globalData.shareMemberId = options.shareMemberId
     getApp().checkSessionFun().then(()=>{
       this.LoadCommonPageFunc()
