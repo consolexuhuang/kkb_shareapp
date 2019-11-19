@@ -194,7 +194,7 @@
      </view>
   </view>
   <view class='qrcodeBox'>
-    <image src="{{qrcode}}"  class='qrcodeImg'/>
+    <image src="{{qrcode}}" show-menu-by-longpress class='qrcodeImg'/>
   </view>
   <view class='qrcode-tipsBox'>
     <image src='{{imgUrl}}invite/shareImgBottom.png' class='qrcode-tipsImg'></image>

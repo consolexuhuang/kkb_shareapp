@@ -86,20 +86,20 @@ App({
     shareTicket_option:'',
 
     //测试公众号地址
-    // copyLinkGZH: 'https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzUxNDc0OTcxMg==&scene=110#wechat_redirect',
+    copyLinkGZH: 'https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzUxNDc0OTcxMg==&scene=110#wechat_redirect',
     // 正式公众号地址
-    copyLinkGZH: 'https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzU0OTcyNDU4Ng==&scene=110#wechat_redirect',
+    // copyLinkGZH: 'https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzU0OTcyNDU4Ng==&scene=110#wechat_redirect',
 
-    // JumpAppId: {                    //测试
-    //   appid: 'wx6b00bfc932f22210',
-    //   // envVersion: 'trial' //体验版
-    //   envVersion: 'release' //正式版
-    // },
-    JumpAppId: {                   //正式
-      appid: 'wx29946485f206d315',
+    JumpAppId: {                    //测试
+      appid: 'wx6b00bfc932f22210',
       // envVersion: 'trial' //体验版
       envVersion: 'release' //正式版
-    }, 
+    },
+    // JumpAppId: {                   //正式
+    //   appid: 'wx29946485f206d315',
+    //   // envVersion: 'trial' //体验版
+    //   envVersion: 'release' //正式版
+    // }, 
   },
   //校验是否通过登陆
   passIsLogin() {
@@ -264,7 +264,49 @@ App({
     }
 
     return 0
-  }
+  },
+  compareVersion: function (v2) { //v2:需要的微信版本
+    let v1 = wx.getSystemInfoSync().SDKVersion;
+    console.log('wx.getSystemInfoSync().SDKVersion')
+    console.log(wx.getSystemInfoSync())
+    v1 = v1.split('.')
+    v2 = v2.split('.')
+    const len = Math.max(v1.length, v2.length)
+
+    while (v1.length < len) {
+      v1.push('0')
+    }
+    while (v2.length < len) {
+      v2.push('0')
+    }
+
+    for (let i = 0; i < len; i++) {
+      const num1 = parseInt(v1[i])
+      const num2 = parseInt(v2[i])
+
+      if (num1 > num2) {
+        return 1
+      } else if (num1 < num2) {
+        return -1
+      }
+    }
+    return 0;
+  },
+  compareVersionPromise: function (v) { //v:需要的微信版本
+    return new Promise((resolve, reject) => {
+      if (this.compareVersion(v) < 0) {
+        // 如果希望用户在最新版本的客户端上体验您的小程序，可以这样子提示
+        wx.showToast({
+          title: '当前微信版本过低',
+          icon: 'none'
+        });
+        resolve(-1); //现在的版本比需要的版本小
+      } else {
+        resolve(0); //现在的版本比需要的版本大或者相等
+      };
+    })
+
+  },
   //修改用户信息接口
   // wx_modifyUserInfo() {
   //   wx.showLoading({ title: '加载中...',})

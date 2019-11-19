@@ -296,7 +296,7 @@ ${this.data.copyLinkGZH}`,
     return {
       title: title,
       path: '/pages/inviteShare/inviteShare?shareMemberId=' + currentShareMemberId,
-      imageUrl: 'https://img.cdn.powerpower.net/5d560e07e4b0b1ac63d89462.png?imageView/1/w/500/h/400',
+      imageUrl: 'https://img.cdn.powerpower.net/5dba904ae4b09d90f1760bb2.jpg?imageView/1/w/500/h/400',
       success: function (res) {
         console.log(res)
       },
