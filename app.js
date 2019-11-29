@@ -90,16 +90,16 @@ App({
     // 正式公众号地址
     // copyLinkGZH: 'https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzU0OTcyNDU4Ng==&scene=110#wechat_redirect',
 
-    JumpAppId: {                    //测试
-      appid: 'wx6b00bfc932f22210',
-      // envVersion: 'trial' //体验版
-      envVersion: 'release' //正式版
-    },
-    // JumpAppId: {                   //正式
-    //   appid: 'wx29946485f206d315',
+    // JumpAppId: {                    //测试
+    //   appid: 'wx6b00bfc932f22210',
     //   // envVersion: 'trial' //体验版
     //   envVersion: 'release' //正式版
-    // }, 
+    // },
+    JumpAppId: {                   //正式
+      appid: 'wx29946485f206d315',
+      // envVersion: 'trial' //体验版
+      envVersion: 'release' //正式版
+    }, 
   },
   //校验是否通过登陆
   passIsLogin() {
@@ -142,44 +142,48 @@ App({
   wx_loginIn: function () {
     let _this = this
     return new Promise((resolve, reject) => {
-      wx.login({
-        success: res_code => {
-          _this.globalData.code = res_code.code
-          Store.setItem('code', res_code.code)
-          let shareMemberId = wx.getStorageSync('shareMemberId') ? wx.getStorageSync('shareMemberId') : '';
-          // console.log('shareMemberId-api------', wx.getStorageSync('shareMemberId'))
-          let data = {
-            code: res_code.code,
-            sourceData: _this.globalData.scene,
-            shareChannel: shareMemberId,
-          }
-          api.get('authorizationShare', data).then(res => {
-            if (res.msg) {
-              if (res.code === -1) { //如果出现登录未知错误
-                setTimeout(() => {
-                  wx.navigateTo({
-                    url: `/pages/noFind/noFind?type=1`
-                  })
-                }, 0)
-              } else {
-                // 已关联公众号
-                wx.setStorageSync('shareMemberId', res.msg.id || '')
-                wx.setStorageSync('userData', res.msg)
-                //Store.setItem('userData', res.msg)
-                resolve()
-              }
-            } else if (res.code === 0 && !res.msg) {
-              // code: 0;
-              // msg: null
-              resolve()
-            } else {
-              reject()
+      _this.getLocation().then(() => {
+        wx.login({
+          success: res_code => {
+            _this.globalData.code = res_code.code
+            Store.setItem('code', res_code.code)
+            let shareMemberId = wx.getStorageSync('shareMemberId') ? wx.getStorageSync('shareMemberId') : '';
+            // console.log('shareMemberId-api------', wx.getStorageSync('shareMemberId'))
+            let data = {
+              code: res_code.code,
+              sourceData: _this.globalData.scene,
+              shareChannel: shareMemberId,
+              latitude: _this.globalData.location.latitude,
+              longitude: _this.globalData.location.longitude
             }
-          })
-        },
-        fail: () => {
-          console.error('登录失败！')
-        }
+            api.get('authorizationShare', data).then(res => {
+              if (res.msg) {
+                if (res.code === -1) { //如果出现登录未知错误
+                  setTimeout(() => {
+                    wx.navigateTo({
+                      url: `/pages/noFind/noFind?type=1`
+                    })
+                  }, 0)
+                } else {
+                  // 已关联公众号
+                  wx.setStorageSync('shareMemberId', res.msg.id || '')
+                  wx.setStorageSync('userData', res.msg)
+                  //Store.setItem('userData', res.msg)
+                  resolve()
+                }
+              } else if (res.code === 0 && !res.msg) {
+                // code: 0;
+                // msg: null
+                resolve()
+              } else {
+                reject()
+              }
+            })
+          },
+          fail: () => {
+            console.error('登录失败！')
+          }
+        })
       })
     })
   },
@@ -187,56 +191,60 @@ App({
   wx_AuthUserLogin: function () {
     let _this = this
     return new Promise((resolve, reject) => {
-      wx.login({
-        success: res_code => {
-          _this.globalData.code = res_code.code
-          Store.setItem('code', res_code.code)
-          wx.getUserInfo({
-            lang: 'zh_CN',
-            success(res_userInfo) {
-              Store.setItem('wx_userInfo', res_userInfo.userInfo)
-              console.log('用户信息', res_userInfo)
-              let data = {
-                code: res_code.code,
-                sourceData: _this.globalData.scene,
-                shareChannel: _this.globalData.shareMemberId || '',
-                nickName: res_userInfo.userInfo.nickName || '',
-                headImg: res_userInfo.userInfo.avatarUrl || '',
-                city: res_userInfo.userInfo.city || '',
-                gender: res_userInfo.userInfo.gender || '',
-                encryptedData: res_userInfo.encryptedData || '',
-                iv: res_userInfo.iv || '',
-                rawData: res_userInfo.rawData || '',
-                signature: res_userInfo.signature || ''
-              }
-              wx.showLoading({ title: '登录中...', })
-              api.get('authorizationShare', data).then(res => {
-                wx.hideLoading()
-                if (res.msg) {
-                  if (res.code === -1) { //如果出现登录未知错误
+      _this.getLocation().then(() => {
+        wx.login({
+          success: res_code => {
+            _this.globalData.code = res_code.code
+            Store.setItem('code', res_code.code)
+            wx.getUserInfo({
+              lang: 'zh_CN',
+              success(res_userInfo) {
+                Store.setItem('wx_userInfo', res_userInfo.userInfo)
+                console.log('用户信息', res_userInfo)
+                let data = {
+                  code: res_code.code,
+                  sourceData: _this.globalData.scene,
+                  shareChannel: _this.globalData.shareMemberId || '',
+                  nickName: res_userInfo.userInfo.nickName || '',
+                  headImg: res_userInfo.userInfo.avatarUrl || '',
+                  city: res_userInfo.userInfo.city || '',
+                  gender: res_userInfo.userInfo.gender || '',
+                  encryptedData: res_userInfo.encryptedData || '',
+                  iv: res_userInfo.iv || '',
+                  rawData: res_userInfo.rawData || '',
+                  signature: res_userInfo.signature || '',
+                  latitude: _this.globalData.location.latitude,
+                  longitude: _this.globalData.location.longitude
+                }
+                wx.showLoading({ title: '登录中...', })
+                api.get('authorizationShare', data).then(res => {
+                  wx.hideLoading()
+                  if (res.msg) {
+                    if (res.code === -1) { //如果出现登录未知错误
+                      setTimeout(() => {
+                        wx.navigateTo({ url: `/pages/noFind/noFind?type=1` })
+                      }, 0)
+                    } else {
+                      Store.setItem('userData', res.msg)
+                      resolve()
+                    }
+                  } else {
                     setTimeout(() => {
                       wx.navigateTo({ url: `/pages/noFind/noFind?type=1` })
                     }, 0)
-                  } else {
-                    Store.setItem('userData', res.msg)
-                    resolve()
                   }
-                } else {
-                  setTimeout(() => {
-                    wx.navigateTo({ url: `/pages/noFind/noFind?type=1` })
-                  }, 0)
-                }
-              })
-            },
-            fail() {
-              reject('拒绝授权')
-            }
-          })
+                })
+              },
+              fail() {
+                reject('拒绝授权')
+              }
+            })
 
-        },
-        fail: () => {
-          console.error('登录失败！')
-        }
+          },
+          fail: () => {
+            console.error('登录失败！')
+          }
+        })
       })
     })
   },
@@ -306,6 +314,34 @@ App({
       };
     })
 
+  },
+  getLocation: function () {
+    return new Promise((resolve) => {
+      const location = this.globalData.location;
+      if (!location) {
+        const _this = this
+        wx.getLocation({
+          type: 'gcj02',
+          isHighAccuracy: true,
+          success(res) {
+            // console.log('sssss',res)
+            _this.globalData.location = res;
+            resolve();
+          },
+          fail(err) {
+            //默认值
+            let location = {
+              latitude: '31.24916171',
+              longitude: '121.487899486'
+            }
+            _this.globalData.location = location;
+            resolve();
+          }
+        })
+      } else {
+        resolve();
+      }
+    });
   },
   //修改用户信息接口
   // wx_modifyUserInfo() {
